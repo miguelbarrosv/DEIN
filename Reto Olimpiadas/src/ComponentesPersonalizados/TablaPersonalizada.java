@@ -2,10 +2,8 @@ package ComponentesPersonalizados;
 
 import javax.swing.table.AbstractTableModel;
 
-import LN.clsEventoDescriptivo;
-import LP.ArrayList;
-import LP.Object;
-import LP.String;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import UML.*;
 
 
@@ -21,7 +19,7 @@ public class TablaPersonalizada extends AbstractTableModel{
 	private String[] columnNames;
 	private Object [][]datos;
 
-	public TablaPersonalizada(String frame)
+	public TablaPersonalizada(String frame) throws SQLException
     {
     	if(frame == "deportistas") {
     		deportistas = controlador.consultarDeportistas();
@@ -103,7 +101,7 @@ public class TablaPersonalizada extends AbstractTableModel{
 				"Id Olimpiada", 
 	            "Nombre",	 
 	            "Temporada", 
-	            "Año",
+	            "Aï¿½o",
 	            "Ciudad"
 	            };
 	            

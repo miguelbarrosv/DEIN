@@ -97,7 +97,7 @@ public class frmVentanaPrincipal extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
             	try {
-            		controlador.cerrarVentanaPrincipal();
+            		controladorVistas.cerrarVentanaPrincipal();
 					controladorVistas.abrirVentanaOlimpiada();
 				} catch (SQLException e1) {
 					e1.printStackTrace();

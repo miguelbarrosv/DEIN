@@ -126,5 +126,5 @@ public class frmVentanaParticipacion extends JFrame {
 		deportistas = controlador.consultarDeportistas();
 		equipos = controlador.consultarEquipos();
 		
-		
+	}	
 }

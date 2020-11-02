@@ -139,7 +139,7 @@ public class MenuPersonalizado extends JPanel{
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
 	            	try {
-	            		controlador.cerrarVentanaPrincipal();
+	            		controladorVistas.cerrarVentanaPrincipal();
 						controladorVistas.abrirVentanaDeporte();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
