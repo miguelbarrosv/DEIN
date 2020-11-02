@@ -20,7 +20,7 @@ public class ParticipacionBD {
         p.setId_deportista(resultado.getInt("id_deportista"));
         p.setId_equipo(resultado.getInt("id_equipo"));
         p.setId_evento(resultado.getInt("id_evento"));
-        p.setMedalla(resultado.getString("temporada"));
+        p.setMedalla(resultado.getString("medalla"));
         p.setEdad(resultado.getInt("edad"));
         return p;
     }

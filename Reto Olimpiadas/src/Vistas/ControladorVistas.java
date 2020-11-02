@@ -77,6 +77,7 @@ public class ControladorVistas {
 	}
 
 	public static void abrirVentanaPrincipal() {
+		vPrincipal = new frmVentanaPrincipal();
 		vPrincipal.setVisible(true);
 	}
 	
