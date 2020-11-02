@@ -50,7 +50,7 @@ public class Controlador {
 
 
 	public void insertarDeporte(String nombre) throws SQLException {
-		deporteBD.añadirDeporte(nombre);
+		deporteBD.altaDeporte(nombre);
 	}
 
 
@@ -60,8 +60,8 @@ public class Controlador {
 	}
 
 
-	public void añadirDeportista(String nombre, String sexo, int altura, int peso) throws SQLException {
-		deportistaBD.añadirDeportista(nombre,sexo,altura,peso);
+	public void altaDeportista(String nombre, String sexo, int altura, int peso) throws SQLException {
+		deportistaBD.altaDeportista(nombre,sexo,altura,peso);
 	}
 
 
@@ -77,8 +77,8 @@ public class Controlador {
 	}
 
 
-	public void añadirOlimpiada(int anio, String temporada, String nombre, String ciudad) throws SQLException {
-		olimpiadaBD.añadirOlimpiada(anio,temporada,nombre,ciudad);
+	public void altaOlimpiada(int anio, String temporada, String nombre, String ciudad) throws SQLException {
+		olimpiadaBD.altaOlimpiada(anio,temporada,nombre,ciudad);
 	}
 
 

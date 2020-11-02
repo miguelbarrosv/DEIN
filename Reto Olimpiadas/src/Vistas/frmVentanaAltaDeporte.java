@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
-public class frmVentanaAñadirDeporte extends JFrame {
+public class frmVentanaAltaDeporte extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNombreDeporte;
@@ -28,7 +28,7 @@ public class frmVentanaAñadirDeporte extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public frmVentanaAñadirDeporte() {
+	public frmVentanaAltaDeporte() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

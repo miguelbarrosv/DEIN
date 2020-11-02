@@ -88,7 +88,7 @@ public class frmVentanaAltaDeportista extends JFrame {
 				int peso = Integer.parseInt(frmtdtxtPeso.getText());
 
 				try {
-					controlador.añadirDeportista(nombre,sexo,altura,peso);
+					controlador.altaDeportista(nombre,sexo,altura,peso);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

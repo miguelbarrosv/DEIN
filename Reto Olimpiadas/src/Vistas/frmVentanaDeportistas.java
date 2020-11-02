@@ -1,7 +1,7 @@
 package Vistas;
 
 import java.awt.BorderLayout;
-
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import ComponentesPersonalizados.MenuPersonalizado;
 import ComponentesPersonalizados.TablaPersonalizada;
 
 import javax.swing.DefaultListModel;
@@ -40,7 +41,7 @@ public class frmVentanaDeportistas extends JFrame {
 	 */
 	public frmVentanaDeportistas() throws SQLException {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 805, 524);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -49,16 +50,22 @@ public class frmVentanaDeportistas extends JFrame {
 		TablaPersonalizada tableModel  = new TablaPersonalizada("deportistas");
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(100, 49, 256, 179);
+		scrollPane.setBounds(213, 65, 554, 329);
 		contentPane.add(scrollPane);
 		tableDeportistas = new JTable(tableModel);
 		scrollPane.setViewportView(tableDeportistas);
 		
 		JLabel lblListaDeDeportistas = new JLabel("Lista de deportistas");
-		lblListaDeDeportistas.setBounds(152, 12, 153, 15);
+		lblListaDeDeportistas.setBounds(454, 25, 102, 15);
 		contentPane.add(lblListaDeDeportistas);
 		
-		JButton btnAaidrDeportista = new JButton("AÃ±aidr Deportista");
+		MenuPersonalizado panel = new MenuPersonalizado("deportista");
+		panel.setLayout(null);
+		panel.setBackground(Color.BLACK);
+		panel.setBounds(0, 0, 187, 494);
+		contentPane.add(panel);
+		
+		JButton btnAaidrDeportista = new JButton("Añadir Deportista");
 		btnAaidrDeportista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controladorVistas.abrirVentanaAltaDeportista();
@@ -66,7 +73,7 @@ public class frmVentanaDeportistas extends JFrame {
 		});
 		
 		btnAaidrDeportista.setFont(new Font("Dialog", Font.BOLD, 10));
-		btnAaidrDeportista.setBounds(276, 240, 135, 25);
+		btnAaidrDeportista.setBounds(632, 428, 135, 25);
 		contentPane.add(btnAaidrDeportista);
 		
 	

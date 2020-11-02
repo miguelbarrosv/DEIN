@@ -43,7 +43,7 @@ public class DeportistaBD {
         return listaDeportistas;
 	}
 
-	public void añadirDeportista(String nombre, String sexo, int altura, int peso) throws SQLException {
+	public void altaDeportista(String nombre, String sexo, int altura, int peso) throws SQLException {
 		Bdr.Conectar();
         plantilla = "INSERT INTO Deportista(nombre,sexo,altura,peso) VALUES(?,?,?,?)";
         ps = Bdr.getCon().prepareStatement(plantilla);

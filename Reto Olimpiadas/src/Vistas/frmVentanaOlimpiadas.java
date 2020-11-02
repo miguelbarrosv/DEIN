@@ -50,14 +50,14 @@ public class frmVentanaOlimpiadas extends JFrame {
 	 */
 	public frmVentanaOlimpiadas() throws SQLException {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 699, 508);
+		setBounds(100, 100, 844, 529);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblOlimpiadas = new JLabel("Olimpiadas");
-		lblOlimpiadas.setBounds(411, 29, 93, 15);
+		lblOlimpiadas.setBounds(505, 51, 51, 15);
 		contentPane.add(lblOlimpiadas);
 		
 		TablaPersonalizada tableModel  = new TablaPersonalizada("olimpiadas");
@@ -75,16 +75,16 @@ public class frmVentanaOlimpiadas extends JFrame {
 		});
 		
 		btnAadirOlimpiada.setFont(new Font("Dialog", Font.BOLD, 10));
-		btnAadirOlimpiada.setBounds(535, 343, 131, 25);
+		btnAadirOlimpiada.setBounds(656, 439, 131, 25);
 		contentPane.add(btnAadirOlimpiada);
 		
 		tableOlimpiadas = new JTable(tableModel);
 		tableOlimpiadas.setColumnSelectionAllowed(true);
 		tableOlimpiadas.setEnabled(false);
-		tableOlimpiadas.setBounds(250, 101, 416, 168);
+		tableOlimpiadas.setBounds(219, 102, 568, 290);
 		contentPane.add(tableOlimpiadas);
 		
-		MenuPersonalizado panel = new MenuPersonalizado("olimpiadas");
+		MenuPersonalizado panel = new MenuPersonalizado("olimpiada");
 		panel.setLayout(null);
 		panel.setBackground(Color.BLACK);
 		panel.setBounds(0, 0, 187, 494);

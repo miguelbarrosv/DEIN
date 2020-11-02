@@ -81,7 +81,7 @@ public class frmVentanaAltaOlimpiada extends JFrame {
 				nombre = txtAnio.getText()  + " " + temporada;
 				ciudad = txtCiudad.getText();
 				try {
-					controlador.añadirOlimpiada(anio,temporada,nombre,ciudad);
+					controlador.altaOlimpiada(anio,temporada,nombre,ciudad);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

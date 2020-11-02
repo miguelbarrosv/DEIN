@@ -40,7 +40,7 @@ public class OlimpiadaBD {
         return listaOlimpiadas;
 	}
 
-	public void añadirOlimpiada(int anio, String temporada, String nombre, String ciudad) throws SQLException {
+	public void altaOlimpiada(int anio, String temporada, String nombre, String ciudad) throws SQLException {
 		Bdr.Conectar();
         plantilla = "INSERT INTO Olimpiada(anio,temporada,nombre,ciudad) VALUES(?,?,?,?)";
         ps = Bdr.getCon().prepareStatement(plantilla);

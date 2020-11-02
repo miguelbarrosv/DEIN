@@ -42,7 +42,7 @@ public class EventoBD {
         return listaEventos;
 	}
 
-	public void añadirEvento(int id_evento, String nombre, int id_olimpiada, int id_deporte) throws SQLException {
+	public void altaEvento(int id_evento, String nombre, int id_olimpiada, int id_deporte) throws SQLException {
 		Bdr.Conectar();
         plantilla = "INSERT INTO Evento(id_evento,nombre,id_olimpiada,id_deporte) VALUES(?,?,?,?)";
         ps = Bdr.getCon().prepareStatement(plantilla);

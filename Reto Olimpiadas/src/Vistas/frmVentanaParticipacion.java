@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.table.TableModel;
 
+import ComponentesPersonalizados.MenuPersonalizado;
 import ComponentesPersonalizados.TablaPersonalizada;
 
 import java.awt.Color;
@@ -45,14 +46,14 @@ public class frmVentanaParticipacion extends JFrame {
 	 */
 	public frmVentanaParticipacion() throws SQLException {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 689, 496);
+		setBounds(100, 100, 840, 526);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblParticipaciones = new JLabel("Participaciones");
-		lblParticipaciones.setBounds(393, 40, 128, 15);
+		lblParticipaciones.setBounds(457, 37, 79, 15);
 		contentPane.add(lblParticipaciones);
 		
 		
@@ -65,62 +66,20 @@ public class frmVentanaParticipacion extends JFrame {
 			}
 		});
 		
-		btnNewButton.setBounds(476, 342, 182, 25);
+		btnNewButton.setBounds(590, 422, 182, 25);
 		contentPane.add(btnNewButton);
 		
 		TablaPersonalizada tableModel  = new TablaPersonalizada("participacion");
 		
 		tableParticipaciones = new JTable(tableModel);
-		tableParticipaciones.setBounds(265, 108, 393, 168);
+		tableParticipaciones.setBounds(230, 81, 553, 306);
 		contentPane.add(tableParticipaciones);
 		
-		JPanel panel = new JPanel();
+		MenuPersonalizado panel = new MenuPersonalizado("participacion");
 		panel.setLayout(null);
 		panel.setBackground(Color.BLACK);
-		panel.setBounds(12, 0, 187, 494);
+		panel.setBounds(0, 0, 187, 494);
 		contentPane.add(panel);
-		
-		JLabel lblParticipacion = new JLabel("Participacion");
-		lblParticipacion.setForeground(Color.WHITE);
-		lblParticipacion.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblParticipacion.setBounds(12, 74, 175, 52);
-		panel.add(lblParticipacion);
-		
-		JLabel lblEquipos = new JLabel("Equipos");
-		lblEquipos.setForeground(Color.WHITE);
-		lblEquipos.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblEquipos.setBounds(12, 138, 175, 52);
-		panel.add(lblEquipos);
-		
-		JLabel lblDeportista = new JLabel("Deportista");
-		lblDeportista.setForeground(Color.WHITE);
-		lblDeportista.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblDeportista.setBounds(12, 202, 175, 52);
-		panel.add(lblDeportista);
-		
-		JLabel lblDeporte = new JLabel("Deporte");
-		lblDeporte.setForeground(Color.WHITE);
-		lblDeporte.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblDeporte.setBounds(12, 266, 175, 52);
-		panel.add(lblDeporte);
-		
-		JLabel lblEvento = new JLabel("Evento");
-		lblEvento.setForeground(Color.WHITE);
-		lblEvento.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblEvento.setBounds(12, 330, 175, 52);
-		panel.add(lblEvento);
-		
-		JLabel lblOlimpiadas = new JLabel("Olimpiadas");
-		lblOlimpiadas.setForeground(Color.WHITE);
-		lblOlimpiadas.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblOlimpiadas.setBounds(12, 394, 175, 45);
-		panel.add(lblOlimpiadas);
-		
-		JLabel lblInicio = new JLabel("Inicio");
-		lblInicio.setForeground(Color.WHITE);
-		lblInicio.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblInicio.setBounds(12, 10, 175, 52);
-		panel.add(lblInicio);
 		
 		participaciones = controlador.consultarParticipaciones();
 		deportistas = controlador.consultarDeportistas();

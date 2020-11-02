@@ -29,43 +29,43 @@ public class MenuPersonalizado extends JPanel{
 		lblParticipacion.setForeground(Color.WHITE);
 		lblParticipacion.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblParticipacion.setBounds(12, 74, 175, 52);
-		//panel.add(lblParticipacion);
+		this.add(lblParticipacion);
 		
 		lblEquipos = new JLabel("Equipos");
 		lblEquipos.setForeground(Color.WHITE);
 		lblEquipos.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblEquipos.setBounds(12, 138, 175, 52);
-		//panel.add(lblEquipos);
+		this.add(lblEquipos);
 		
 		lblDeportista = new JLabel("Deportista");
 		lblDeportista.setForeground(Color.WHITE);
 		lblDeportista.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblDeportista.setBounds(12, 202, 175, 52);
-		//panel.add(lblDeportista);
+		this.add(lblDeportista);
 		
 		lblDeporte = new JLabel("Deporte");
 		lblDeporte.setForeground(Color.WHITE);
 		lblDeporte.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblDeporte.setBounds(12, 266, 175, 52);
-		//panel.add(lblDeporte);
+		this.add(lblDeporte);
 		
 		lblEvento = new JLabel("Evento");
 		lblEvento.setForeground(Color.WHITE);
 		lblEvento.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblEvento.setBounds(12, 330, 175, 52);
-		//panel.add(lblEvento);
+		this.add(lblEvento);
 		
 		lblOlimpiadas = new JLabel("Olimpiadas");
 		lblOlimpiadas.setForeground(Color.WHITE);
 		lblOlimpiadas.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblOlimpiadas.setBounds(12, 394, 175, 45);
-		//panel.add(lblOlimpiadas_1);
+		this.add(lblOlimpiadas);
 		
 		lblInicio = new JLabel("Inicio");
 		lblInicio.setForeground(Color.WHITE);
 		lblInicio.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblInicio.setBounds(12, 10, 175, 52);
-		//panel.add(lblInicio);
+		this.add(lblInicio);
 		
 		
 		

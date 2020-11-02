@@ -55,7 +55,7 @@ public class DeporteBD {
         return listaDeportes;
 	}
 
-	public void añadirDeporte(String nombre) throws SQLException 
+	public void altaDeporte(String nombre) throws SQLException 
 	{
 		Bdr.Conectar();
         plantilla = "INSERT INTO Deporte(nombre) VALUES(?)";

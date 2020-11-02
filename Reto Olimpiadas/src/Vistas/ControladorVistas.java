@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class ControladorVistas {
 	public frmVentanaDeporte vDeporte;
-	public frmVentanaAñadirDeporte vAltaDeporte;
+	public frmVentanaAltaDeporte vAltaDeporte;
 	public frmVentanaDeportistas vDeportista;
 	public frmVentanaAltaDeportista vAltaDeportista;
 	public frmVentanaEquipos vEquipos;
@@ -22,7 +22,7 @@ public class ControladorVistas {
 
 	public void abrirVentanaAltaDeporte() 
 	{
-		vAltaDeporte = new frmVentanaAñadirDeporte();
+		vAltaDeporte = new frmVentanaAltaDeporte();
 		vAltaDeporte.setVisible(true);
 	}
 
