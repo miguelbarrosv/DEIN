@@ -73,7 +73,7 @@ public class frmVentanaDeporte extends JFrame {
 		deportes = controlador.consultarDeportes();
 		
 		for(int i=0; i < deportes.size(); i++) {
-		    //Añadir cada elemento del ArrayList en el modelo de la lista
+		    //Aï¿½adir cada elemento del ArrayList en el modelo de la lista
 			model.addElement(deportes.get(i).getNombre());
 		}
 	}

@@ -24,7 +24,17 @@ public class MenuPersonalizado extends JPanel{
 	private JLabel lblOlimpiadas;
 	private JLabel lblInicio;
 	
-	public MenuPersonalizado(String frame) {
+	public MenuPersonalizado() 
+	{
+		controladorVistas = new ControladorVistas ();
+		controlador = new Controlador();
+	}
+	
+	public MenuPersonalizado(String frame) 
+	{
+		
+		this();
+		
 		lblParticipacion = new JLabel("Participacion");
 		lblParticipacion.setForeground(Color.WHITE);
 		lblParticipacion.setFont(new Font("Dialog", Font.BOLD, 16));

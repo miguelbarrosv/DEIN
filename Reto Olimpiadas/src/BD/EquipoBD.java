@@ -39,4 +39,16 @@ public class EquipoBD {
         
         return listaEquipos;
 	}
+
+	public void altaEquipo(String nombre, String iniciales) throws SQLException {
+		// TODO Auto-generated method stub
+		Bdr.Conectar();
+        plantilla = "INSERT INTO Equipo(nombre,iniciales) VALUES(?,?)";
+        ps = Bdr.getCon().prepareStatement(plantilla);
+        ps.setString(1, nombre);
+        ps.setString(2, iniciales);
+        
+        ps.executeUpdate();
+        Bdr.cerrarCon();
+	}
 }

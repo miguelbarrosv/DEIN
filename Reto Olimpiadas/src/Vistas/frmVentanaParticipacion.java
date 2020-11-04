@@ -62,7 +62,12 @@ public class frmVentanaParticipacion extends JFrame {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controladorVistas.abrirVentanaAltaParticipacion();
+				try {
+					controladorVistas.abrirVentanaAltaParticipacion();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		
@@ -80,10 +85,6 @@ public class frmVentanaParticipacion extends JFrame {
 		panel.setBackground(Color.BLACK);
 		panel.setBounds(0, 0, 187, 494);
 		contentPane.add(panel);
-		
-		participaciones = controlador.consultarParticipaciones();
-		deportistas = controlador.consultarDeportistas();
-		equipos = controlador.consultarEquipos();
 		
 	}	
 }

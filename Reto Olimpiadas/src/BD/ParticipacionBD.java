@@ -40,15 +40,10 @@ public class ParticipacionBD {
         return listaParticipaciones;
 	}
 
-	public void altaParticipacion(int anio, String temporada, String nombre, String ciudad) throws SQLException {
+	public void altaParticipacion() throws SQLException {
 		Bdr.Conectar();
         plantilla = "INSERT INTO Participacion(anio,temporada,nombre,ciudad) VALUES(?,?,?,?)";
         ps = Bdr.getCon().prepareStatement(plantilla);
-        ps.setInt(1, anio);
-        ps.setString(2, temporada);
-        ps.setString(3, nombre);
-        ps.setString(4, ciudad);
-        
         ps.executeUpdate();
         Bdr.cerrarCon();
 		

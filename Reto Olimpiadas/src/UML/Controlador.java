@@ -93,4 +93,15 @@ public class Controlador {
 		return eventos;
 	}
 
+
+	public void altaEquipo(String nombre, String iniciales) throws SQLException {
+		equipoBD.altaEquipo(nombre, iniciales);
+	}
+
+
+	public void altaParticipacion() throws SQLException {
+		// TODO Auto-generated method stub
+		participacionBD.altaParticipacion();
+	}
+
 }

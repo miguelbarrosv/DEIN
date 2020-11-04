@@ -3,16 +3,19 @@ package Vistas;
 import java.sql.SQLException;
 
 public class ControladorVistas {
-	public frmVentanaDeporte vDeporte;
-	public frmVentanaAltaDeporte vAltaDeporte;
-	public frmVentanaDeportistas vDeportista;
-	public frmVentanaAltaDeportista vAltaDeportista;
-	public frmVentanaEquipos vEquipos;
-	public frmVentanaOlimpiadas vOlimpiada;
-	public frmVentanaAltaOlimpiada vAltaOlimpiada;
-	public frmVentanaParticipacion vParticipacion;
-	public frmVentanaEvento vEvento;
+	public static frmVentanaDeporte vDeporte;
+	public static frmVentanaAltaDeporte vAltaDeporte;
+	public static frmVentanaDeportistas vDeportista;
+	public static frmVentanaAltaDeportista vAltaDeportista;
+	public static frmVentanaEquipos vEquipos;
+	public static frmVentanaOlimpiadas vOlimpiada;
+	public static frmVentanaAltaOlimpiada vAltaOlimpiada;
+	public static frmVentanaParticipacion vParticipacion;
+	public static frmVentanaEvento vEvento;
 	public static frmVentanaPrincipal vPrincipal;
+	public static frmVentanaAltaEquipo vAltaEquipo;
+	public static frmVentanaAltaParticipacion vAltaParticipacion;
+
 
 	public void abrirVentanaDeporte() throws SQLException
 	{
@@ -29,85 +32,131 @@ public class ControladorVistas {
 	public void cerrarVentanaAltaDeporte() 
 	{
 		vAltaDeporte.dispose();
-	}
+	} 
+	
 
 	public void abrirVentanaDeportista() throws SQLException 
 	{
 		vDeportista = new frmVentanaDeportistas();
 		vDeportista.setVisible(true);
-		
 	}
 
-	public void abrirVentanaAltaDeportista() {
+	public void abrirVentanaAltaDeportista() 
+	{
 		vAltaDeportista = new frmVentanaAltaDeportista();
 		vAltaDeportista.setVisible(true);
 	}
 
-	public void abrirVentanaEquipos() throws SQLException {
+	public void abrirVentanaEquipos() throws SQLException 
+	{
 		vEquipos = new frmVentanaEquipos();
 		vEquipos.setVisible(true);
 	}
 
-	public void abrirVentanaOlimpiada() throws SQLException {
+	public void abrirVentanaOlimpiada() throws SQLException 
+	{
 		vOlimpiada = new frmVentanaOlimpiadas();
 		vOlimpiada.setVisible(true);
 	}
 
-	public void abrirVentanaOlimpiadaAlta() throws SQLException {
+	public void abrirVentanaOlimpiadaAlta() throws SQLException 
+	{
 		vAltaOlimpiada = new frmVentanaAltaOlimpiada();
 		vAltaOlimpiada.setVisible(true);
 	}
 	
-	public void abrirVentanaParticipacion() throws SQLException {
+	public void abrirVentanaParticipacion() throws SQLException 
+	{
 		vParticipacion = new frmVentanaParticipacion();
 		vParticipacion.setVisible(true);
 	}
 
-	public void abrirVentanaAltaParticipacion() {
-
+	public void abrirVentanaAltaParticipacion() throws SQLException 
+	{
+		vAltaParticipacion = new frmVentanaAltaParticipacion();
+		vAltaParticipacion.setVisible(true);
 	}
 
-	public void abrirVentanaEvento() throws SQLException {
+	public void abrirVentanaEvento() throws SQLException 
+	{
 		vEvento = new frmVentanaEvento();
 		vEvento.setVisible(true);
 	}
 
-	public void cerrarVentanaOlimpiada() {
+	public void cerrarVentanaOlimpiada() 
+	{
 		vOlimpiada.dispose();
 	}
 
-	public static void abrirVentanaPrincipal() {
+	public static void abrirVentanaPrincipal() 
+	{
 		vPrincipal = new frmVentanaPrincipal();
 		vPrincipal.setVisible(true);
 	}
 	
-	public static void cerrarVentanaPrincipal() {
+	public static void cerrarVentanaPrincipal() 
+	{
 		vPrincipal.dispose();
 	}
 
-	public void cerrarVentanaEquipos() {
+	public void cerrarVentanaEquipos() 
+	{
 		// TODO Auto-generated method stub
 		vEquipos.dispose();
 	}
 
-	public void cerrarVentanaDeportes() {
+	public void cerrarVentanaDeportes() 
+	{
 		// TODO Auto-generated method stub
 		vDeporte.dispose();
 	}
 
-	public void cerrarVentanaParticipacion() {
+	public void cerrarVentanaParticipacion() 
+	{
 		// TODO Auto-generated method stub
 		vParticipacion.dispose();
 	}
 
-	public void cerrarVentanaDeportista() {
+	public void cerrarVentanaDeportista() 
+	{
 		// TODO Auto-generated method stub
 		vDeportista.dispose();
 	}
 
-	public void cerrarVentanaEvento() {
+	public void cerrarVentanaEvento() 
+	{
 		// TODO Auto-generated method stub
 		vEvento.dispose();
+	}
+
+	public void cerrarVentanaAltaDeportista() 
+	{
+		// TODO Auto-generated method stub
+		vAltaDeportista.dispose();
+	}
+
+	public void cerrarVentanaAltaOlimpiada() 
+	{
+		// TODO Auto-generated method stub
+		vAltaOlimpiada.dispose();
+	}
+
+	public void cerrarVentanaAltaEquipos() 
+	{
+		// TODO Auto-generated method stub
+		vAltaEquipo.dispose();
+	}
+	
+	public void abrirVentanaAltaEquipos() 
+	{
+		// TODO Auto-generated method stub
+		vAltaEquipo= new frmVentanaAltaEquipo();
+		vAltaEquipo.setVisible(true);
+	}
+
+	public void cerrarVentanaAltaParticipacion() {
+		// TODO Auto-generated method stub
+		vAltaParticipacion.dispose();
 	}
 	
 }

@@ -89,6 +89,7 @@ public class frmVentanaAltaDeportista extends JFrame {
 
 				try {
 					controlador.altaDeportista(nombre,sexo,altura,peso);
+					controladorVistas.cerrarVentanaAltaDeportista();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

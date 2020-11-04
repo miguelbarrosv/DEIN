@@ -13,6 +13,8 @@ public class TablaPersonalizada extends AbstractTableModel{
 	private ArrayList<Equipo> equipos;
 	private ArrayList<Olimpiada> olimpiadas;
 	private ArrayList<Participacion> participaciones;
+	private ArrayList<Deporte> deportes;
+
 
 	private Controlador controlador = new Controlador();
 	
@@ -41,28 +43,11 @@ public class TablaPersonalizada extends AbstractTableModel{
     		}
     		fireTableDataChanged();
     		
-    	} else if(frame == "eventos") {
-    		eventos = controlador.consultarEventos();
-
-    		int cont = 0;
-    		columnNames = new String[] {
-				"Id Evento", 
-	            "Nombre"
-	            };
-	            
-    		datos = new Object[deportistas.size()][];
-    		
-    		for (Evento e : eventos) {
-    			datos [cont]= new Object[]{e.getId_evento(),e.getNombre()};
-        		
-        		cont++;
-    		}
-    		fireTableDataChanged();
-    		
     	} else if(frame == "participacion") {
     		participaciones = controlador.consultarParticipaciones();
     		deportistas = controlador.consultarDeportistas();
     		equipos = controlador.consultarEquipos();
+    		eventos = controlador.consultarEventos();
     		
     		int cont = 0;
     		
@@ -82,9 +67,13 @@ public class TablaPersonalizada extends AbstractTableModel{
     				
     				for (Equipo e : equipos) {
     					
-    					datos [cont]= new Object[]{};
-                		
-                		cont++;
+    					for (Evento ev: eventos) {
+    						if (p.getId_deportista() == d.getId_deportista() && p.getId_Equipo() == e.getId_equipo() && p.getId_evento() == ev.getId_evento()) {
+            	    			datos [cont]= new Object[]{d.getNombre(),e.getNombre(),ev.getNombre(),p.getMedalla(), p.getEdad()};
+            	    			cont++;
+        					}
+    					}
+    					
     				}
     				
     			}
@@ -101,16 +90,51 @@ public class TablaPersonalizada extends AbstractTableModel{
 				"Id Olimpiada", 
 	            "Nombre",	 
 	            "Temporada", 
-	            "A�o",
+	            "Año",
 	            "Ciudad"
 	            };
 	            
-    		datos = new Object[deportistas.size()][];
+    		datos = new Object[olimpiadas.size()][];
     		
     		for (Olimpiada o : olimpiadas) {
     			datos [cont]= new Object[]{o.getId_olimpiada(),o.getNombre(),o.getTemporada(),o.getAnio(),o.getCiudad()};
         		
         		cont++;
+    		}
+    		
+    		fireTableDataChanged();
+    		
+    	} else if(frame == "eventos") {
+    		eventos = controlador.consultarEventos();
+    		deportes = controlador.consultarDeportes();
+    		olimpiadas = controlador.consultarOlimpiadas();
+    		
+    		int cont = 0;
+    		
+    		columnNames = new String[] {
+				"Id_evento", 
+	            "Nombre",	 
+	            "Olimpiada", 
+	            "Deporte"
+	            };
+    		
+    		datos = new Object[eventos.size()][];
+    		
+    		for (Evento e : eventos) {
+    			
+    			for (Deporte d: deportes) {
+    				
+    				for (Olimpiada o : olimpiadas) {
+    					
+    					if (e.getId_olimpiada() == o.getId_olimpiada() && e.getId_deporte() == d.getId_deporte()) {
+        	    			datos [cont]= new Object[]{e.getId_evento(),e.getNombre(),o.getNombre(),d.getNombre()};
+        	    			cont++;
+    					}
+                		
+    				}
+    				
+    			}
+    			
     		}
     		fireTableDataChanged();
     	}
