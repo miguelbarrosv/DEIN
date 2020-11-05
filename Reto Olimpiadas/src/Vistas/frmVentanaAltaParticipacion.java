@@ -22,6 +22,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.layout.FormSpecs;
 
 public class frmVentanaAltaParticipacion extends JFrame {
 
@@ -38,12 +42,11 @@ public class frmVentanaAltaParticipacion extends JFrame {
 	 * @throws SQLException 
 	 */
 	public frmVentanaAltaParticipacion() throws SQLException {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 867, 606);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
 		JButton btnAadirParticipacion = new JButton("Añadir\n");
 		btnAadirParticipacion.addActionListener(new ActionListener() {
@@ -57,44 +60,56 @@ public class frmVentanaAltaParticipacion extends JFrame {
 				controladorVistas.cerrarVentanaAltaParticipacion();
 			}
 		});
-		btnAadirParticipacion.setBounds(743, 544, 96, 25);
-		contentPane.add(btnAadirParticipacion);
+		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("80px"),
+				ColumnSpec.decode("159px"),
+				ColumnSpec.decode("139px"),
+				ColumnSpec.decode("135px"),
+				ColumnSpec.decode("35px"),
+				ColumnSpec.decode("120px"),
+				ColumnSpec.decode("75px"),
+				ColumnSpec.decode("96px"),},
+			new RowSpec[] {
+				FormSpecs.UNRELATED_GAP_ROWSPEC,
+				RowSpec.decode("15px"),
+				RowSpec.decode("47px"),
+				RowSpec.decode("15px"),
+				RowSpec.decode("21px"),
+				RowSpec.decode("179px"),
+				RowSpec.decode("35px"),
+				RowSpec.decode("15px"),
+				RowSpec.decode("24px"),
+				RowSpec.decode("206px"),}));
+		contentPane.add(btnAadirParticipacion, "8, 10, fill, bottom");
 		
 		JLabel lblAltaParticipacion = new JLabel("Alta Participacion");
-		lblAltaParticipacion.setBounds(378, 12, 135, 15);
-		contentPane.add(lblAltaParticipacion);
+		contentPane.add(lblAltaParticipacion, "4, 2, fill, top");
 		
 		JLabel lblEligeUnDeportista = new JLabel("Elige un deportista:");
-		lblEligeUnDeportista.setBounds(80, 74, 159, 15);
-		contentPane.add(lblEligeUnDeportista);
+		contentPane.add(lblEligeUnDeportista, "2, 4, fill, top");
 		
 		TablaPersonalizada tableModel  = new TablaPersonalizada("deportistas");
-		tableDeportistas = new JTable(tableModel);
+		
 		JScrollPane scrollPaneDeportistas = new JScrollPane();
-		contentPane.add(scrollPaneDeportistas);
+		contentPane.add(scrollPaneDeportistas, "2, 6, 3, 1, fill, fill");
+		tableDeportistas = new JTable(tableModel);
 		scrollPaneDeportistas.setViewportView(tableDeportistas);
-		tableDeportistas = new JTable();
-		tableDeportistas.setBounds(80, 115, 370, 162);
-		contentPane.add(tableDeportistas);
 		
 		JLabel lblEligeUnEvento = new JLabel("Elige un evento");
-		lblEligeUnEvento.setBounds(80, 324, 127, 15);
-		contentPane.add(lblEligeUnEvento);
+		contentPane.add(lblEligeUnEvento, "2, 8, left, top");
 		
-		TablaPersonalizada tableModelEventos  = new TablaPersonalizada("eventos");
+		TablaPersonalizada tableModelEvento  = new TablaPersonalizada("eventos");
+		
 		JScrollPane scrollPane = new JScrollPane();
-		contentPane.add(scrollPane);
-		tableEventos = new JTable(tableModelEventos);
+		contentPane.add(scrollPane, "2, 10, 3, 1, fill, fill");
+		tableEventos = new JTable(tableModelEvento);
 		scrollPane.setViewportView(tableEventos);
-		tableEventos.setBounds(80, 366, 370, 167);
 		
 		JLabel lblNewLabel = new JLabel("Elige un equipo");
-		lblNewLabel.setBounds(548, 74, 120, 15);
-		contentPane.add(lblNewLabel);
+		contentPane.add(lblNewLabel, "6, 4, fill, top");
 		
 		JComboBox cbEquipos = new JComboBox();
-		cbEquipos.setBounds(548, 110, 211, 25);
-		contentPane.add(cbEquipos);
+		contentPane.add(cbEquipos, "6, 6, 3, 1, fill, top");
 		
 		equipos = controlador.consultarEquipos();
 		

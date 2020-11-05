@@ -7,28 +7,35 @@ import java.util.ArrayList;
 
 import UML.Olimpiada;
 import UML.Participacion;
+import UML.ParticipacionTabla;
 
 public class ParticipacionBD {
 	private ResultSet resultado;
 	private PreparedStatement ps;
     private String plantilla;
-    private ArrayList<Participacion> listaParticipaciones;
+    private ArrayList<ParticipacionTabla> listaParticipaciones;
     
-    public Participacion crearObjeto() throws SQLException 
+    public ParticipacionTabla crearObjeto() throws SQLException 
     {
-    	Participacion p = new Participacion();
-        p.setId_deportista(resultado.getInt("id_deportista"));
-        p.setId_equipo(resultado.getInt("id_equipo"));
-        p.setId_evento(resultado.getInt("id_evento"));
-        p.setMedalla(resultado.getString("medalla"));
-        p.setEdad(resultado.getInt("edad"));
+    	ParticipacionTabla p = new ParticipacionTabla();
+        p.setId_Deportista(resultado.getInt("ID_DEPORTISTA"));
+        p.setId_equipo(resultado.getInt("ID_EQUIPO"));
+        p.setId_evento(resultado.getInt("ID_EVENTO"));
+        p.setMedalla(resultado.getString("MEDALLA"));
+        p.setEdad(resultado.getInt("EDAD"));
+        p.setNombreDeportista(resultado.getString("DEPORTISTA"));
+        p.setNombreEquipo(resultado.getString("EQUIPO"));
+        p.setNombreEvento(resultado.getString("EVENTO"));
         return p;
     }
     
-    public ArrayList<Participacion> consultarTodasParticpaciones() throws SQLException {
+    public ArrayList<ParticipacionTabla> consultarTablaParticpaciones() throws SQLException {
     	listaParticipaciones = new ArrayList();
         Bdr.Conectar();
-        plantilla = "SELECT * FROM Participacion";
+        plantilla = "SELECT p.edad as EDAD, p.medalla as MEDALLA, Deportista.id_deportista AS ID_DEPORTISTA, Deportista.nombre as DEPORTISTA, Evento.id_evento as ID_EVENTO,Evento.nombre as EVENTO, Equipo.id_equipo as ID_EQUIPO, Equipo.nombre as EQUIPO\n"
+        		+ "from Participacion p, Equipo, Evento, Deportista\n"
+        		+ "where p.id_equipo = Equipo.id_equipo and p.id_deportista = Deportista.id_deportista and p.id_evento = Evento.id_evento";
+        
         ps = Bdr.getCon().prepareStatement(plantilla);
         resultado = ps.executeQuery();
         

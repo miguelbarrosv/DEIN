@@ -59,7 +59,7 @@ public class frmVentanaAltaOlimpiada extends JFrame {
 		lblTemporada.setBounds(35, 123, 102, 15);
 		contentPane.add(lblTemporada);
 		
-		JComboBox cbTemporada = new JComboBox();
+		final JComboBox cbTemporada = new JComboBox();
 		cbTemporada.setModel(new DefaultComboBoxModel(new String[] {"Summer", "Winter"}));
 		cbTemporada.setBounds(148, 118, 102, 24);
 		contentPane.add(cbTemporada);

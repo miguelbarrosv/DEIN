@@ -159,6 +159,14 @@ public class MenuPersonalizado extends JPanel{
 	        });
 			
 		} else if (frame == "olimpiada") {
+			lblInicio.addMouseListener(new MouseAdapter() {
+	            @Override
+	            public void mouseClicked(MouseEvent e) {
+	            	controladorVistas.cerrarVentanaOlimpiada();
+					controladorVistas.abrirVentanaPrincipal();
+	            }
+	        });
+			
 			lblOlimpiadas.addMouseListener(new MouseAdapter() {
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
@@ -238,6 +246,14 @@ public class MenuPersonalizado extends JPanel{
 	        });
 			
 		} else if (frame == "equipos") {
+			lblInicio.addMouseListener(new MouseAdapter() {
+	            @Override
+	            public void mouseClicked(MouseEvent e) {
+            		controladorVistas.cerrarVentanaEquipos();
+					controladorVistas.abrirVentanaPrincipal();
+	            }
+	        });
+			
 			lblOlimpiadas.addMouseListener(new MouseAdapter() {
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
@@ -317,6 +333,14 @@ public class MenuPersonalizado extends JPanel{
 	        });
 			
 		} else if (frame == "deportes") {
+			lblInicio.addMouseListener(new MouseAdapter() {
+	            @Override
+	            public void mouseClicked(MouseEvent e) {
+            		controladorVistas.cerrarVentanaDeportes();
+					controladorVistas.abrirVentanaPrincipal();
+	            }
+	        });
+			
 			lblOlimpiadas.addMouseListener(new MouseAdapter() {
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
@@ -396,6 +420,14 @@ public class MenuPersonalizado extends JPanel{
 	        });
 			
 		} else if(frame == "participacion") {
+			lblInicio.addMouseListener(new MouseAdapter() {
+	            @Override
+	            public void mouseClicked(MouseEvent e) {
+            		controladorVistas.cerrarVentanaParticipacion();
+					controladorVistas.abrirVentanaPrincipal();
+	            }
+	        });
+			
 			lblOlimpiadas.addMouseListener(new MouseAdapter() {
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
@@ -475,6 +507,14 @@ public class MenuPersonalizado extends JPanel{
 	        });
 			
 		} else if(frame == "deportista") {
+			lblInicio.addMouseListener(new MouseAdapter() {
+	            @Override
+	            public void mouseClicked(MouseEvent e) {
+            		controladorVistas.cerrarVentanaDeportista();
+					controladorVistas.abrirVentanaPrincipal();
+	            }
+	        });
+			
 			lblOlimpiadas.addMouseListener(new MouseAdapter() {
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
@@ -554,6 +594,14 @@ public class MenuPersonalizado extends JPanel{
 	        });
 			
 		} else if (frame == "evento") {
+			lblInicio.addMouseListener(new MouseAdapter() {
+	            @Override
+	            public void mouseClicked(MouseEvent e) {
+            		controladorVistas.cerrarVentanaEvento();
+					controladorVistas.abrirVentanaPrincipal();
+	            }
+	        });
+			
 			lblOlimpiadas.addMouseListener(new MouseAdapter() {
 	            @Override
 	            public void mouseClicked(MouseEvent e) {

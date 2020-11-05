@@ -15,6 +15,7 @@ public class ControladorVistas {
 	public static frmVentanaPrincipal vPrincipal;
 	public static frmVentanaAltaEquipo vAltaEquipo;
 	public static frmVentanaAltaParticipacion vAltaParticipacion;
+	public static frmVentanaAltaEvento vAltaEvento;
 
 
 	public void abrirVentanaDeporte() throws SQLException
@@ -157,6 +158,12 @@ public class ControladorVistas {
 	public void cerrarVentanaAltaParticipacion() {
 		// TODO Auto-generated method stub
 		vAltaParticipacion.dispose();
+	}
+
+	public void abrirVentanaAltaEventos() throws SQLException {
+		// TODO Auto-generated method stub
+		vAltaEvento = new frmVentanaAltaEvento();
+		vAltaEvento.setVisible(true);
 	}
 	
 }

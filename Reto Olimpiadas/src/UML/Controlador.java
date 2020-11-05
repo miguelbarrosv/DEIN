@@ -23,7 +23,7 @@ public class Controlador {
 	public OlimpiadaBD olimpiadaBD = new OlimpiadaBD();
 	public ArrayList<Olimpiada> olimpiadas;
 	public ParticipacionBD participacionBD = new ParticipacionBD();
-	public ArrayList<Participacion> participaciones = new ArrayList();
+	public ArrayList<ParticipacionTabla> participaciones = new ArrayList();
 	public EventoBD eventoBD = new EventoBD();
 	public ArrayList<Evento> eventos = new ArrayList();
 	public static frmVentanaPrincipal vPrincipal = new frmVentanaPrincipal();
@@ -82,8 +82,8 @@ public class Controlador {
 	}
 
 
-	public ArrayList<Participacion> consultarParticipaciones() throws SQLException {
-		participaciones = participacionBD.consultarTodasParticpaciones();
+	public ArrayList<ParticipacionTabla> consultarTablaParticpaciones() throws SQLException {
+		participaciones = participacionBD.consultarTablaParticpaciones();
 		return participaciones;
 	}
 

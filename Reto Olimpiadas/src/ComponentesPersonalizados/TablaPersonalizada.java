@@ -12,7 +12,7 @@ public class TablaPersonalizada extends AbstractTableModel{
 	private ArrayList<Evento> eventos;
 	private ArrayList<Equipo> equipos;
 	private ArrayList<Olimpiada> olimpiadas;
-	private ArrayList<Participacion> participaciones;
+	private ArrayList<ParticipacionTabla> participaciones;
 	private ArrayList<Deporte> deportes;
 
 
@@ -44,13 +44,9 @@ public class TablaPersonalizada extends AbstractTableModel{
     		fireTableDataChanged();
     		
     	} else if(frame == "participacion") {
-    		participaciones = controlador.consultarParticipaciones();
-    		deportistas = controlador.consultarDeportistas();
-    		equipos = controlador.consultarEquipos();
-    		eventos = controlador.consultarEventos();
+    		participaciones = controlador.consultarTablaParticpaciones();
     		
     		int cont = 0;
-    		
     		columnNames = new String[] {
 				"Deportista", 
 	            "Equipo",	 
@@ -61,24 +57,12 @@ public class TablaPersonalizada extends AbstractTableModel{
     		
     		datos = new Object[participaciones.size()][];
     		
-    		for (Participacion p : participaciones) {
+    		for (ParticipacionTabla p : participaciones) {
+    			datos [cont]= new Object[]{p.getNombreDeportista(),p.getNombreEquipo(),p.getNombreEvento(),p.getMedalla(),p.getEdad()};
     			
-    			for (Deportista d: deportistas) {
-    				
-    				for (Equipo e : equipos) {
-    					
-    					for (Evento ev: eventos) {
-    						if (p.getId_deportista() == d.getId_deportista() && p.getId_Equipo() == e.getId_equipo() && p.getId_evento() == ev.getId_evento()) {
-            	    			datos [cont]= new Object[]{d.getNombre(),e.getNombre(),ev.getNombre(),p.getMedalla(), p.getEdad()};
-            	    			cont++;
-        					}
-    					}
-    					
-    				}
-    				
-    			}
-    			
+    			cont++;
     		}
+    		
     		fireTableDataChanged();
     		
     		

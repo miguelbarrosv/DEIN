@@ -17,9 +17,12 @@ import UML.Controlador;
 import UML.Evento;
 
 import javax.swing.JLabel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class frmVentanaEvento extends JFrame {
 
@@ -27,6 +30,7 @@ public class frmVentanaEvento extends JFrame {
 	private JTable tableEventos;
 	private Controlador controlador = new Controlador();
 	private ArrayList<Evento> eventos = new ArrayList();
+	private ControladorVistas controladorVistas = new ControladorVistas();
 
 	/**
 	 * Create the frame.
@@ -63,8 +67,30 @@ public class frmVentanaEvento extends JFrame {
 		tableEventos = new JTable(tableModel);
 		scrollPane.setViewportView(tableEventos);
 		
-		/*for (int x = 0; x < eventos.size(); x++) {
-			cbEvento.addItem(eventos.get(x).getId_evento());
-		}*/
+		tableEventos.addMouseListener(new java.awt.event.MouseAdapter() {
+		    @Override
+		    public void mouseClicked(java.awt.event.MouseEvent evt) {
+		        int row = tableEventos.rowAtPoint(evt.getPoint());
+		        int col = tableEventos.columnAtPoint(evt.getPoint());
+		        
+			    System.out.println(row + "  " + col);
+		    }
+		});
+		
+		JButton btnAadirEvento = new JButton("Añadir Evento");
+		
+		btnAadirEvento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					controladorVistas.abrirVentanaAltaEventos();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		btnAadirEvento.setFont(new Font("Dialog", Font.BOLD, 10));
+		btnAadirEvento.setBounds(310, 238, 114, 25);
+		contentPane.add(btnAadirEvento);
 	}
 }

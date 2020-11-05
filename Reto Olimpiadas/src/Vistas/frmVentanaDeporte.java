@@ -76,5 +76,8 @@ public class frmVentanaDeporte extends JFrame {
 		    //A�adir cada elemento del ArrayList en el modelo de la lista
 			model.addElement(deportes.get(i).getNombre());
 		}
+		
+		
+		
 	}
 }

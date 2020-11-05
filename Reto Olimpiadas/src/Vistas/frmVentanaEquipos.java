@@ -17,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 
 
@@ -44,7 +46,7 @@ public class frmVentanaEquipos extends JFrame {
 		lblListaDeEquipos.setBounds(356, 90, 85, 15);
 		contentPane.add(lblListaDeEquipos);
 		
-		JComboBox cbEquipos = new JComboBox();
+		final JComboBox cbEquipos = new JComboBox();
 		cbEquipos.setBounds(328, 228, 151, 24);
 		contentPane.add(cbEquipos);
 		
@@ -60,5 +62,25 @@ public class frmVentanaEquipos extends JFrame {
 			String infEquipo = equipos.get(x).getIniciales() + " " + equipos.get(x).getNombre();
 			cbEquipos.addItem(infEquipo);
 		}
+		
+		cbEquipos.addActionListener (new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+		    	String x = cbEquipos.getSelectedItem().toString();
+		    	int posicion = cbEquipos.getSelectedIndex();
+		    	System.out.print(x + " "+ posicion);
+		    	
+		    }
+		});
+		
+		JButton btnAadirEquipo = new JButton("Añadir EQuipo");
+		
+		btnAadirEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				controladorVistas.abrirVentanaAltaEquipos();
+			}
+		});
+		btnAadirEquipo.setFont(new Font("Dialog", Font.BOLD, 10));
+		btnAadirEquipo.setBounds(310, 238, 114, 25);
+		contentPane.add(btnAadirEquipo);
 	}
 }

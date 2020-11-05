@@ -84,6 +84,7 @@ public class frmVentanaOlimpiadas extends JFrame {
 		tableOlimpiadas.setBounds(219, 102, 568, 290);
 		contentPane.add(tableOlimpiadas);
 		
+		
 		MenuPersonalizado panel = new MenuPersonalizado("olimpiada");
 		panel.setLayout(null);
 		panel.setBackground(Color.BLACK);

@@ -79,12 +79,26 @@ public class frmVentanaParticipacion extends JFrame {
 		tableParticipaciones = new JTable(tableModel);
 		tableParticipaciones.setBounds(230, 81, 553, 306);
 		contentPane.add(tableParticipaciones);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(213, 65, 554, 329);
+		contentPane.add(scrollPane);
+		scrollPane.setViewportView(tableParticipaciones);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("participacion");
 		panel.setLayout(null);
 		panel.setBackground(Color.BLACK);
 		panel.setBounds(0, 0, 187, 494);
 		contentPane.add(panel);
+		
+		tableParticipaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+		    @Override
+		    public void mouseClicked(java.awt.event.MouseEvent evt) {
+		        int row = tableParticipaciones.rowAtPoint(evt.getPoint());
+		        int col = tableParticipaciones.columnAtPoint(evt.getPoint());
+		        
+			    System.out.println(row + "  " + col);
+		    }
+		});
 		
 	}	
 }

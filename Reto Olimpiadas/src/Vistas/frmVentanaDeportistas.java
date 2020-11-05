@@ -65,7 +65,7 @@ public class frmVentanaDeportistas extends JFrame {
 		panel.setBounds(0, 0, 187, 494);
 		contentPane.add(panel);
 		
-		JButton btnAaidrDeportista = new JButton("Añadir Deportista");
+		JButton btnAaidrDeportista = new JButton("Aï¿½adir Deportista");
 		btnAaidrDeportista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controladorVistas.abrirVentanaAltaDeportista();
@@ -76,6 +76,15 @@ public class frmVentanaDeportistas extends JFrame {
 		btnAaidrDeportista.setBounds(632, 428, 135, 25);
 		contentPane.add(btnAaidrDeportista);
 		
-	
+		tableDeportistas.addMouseListener(new java.awt.event.MouseAdapter() {
+		    @Override
+		    public void mouseClicked(java.awt.event.MouseEvent evt) {
+		        int row = tableDeportistas.rowAtPoint(evt.getPoint());
+		        int col = tableDeportistas.columnAtPoint(evt.getPoint());
+		        
+			    System.out.println(row + "  " + col);
+		    }
+		});
+
 	}
 }
