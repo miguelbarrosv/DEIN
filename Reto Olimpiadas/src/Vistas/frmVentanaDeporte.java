@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import ComponentesPersonalizados.MenuPersonalizado;
@@ -21,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JTextField;
 
 public class frmVentanaDeporte extends JFrame {
 
@@ -28,6 +30,8 @@ public class frmVentanaDeporte extends JFrame {
 	private ArrayList<Deporte> deportes;
 	private Controlador controlador = new Controlador();
 	private ControladorVistas controladorVistas = new ControladorVistas();
+	private JList<String> listaDeportes;
+	private JTextField textField;
 
 	/**
 	 * Create the frame.
@@ -36,17 +40,20 @@ public class frmVentanaDeporte extends JFrame {
 	public frmVentanaDeporte() throws SQLException {
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 866, 528);
+		setBounds(100, 100, 866, 540);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		DefaultListModel<String> model = new DefaultListModel<>();
-		JList<String> listaDeportes = new JList<>(model);
-		listaDeportes.setModel(model);
-		listaDeportes.setBounds(256, 73, 554, 324);
-		contentPane.add(listaDeportes);
+		listaDeportes = new JList<String>(model);
+		JScrollPane scrollPaneDeporte = new JScrollPane(listaDeportes);
+		scrollPaneDeporte.setBounds(241, 59, 569, 346);
+		contentPane.add(scrollPaneDeporte);
+		
+		
+		
 		
 		JLabel lblNewLabel = new JLabel("Lista de Deportes");
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -61,7 +68,7 @@ public class frmVentanaDeporte extends JFrame {
 				controladorVistas.abrirVentanaAltaDeporte();
 			}
 		});
-		btnNewButton.setBounds(702, 439, 108, 25);
+		btnNewButton.setBounds(702, 469, 108, 25);
 		contentPane.add(btnNewButton);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("deportes");
@@ -69,6 +76,15 @@ public class frmVentanaDeporte extends JFrame {
 		panel.setBackground(Color.BLACK);
 		panel.setBounds(0, 0, 187, 494);
 		contentPane.add(panel);
+		
+		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setBounds(241, 445, 46, 14);
+		contentPane.add(lblNombre);
+		
+		textField = new JTextField();
+		textField.setBounds(307, 442, 152, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
 		
 		deportes = controlador.consultarDeportes();
 		

@@ -22,10 +22,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
 
 public class frmVentanaAltaParticipacion extends JFrame {
 
@@ -60,26 +56,7 @@ public class frmVentanaAltaParticipacion extends JFrame {
 				controladorVistas.cerrarVentanaAltaParticipacion();
 			}
 		});
-		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
-				ColumnSpec.decode("80px"),
-				ColumnSpec.decode("159px"),
-				ColumnSpec.decode("139px"),
-				ColumnSpec.decode("135px"),
-				ColumnSpec.decode("35px"),
-				ColumnSpec.decode("120px"),
-				ColumnSpec.decode("75px"),
-				ColumnSpec.decode("96px"),},
-			new RowSpec[] {
-				FormSpecs.UNRELATED_GAP_ROWSPEC,
-				RowSpec.decode("15px"),
-				RowSpec.decode("47px"),
-				RowSpec.decode("15px"),
-				RowSpec.decode("21px"),
-				RowSpec.decode("179px"),
-				RowSpec.decode("35px"),
-				RowSpec.decode("15px"),
-				RowSpec.decode("24px"),
-				RowSpec.decode("206px"),}));
+		
 		contentPane.add(btnAadirParticipacion, "8, 10, fill, bottom");
 		
 		JLabel lblAltaParticipacion = new JLabel("Alta Participacion");

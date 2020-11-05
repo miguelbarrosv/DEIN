@@ -38,19 +38,15 @@ public class frmVentanaEvento extends JFrame {
 	 */
 	public frmVentanaEvento() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 705, 507);
+		setBounds(100, 100, 896, 621);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblEvento = new JLabel("Evento");
-		lblEvento.setBounds(410, 42, 70, 15);
+		lblEvento.setBounds(504, 30, 44, 15);
 		contentPane.add(lblEvento);
-		
-		JComboBox cbEvento = new JComboBox();
-		cbEvento.setBounds(375, 158, 131, 24);
-		contentPane.add(cbEvento);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("evento");
 		panel.setLayout(null);
@@ -62,7 +58,7 @@ public class frmVentanaEvento extends JFrame {
 		TablaPersonalizada tableModel  = new TablaPersonalizada("eventos");
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(213, 65, 554, 329);
+		scrollPane.setBounds(265, 68, 554, 329);
 		contentPane.add(scrollPane);
 		tableEventos = new JTable(tableModel);
 		scrollPane.setViewportView(tableEventos);

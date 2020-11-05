@@ -21,6 +21,10 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.ImageIcon;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
 
 public class frmVentanaPrincipal extends JFrame {
 
@@ -39,18 +43,21 @@ public class frmVentanaPrincipal extends JFrame {
 		contentPane.setForeground(new Color(51, 51, 51));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("187px"),
+				FormSpecs.LABEL_COMPONENT_GAP_COLSPEC,
+				ColumnSpec.decode("626px"),},
+			new RowSpec[] {
+				RowSpec.decode("554px"),}));
 		
 		MenuPersonalizado panel = new MenuPersonalizado("principal");
 		panel.setLayout(null);
 		panel.setBackground(Color.BLACK);
-		panel.setBounds(0, 0, 187, 494);
-		contentPane.add(panel);
+		contentPane.add(panel, "1, 1, fill, fill");
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(frmVentanaPrincipal.class.getResource("/IMG/olimpiadas.jpg")));
-		label.setBounds(188, -60, 626, 536);
-		contentPane.add(label);
+		contentPane.add(label, "3, 1, fill, fill");
 		
 		
 	}
