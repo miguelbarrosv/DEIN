@@ -20,6 +20,7 @@ import java.awt.Choice;
 import java.awt.Button;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -44,10 +45,10 @@ public class frmVentanaOlimpiadas extends JFrame {
 	private JLabel lblEvento;
 	private JLabel lblOlimpiadas_1;
 	private JLabel lblInicio;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtNombre;
+	private JTextField txtAnio;
+	private JTextField txtTemporada;
+	private JTextField txtCiudad;
 
 	/**
 	 * Create the frame.
@@ -62,7 +63,7 @@ public class frmVentanaOlimpiadas extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblOlimpiadas = new JLabel("Olimpiadas");
-		lblOlimpiadas.setBounds(461, 41, 51, 15);
+		lblOlimpiadas.setBounds(461, 41, 79, 15);
 		contentPane.add(lblOlimpiadas);
 		
 		TablaPersonalizada tableModel  = new TablaPersonalizada("olimpiadas");
@@ -91,57 +92,91 @@ public class frmVentanaOlimpiadas extends JFrame {
 		
 		
 		MenuPersonalizado panel = new MenuPersonalizado("olimpiada");
-		panel.setLayout(null);
 		panel.setBackground(Color.BLACK);
-		panel.setBounds(0, 0, 187, 610);
+		panel.setBounds(0, 0, 187, 584);
 		contentPane.add(panel);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(262, 412, 46, 14);
+		lblNombre.setBounds(238, 412, 70, 14);
 		contentPane.add(lblNombre);
 		
-		textField = new JTextField();
-		textField.setEnabled(false);
-		textField.setEditable(false);
-		textField.setBounds(337, 409, 131, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtNombre = new JTextField();
+		txtNombre.setEnabled(false);
+		txtNombre.setEditable(false);
+		txtNombre.setBounds(337, 409, 131, 20);
+		contentPane.add(txtNombre);
+		txtNombre.setColumns(10);
 		
 		JLabel lblAo = new JLabel("A\u00F1o:");
-		lblAo.setBounds(262, 474, 46, 14);
+		lblAo.setBounds(250, 474, 58, 14);
 		contentPane.add(lblAo);
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		textField_1.setEnabled(false);
-		textField_1.setBounds(337, 471, 131, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		txtAnio = new JTextField();
+		txtAnio.setEditable(false);
+		txtAnio.setEnabled(false);
+		txtAnio.setBounds(337, 471, 131, 20);
+		contentPane.add(txtAnio);
+		txtAnio.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Tempoarda:");
-		lblNewLabel.setBounds(550, 412, 58, 14);
+		JLabel lblNewLabel = new JLabel("Temporada:");
+		lblNewLabel.setBounds(512, 412, 96, 14);
 		contentPane.add(lblNewLabel);
 		
-		textField_2 = new JTextField();
-		textField_2.setEnabled(false);
-		textField_2.setBounds(632, 409, 131, 20);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		txtTemporada = new JTextField();
+		txtTemporada.setEditable(false);
+		txtTemporada.setEnabled(false);
+		txtTemporada.setBounds(632, 409, 131, 20);
+		contentPane.add(txtTemporada);
+		txtTemporada.setColumns(10);
 		
 		JLabel lblCiudad = new JLabel("Ciudad:");
-		lblCiudad.setBounds(547, 474, 46, 14);
+		lblCiudad.setBounds(512, 474, 64, 14);
 		contentPane.add(lblCiudad);
 		
-		textField_3 = new JTextField();
-		textField_3.setEnabled(false);
-		textField_3.setBounds(632, 471, 131, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		txtCiudad = new JTextField();
+		txtCiudad.setEditable(false);
+		txtCiudad.setEnabled(false);
+		txtCiudad.setBounds(632, 471, 131, 20);
+		contentPane.add(txtCiudad);
+		txtCiudad.setColumns(10);
 		
-		JButton btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(514, 534, 89, 23);
+		final JButton btnModificar = new JButton("Modificar");
+		btnModificar.setEnabled(false);
+		btnModificar.setBounds(496, 534, 107, 23);
 		contentPane.add(btnModificar);
 		
-		
+		tableOlimpiadas.addMouseListener(new java.awt.event.MouseAdapter() {
+		    @Override
+		    public void mouseClicked(java.awt.event.MouseEvent evt) {
+		        int idOLimpiada = (int) tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 0);
+		        String nombre = tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 1).toString();
+		        String anio = tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 3).toString();
+		        String ciudad =  tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 4).toString();
+		        String temporada = tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 2).toString();
+
+		        txtCiudad.setEditable(true);
+		        txtCiudad.setEnabled(true);
+				txtCiudad.setText(ciudad);
+
+				
+				txtTemporada.setEditable(true);
+				txtTemporada.setEnabled(true);
+				txtTemporada.setText(temporada);
+
+				
+				txtNombre.setEditable(true);
+				txtNombre.setEnabled(true);
+				txtNombre.setText(nombre);
+				
+				txtAnio.setEnabled(true);
+				txtAnio.setEnabled(true);
+				txtAnio.setText(anio);
+
+				btnModificar.setEnabled(true);
+		        
+			    System.out.print(idOLimpiada + " " + nombre + " " + temporada + " " + anio + " " + ciudad);
+		    }
+		});
 	}
 }

@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -45,14 +46,14 @@ public class frmVentanaEvento extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblEvento = new JLabel("Evento");
-		lblEvento.setBounds(504, 30, 44, 15);
+		lblEvento.setBounds(504, 30, 64, 15);
 		contentPane.add(lblEvento);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("evento");
-		panel.setLayout(null);
 		panel.setBackground(Color.BLACK);
-		panel.setBounds(0, 0, 187, 494);
+		panel.setBounds(0, 0, 187, 596);
 		contentPane.add(panel);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));;
 		
 		
 		TablaPersonalizada tableModel  = new TablaPersonalizada("eventos");

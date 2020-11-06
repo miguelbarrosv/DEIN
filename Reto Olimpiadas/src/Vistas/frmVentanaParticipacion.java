@@ -28,6 +28,7 @@ import ComponentesPersonalizados.TablaPersonalizada;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 
 public class frmVentanaParticipacion extends JFrame {
 
@@ -85,10 +86,10 @@ public class frmVentanaParticipacion extends JFrame {
 		scrollPane.setViewportView(tableParticipaciones);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("participacion");
-		panel.setLayout(null);
 		panel.setBackground(Color.BLACK);
 		panel.setBounds(0, 0, 187, 494);
 		contentPane.add(panel);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		tableParticipaciones.addMouseListener(new java.awt.event.MouseAdapter() {
 		    @Override

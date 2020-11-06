@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
@@ -45,7 +46,7 @@ public class frmVentanaEquipos extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblListaDeEquipos = new JLabel("Lista de equipos");
-		lblListaDeEquipos.setBounds(488, 73, 85, 15);
+		lblListaDeEquipos.setBounds(488, 73, 137, 15);
 		contentPane.add(lblListaDeEquipos);
 		
 		final JComboBox cbEquipos = new JComboBox();
@@ -53,10 +54,10 @@ public class frmVentanaEquipos extends JFrame {
 		contentPane.add(cbEquipos);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("equipos");
-		panel.setLayout(null);
 		panel.setBackground(Color.BLACK);
-		panel.setBounds(0, 0, 187, 567);
+		panel.setBounds(0, 0, 187, 581);
 		contentPane.add(panel);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		equipos = controlador.consultarEquipos();
 		
@@ -86,16 +87,16 @@ public class frmVentanaEquipos extends JFrame {
 		contentPane.add(btnAadirEquipo);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(279, 400, 46, 14);
+		lblNombre.setBounds(239, 399, 72, 14);
 		contentPane.add(lblNombre);
 		
 		textField = new JTextField();
-		textField.setBounds(381, 397, 187, 20);
+		textField.setBounds(351, 397, 187, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		JButton btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(550, 511, 89, 23);
+		btnModificar.setBounds(550, 511, 114, 23);
 		contentPane.add(btnModificar);
 	}
 }

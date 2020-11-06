@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import ComponentesPersonalizados.MenuPersonalizado;
 import UML.Controlador;
@@ -19,8 +21,11 @@ import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Color;
 import javax.swing.JTextField;
 
@@ -31,7 +36,7 @@ public class frmVentanaDeporte extends JFrame {
 	private Controlador controlador = new Controlador();
 	private ControladorVistas controladorVistas = new ControladorVistas();
 	private JList<String> listaDeportes;
-	private JTextField textField;
+	private JTextField txtNombre;
 
 	/**
 	 * Create the frame.
@@ -52,9 +57,6 @@ public class frmVentanaDeporte extends JFrame {
 		scrollPaneDeporte.setBounds(241, 59, 569, 346);
 		contentPane.add(scrollPaneDeporte);
 		
-		
-		
-		
 		JLabel lblNewLabel = new JLabel("Lista de Deportes");
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblNewLabel.setBounds(459, 23, 178, 25);
@@ -72,19 +74,26 @@ public class frmVentanaDeporte extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("deportes");
-		panel.setLayout(null);
 		panel.setBackground(Color.BLACK);
-		panel.setBounds(0, 0, 187, 494);
+		panel.setBounds(0, 0, 187, 515);
 		contentPane.add(panel);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(241, 445, 46, 14);
+		lblNombre.setBounds(241, 445, 60, 14);
 		contentPane.add(lblNombre);
 		
-		textField = new JTextField();
-		textField.setBounds(307, 442, 152, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtNombre = new JTextField();
+		txtNombre.setEnabled(false);
+		txtNombre.setEditable(false);
+		txtNombre.setBounds(332, 443, 152, 20);
+		contentPane.add(txtNombre);
+		txtNombre.setColumns(10);
+		
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.setEnabled(false);
+		btnModificar.setBounds(566, 467, 117, 25);
+		contentPane.add(btnModificar);
 		
 		deportes = controlador.consultarDeportes();
 		
@@ -93,7 +102,17 @@ public class frmVentanaDeporte extends JFrame {
 			model.addElement(deportes.get(i).getNombre());
 		}
 		
-		
-		
+		listaDeportes.addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent arg0) {
+                if (!arg0.getValueIsAdjusting()) {
+                	
+                	txtNombre.setText(listaDeportes.getSelectedValue().toString());
+                	txtNombre.setEnabled(true);
+                	System.out.print(listaDeportes.getSelectedValue().toString());
+                }
+            }
+        });
 	}
 }
