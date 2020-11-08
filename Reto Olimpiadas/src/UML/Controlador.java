@@ -104,4 +104,32 @@ public class Controlador {
 		participacionBD.altaParticipacion();
 	}
 
+
+	public void modificarEquipo() {
+		
+	}
+
+
+	public void modificarDeportista(int idDeportista, String nombre, String sexo, int altura, int peso) throws SQLException {
+		// TODO Auto-generated method stub
+		deportistaBD.modificarDeportista(idDeportista,nombre,sexo,altura,peso);
+	}
+
+
+	public void modificarOlimpiada(int idOlimpiada, String nombre, String anio, String ciudad, String temporada) throws SQLException {
+		// TODO Auto-generated method stub
+		olimpiadaBD.modificarOlimpiada(idOlimpiada, nombre, anio, ciudad, temporada);
+	}
+
+
+	public void eliminarOlimpiada(int idOlimpiada) throws SQLException {
+		olimpiadaBD.eliminarOlimpiada(idOlimpiada);
+	}
+
+
+	public void eliminarDeportista(int idDeportista) throws SQLException {
+		// TODO Auto-generated method stub
+		deportistaBD.eliminarDeportista(idDeportista);
+	}
+
 }

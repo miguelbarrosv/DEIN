@@ -14,6 +14,7 @@ import UML.Controlador;
 import UML.Olimpiada;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JScrollBar;
 import java.awt.Choice;
@@ -49,6 +50,12 @@ public class frmVentanaOlimpiadas extends JFrame {
 	private JTextField txtAnio;
 	private JTextField txtTemporada;
 	private JTextField txtCiudad;
+	
+	int idOlimpiada;
+    String nombre;
+    String anio;
+    String ciudad;
+    String temporada;
 
 	/**
 	 * Create the frame.
@@ -142,18 +149,53 @@ public class frmVentanaOlimpiadas extends JFrame {
 		txtCiudad.setColumns(10);
 		
 		final JButton btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					controlador.modificarOlimpiada(idOlimpiada,nombre, anio, ciudad,temporada);
+					controladorVistas.cerrarVentanaOlimpiada();
+					ControladorVistas.abrirVentanaPrincipal();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
 		btnModificar.setEnabled(false);
 		btnModificar.setBounds(496, 534, 107, 23);
 		contentPane.add(btnModificar);
 		
+		final JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int respuesta = JOptionPane.showConfirmDialog(null, "Estas seguro de que quieres eliminar esta olimpiada?");
+				
+				if (respuesta == 0) {
+					try {
+						controlador.eliminarOlimpiada(idOlimpiada);
+						controladorVistas.cerrarVentanaOlimpiada();
+						ControladorVistas.abrirVentanaPrincipal();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+		
+		btnEliminar.setEnabled(false);
+		btnEliminar.setBounds(379, 534, 89, 23);
+		contentPane.add(btnEliminar);
+		
 		tableOlimpiadas.addMouseListener(new java.awt.event.MouseAdapter() {
 		    @Override
 		    public void mouseClicked(java.awt.event.MouseEvent evt) {
-		        int idOLimpiada = (int) tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 0);
-		        String nombre = tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 1).toString();
-		        String anio = tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 3).toString();
-		        String ciudad =  tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 4).toString();
-		        String temporada = tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 2).toString();
+		    	idOlimpiada = (int) tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 0);
+		        nombre = tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 1).toString();
+		        anio = tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 3).toString();
+		        ciudad =  tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 4).toString();
+		        temporada = tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 2).toString();
 
 		        txtCiudad.setEditable(true);
 		        txtCiudad.setEnabled(true);
@@ -174,8 +216,9 @@ public class frmVentanaOlimpiadas extends JFrame {
 				txtAnio.setText(anio);
 
 				btnModificar.setEnabled(true);
+				btnEliminar.setEnabled(true);
 		        
-			    System.out.print(idOLimpiada + " " + nombre + " " + temporada + " " + anio + " " + ciudad);
+			    System.out.print(idOlimpiada + " " + nombre + " " + temporada + " " + anio + " " + ciudad);
 		    }
 		});
 	}

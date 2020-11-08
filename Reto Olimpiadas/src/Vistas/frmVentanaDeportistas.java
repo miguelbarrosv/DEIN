@@ -19,6 +19,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import UML.Controlador;
 import UML.Deportista;
@@ -41,6 +42,14 @@ public class frmVentanaDeportistas extends JFrame {
 	private JTextField txtNombre;
 	private JTextField txtPeso;
 	private JTextField txtAltura;
+	String nombre;
+    String altura;
+    String peso ;
+    String sexo;
+    int idDeportista;
+	final JRadioButton rbHombre = new JRadioButton("Hombre");
+	final JRadioButton rbMujer = new JRadioButton("Mujer");
+
 
 	/**
 	 * Create the frame.
@@ -48,7 +57,7 @@ public class frmVentanaDeportistas extends JFrame {
 	 */
 	public frmVentanaDeportistas() throws SQLException {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 805, 645);
+		setBounds(100, 100, 805, 660);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -99,12 +108,10 @@ public class frmVentanaDeportistas extends JFrame {
 		contentPane.add(lblSexo);
 		
 		
-		final JRadioButton rbHombre = new JRadioButton("Hombre");
 		rbHombre.setEnabled(false);
 		rbHombre.setBounds(304, 482, 109, 23);
 		contentPane.add(rbHombre);
 		
-		final JRadioButton rbMujer = new JRadioButton("Mujer");
 		rbMujer.setEnabled(false);
 		rbMujer.setBounds(304, 521, 109, 23);
 		contentPane.add(rbMujer);
@@ -136,11 +143,42 @@ public class frmVentanaDeportistas extends JFrame {
 		txtAltura.setColumns(10);
 		
 		final JButton btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if(comprobarDatos())
+					controlador.modificarDeportista(idDeportista,nombre,sexo,Integer.parseInt(altura),Integer.parseInt(peso));
+					controladorVistas.cerrarVentanaDeportista();
+					ControladorVistas.abrirVentanaPrincipal();
+				} catch (NumberFormatException e1) {
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
 		btnModificar.setEnabled(false);
 		btnModificar.setBounds(500, 584, 102, 23);
 		contentPane.add(btnModificar);
 		
-		JButton btnEliminar = new JButton("Eliminar");
+		final JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int respuesta = JOptionPane.showConfirmDialog(null, "Estas seguro de que quieres eliminar a este deportista?");
+				
+				if (respuesta == 0) {
+					try {
+						controlador.eliminarDeportista(idDeportista);
+						controladorVistas.cerrarVentanaDeportista();
+						ControladorVistas.abrirVentanaPrincipal();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
 		btnEliminar.setEnabled(false);
 		btnEliminar.setBounds(361, 583, 102, 25);
 		contentPane.add(btnEliminar);
@@ -148,11 +186,11 @@ public class frmVentanaDeportistas extends JFrame {
 		tableDeportistas.addMouseListener(new java.awt.event.MouseAdapter() {
 		    @Override
 		    public void mouseClicked(java.awt.event.MouseEvent evt) {
-		        int idDeportista = (int) tableDeportistas.getValueAt(tableDeportistas.getSelectedRow(), 0);
-		        String nombre = tableDeportistas.getValueAt(tableDeportistas.getSelectedRow(), 1).toString();
-		        String altura = tableDeportistas.getValueAt(tableDeportistas.getSelectedRow(), 3).toString();
-		        String peso =  tableDeportistas.getValueAt(tableDeportistas.getSelectedRow(), 4).toString();
-		        String sexo = tableDeportistas.getValueAt(tableDeportistas.getSelectedRow(), 2).toString();
+		         idDeportista = (int) tableDeportistas.getValueAt(tableDeportistas.getSelectedRow(), 0);
+		         nombre = tableDeportistas.getValueAt(tableDeportistas.getSelectedRow(), 1).toString();
+		         altura = tableDeportistas.getValueAt(tableDeportistas.getSelectedRow(), 3).toString();
+		         peso =  tableDeportistas.getValueAt(tableDeportistas.getSelectedRow(), 4).toString();
+		         sexo = tableDeportistas.getValueAt(tableDeportistas.getSelectedRow(), 2).toString();
 
 		        txtAltura.setEditable(true);
 				txtAltura.setEnabled(true);
@@ -182,6 +220,33 @@ public class frmVentanaDeportistas extends JFrame {
 			    System.out.print(idDeportista + " " + nombre + " " + sexo + " " + peso + " " + altura);
 		    }
 		});
+	}
 
+
+	private boolean comprobarDatos() {
+		if (txtNombre.getText().length() > 0 && txtPeso.getText().length() > 0 && txtAltura.getText().length() > 0 ) {
+			if (rbMujer.isSelected() == true || rbHombre.isSelected() == true) {
+				 try 
+			        { 
+			            // checking valid integer using parseInt() method 
+			            Integer.parseInt(txtAltura.getText()); 
+			            Integer.parseInt(txtPeso.getText()); 
+			            
+			            return true;
+			        }  
+			        catch (NumberFormatException e) 
+			        { 
+			            System.out.println("Los campos altura y peso solo admiten numeros"); 
+			        
+			        }
+			} else {
+				return false;
+			}
+		
+		} else  {
+			return false;
+		}
+		
+		return true;
 	}
 }

@@ -53,4 +53,28 @@ public class OlimpiadaBD {
         Bdr.cerrarCon();
 		
 	}
+
+	public void modificarOlimpiada(int idOlimpiada, String nombre, String anio, String ciudad, String temporada) throws SQLException {
+		// TODO Auto-generated method stub
+		Bdr.Conectar();
+        plantilla = "UPDATE Olimpiada SET nombre = ? ,año = ?,ciudad = ?,temporada = ? WHERE id_olimpiada = ?";
+        ps = Bdr.getCon().prepareStatement(plantilla);
+        ps.setString(1, nombre);
+        ps.setString(2, anio);
+        ps.setString(3, ciudad);
+        ps.setString(4, temporada);
+        ps.setInt(5, idOlimpiada);
+        ps.executeUpdate();
+        Bdr.cerrarCon();
+	}
+
+	public void eliminarOlimpiada(int idOlimpiada) throws SQLException {
+		// TODO Auto-generated method stub
+		Bdr.Conectar();
+        plantilla = "DELETE FROM  Olimpiada where id_olimpiada = ?";
+        ps = Bdr.getCon().prepareStatement(plantilla);
+        ps.setInt(1, idOlimpiada);
+        ps.executeUpdate();
+        Bdr.cerrarCon();
+	}
 }
