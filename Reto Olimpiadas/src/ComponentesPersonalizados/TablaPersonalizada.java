@@ -5,6 +5,7 @@ import javax.swing.table.AbstractTableModel;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import UML.*;
+import Vistas.frmVentanaParticipacion;
 
 
 public class TablaPersonalizada extends AbstractTableModel{
@@ -43,13 +44,33 @@ public class TablaPersonalizada extends AbstractTableModel{
     		}
     		fireTableDataChanged();
     		
+    	} else if(frame == "deportistasParticipacion") {
+    		deportistas = controlador.consultarDeportistas();
+    		
+    		int cont = 0;
+    		columnNames = new String[] {
+    				"Id Deportista", 
+    	            "Nombre"
+    	            };
+    		datos = new Object[deportistas.size()][];
+    		
+    		for (Deportista d : deportistas) {
+    			datos [cont]= new Object[]{d.getId_deportista(),d.getNombre()};
+        		
+        		cont++;
+    		}
+    		fireTableDataChanged();
+    		
     	} else if(frame == "participacion") {
     		participaciones = controlador.consultarTablaParticpaciones();
     		
     		int cont = 0;
     		columnNames = new String[] {
+    			"Id_Deportista",
 				"Deportista", 
-	            "Equipo",	 
+    			"Id_Equipo",
+	            "Equipo",
+    			"Id_Evento",
 	            "Evento", 
 	            "Medalla",
 	            "Edad"
@@ -58,7 +79,7 @@ public class TablaPersonalizada extends AbstractTableModel{
     		datos = new Object[participaciones.size()][];
     		
     		for (ParticipacionTabla p : participaciones) {
-    			datos [cont]= new Object[]{p.getNombreDeportista(),p.getNombreEquipo(),p.getNombreEvento(),p.getMedalla(),p.getEdad()};
+    			datos [cont]= new Object[]{p.getId_deportista(),p.getNombreDeportista(),p.getId_Equipo(),p.getNombreEquipo(),p.getId_evento(),p.getNombreEvento(),p.getMedalla(),p.getEdad()};
     			
     			cont++;
     		}
@@ -118,6 +139,27 @@ public class TablaPersonalizada extends AbstractTableModel{
     				}
     				
     			}
+    			
+    		}
+    		
+    		fireTableDataChanged();
+    		
+    	} else if(frame == "eventosParticipacion") {
+    		eventos = controlador.consultarEventos();
+    		
+    		int cont = 0;
+    		
+    		columnNames = new String[] {
+				"Id_evento", 
+	            "Nombre"
+	            };
+    		
+    		datos = new Object[eventos.size()][];
+    		
+    		for (Evento e : eventos) {
+    			
+    			datos [cont]= new Object[]{e.getId_evento(),e.getNombre()};
+
     			
     		}
     		fireTableDataChanged();

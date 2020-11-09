@@ -131,9 +131,9 @@ public class Controlador {
 		olimpiadaBD.eliminarOlimpiada(idOlimpiada);
 	}
 
-	public void modificarParticipacion(String nombreEvento, String nombreDeportista, String nombreEquipo, String medalla, String edad) {
+	public void modificarParticipacion(String idEvento, String idDeportista, String idEquipo, String medalla, String edad) {
 		// TODO Auto-generated method stub
-		
+		participacionBD.modificarParticipacion(Integer.parseInt(idEvento), Integer.parseInt(idDeportista), Integer.parseInt(idEquipo), medalla, Integer.parseInt(edad));
 	}
 
 

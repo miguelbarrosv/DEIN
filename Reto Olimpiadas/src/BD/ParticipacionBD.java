@@ -55,4 +55,20 @@ public class ParticipacionBD {
         Bdr.cerrarCon();
 		
 	}
+
+	public void modificarParticipacion(int id_evento, int id_deportista, int id_equipo, String medalla,int edad) throws SQLException {
+		Bdr.Conectar();
+        plantilla = "UPDATE Participacion SET id_evento = ? ,id_deportista = ?,id_equipo = ?,medalla = ?,edad = ? WHERE id_evento = ? AND id_deportista = ?";
+        ps = Bdr.getCon().prepareStatement(plantilla);
+        ps.setInt(1, id_evento);
+        ps.setInt(2, id_deportista);
+        ps.setInt(3, id_equipo);
+        ps.setString(4, medalla);
+        ps.setInt(5, edad);
+        ps.setInt(6, id_evento);
+        ps.setInt(7, id_deportista);
+        
+        ps.executeUpdate();
+        Bdr.cerrarCon();
+	}
 }

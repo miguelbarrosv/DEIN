@@ -42,17 +42,23 @@ public class frmVentanaParticipacion extends JFrame {
 	private ArrayList<Participacion> participaciones = new ArrayList();
 	private ArrayList<Deportista> deportistas = new ArrayList();
 	private ArrayList<Equipo> equipos = new ArrayList();
+	private JTable tableDeportistas;
+	private JTable tableEventos;
 
+
+	int idEvento;
+    int idDeportista;
+    int idEquipo ;
 	String nombreEvento;
     String nombreDeportista;
     String nombreEquipo ;
     String medalla;
     String edad;
 	private JTable tableParticipaciones;
-	private JTextField txtDeportista;
-	private JTextField txtEvento;
-	private JTextField txtEquipo;
 	private JTextField txtEdad;
+	private JTextField txtIdDeportista;
+	private JTextField txtIdEvento;
+	private JTextField txtIdEquipo;
 	
 	/**
 	 * Create the frame.
@@ -60,7 +66,7 @@ public class frmVentanaParticipacion extends JFrame {
 	 */
 	public frmVentanaParticipacion() throws SQLException {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 840, 707);
+		setBounds(100, 100, 1031, 957);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -85,7 +91,7 @@ public class frmVentanaParticipacion extends JFrame {
 			}
 		});
 		
-		btnNewButton.setBounds(631, 615, 182, 25);
+		btnNewButton.setBounds(823, 882, 182, 25);
 		contentPane.add(btnNewButton);
 		
 		TablaPersonalizada tableModel  = new TablaPersonalizada("participacion");
@@ -104,69 +110,49 @@ public class frmVentanaParticipacion extends JFrame {
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JLabel lblNombre = new JLabel("Deportista: ");
-		lblNombre.setBounds(213, 445, 96, 15);
+		lblNombre.setBounds(213, 417, 96, 15);
 		contentPane.add(lblNombre);
 		
-		txtDeportista = new JTextField();
-		txtDeportista.setEnabled(false);
-		txtDeportista.setEditable(false);
-		txtDeportista.setBounds(339, 443, 196, 19);
-		contentPane.add(txtDeportista);
-		txtDeportista.setColumns(10);
-		
 		JLabel lblEvento = new JLabel("Evento: ");
-		lblEvento.setBounds(213, 497, 70, 15);
+		lblEvento.setBounds(213, 642, 70, 15);
 		contentPane.add(lblEvento);
 		
-		txtEvento = new JTextField();
-		txtEvento.setEditable(false);
-		txtEvento.setEnabled(false);
-		txtEvento.setBounds(339, 495, 196, 19);
-		contentPane.add(txtEvento);
-		txtEvento.setColumns(10);
-		
 		JLabel lblEquipo = new JLabel("Equipo: ");
-		lblEquipo.setBounds(213, 550, 70, 15);
+		lblEquipo.setBounds(624, 642, 70, 15);
 		contentPane.add(lblEquipo);
 		
-		txtEquipo = new JTextField();
-		txtEquipo.setEnabled(false);
-		txtEquipo.setEditable(false);
-		txtEquipo.setBounds(339, 548, 196, 19);
-		contentPane.add(txtEquipo);
-		txtEquipo.setColumns(10);
-		
 		JLabel lblEdad = new JLabel("Edad: ");
-		lblEdad.setBounds(589, 445, 52, 15);
+		lblEdad.setBounds(771, 445, 52, 15);
 		contentPane.add(lblEdad);
 		
 		txtEdad = new JTextField();
 		txtEdad.setEditable(false);
 		txtEdad.setEnabled(false);
-		txtEdad.setBounds(677, 443, 136, 19);
+		txtEdad.setBounds(853, 442, 136, 19);
 		contentPane.add(txtEdad);
 		txtEdad.setColumns(10);
 		
 		JLabel lblMedalla = new JLabel("Medalla:");
-		lblMedalla.setBounds(589, 497, 70, 15);
+		lblMedalla.setBounds(743, 497, 70, 15);
 		contentPane.add(lblMedalla);
 		
 		final JComboBox cbMedalla = new JComboBox();
 		cbMedalla.setEnabled(false);
 		cbMedalla.setModel(new DefaultComboBoxModel(new String[] {"NA", "Bronze", "Silver", "Gold"}));
-		cbMedalla.setBounds(677, 494, 136, 20);
+		cbMedalla.setBounds(853, 497, 136, 20);
 		contentPane.add(cbMedalla);
 		
 		final JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controlador.modificarParticipacion( nombreEvento, nombreDeportista, nombreEquipo, medalla, edad);
+				controlador.modificarParticipacion( txtIdEvento.getText(), txtIdDeportista.getText(), txtIdEquipo.getText(), medalla, edad);
 				controladorVistas.cerrarVentanaParticipacion();
 				ControladorVistas.abrirVentanaPrincipal();
 			}
 		});
+		
 		btnModificar.setEnabled(false);
-		btnModificar.setBounds(489, 615, 117, 25);
+		btnModificar.setBounds(690, 882, 117, 25);
 		contentPane.add(btnModificar);
 		
 		final JButton btnEliminar = new JButton("Eliminar");
@@ -182,35 +168,76 @@ public class frmVentanaParticipacion extends JFrame {
 			}
 		});
 		btnEliminar.setEnabled(false);
-		btnEliminar.setBounds(339, 615, 117, 25);
+		btnEliminar.setBounds(563, 882, 117, 25);
 		contentPane.add(btnEliminar);
 		
-		TablaPersonalizada tableModelDeportista  = new TablaPersonalizada("deportistas2");
+		txtIdDeportista = new JTextField();
+		txtIdDeportista.setBounds(213, 887, 86, 20);
+		contentPane.add(txtIdDeportista);
+		txtIdDeportista.setColumns(10);
+		txtIdDeportista.setVisible(false);
+
+		
+		txtIdEvento = new JTextField();
+		txtIdEvento.setBounds(309, 884, 86, 20);
+		contentPane.add(txtIdEvento);
+		txtIdEvento.setColumns(10);
+		txtIdEvento.setVisible(false);
+
+		
+		txtIdEquipo = new JTextField();
+		txtIdEquipo.setBounds(409, 884, 52, 20);
+		contentPane.add(txtIdEquipo);
+		txtIdEquipo.setColumns(10);
+		txtIdEquipo.setVisible(false);
 		
 		tableParticipaciones.addMouseListener(new java.awt.event.MouseAdapter() {
 		    @Override
 		    public void mouseClicked(java.awt.event.MouseEvent evt) {
-		         nombreDeportista = tableParticipaciones.getValueAt(tableParticipaciones.getSelectedRow(), 0).toString();
-		         nombreEquipo =  tableParticipaciones.getValueAt(tableParticipaciones.getSelectedRow(), 1).toString();
-		         nombreEvento = tableParticipaciones.getValueAt(tableParticipaciones.getSelectedRow(), 2).toString();
-		         medalla = tableParticipaciones.getValueAt(tableParticipaciones.getSelectedRow(), 3).toString();
-		         edad =  tableParticipaciones.getValueAt(tableParticipaciones.getSelectedRow(), 4).toString();
-
-
-		        txtDeportista.setEditable(true);
-		        txtDeportista.setEnabled(true);
-		        txtDeportista.setText(nombreDeportista);
-
+				try {
+					
+					TablaPersonalizada tableModelDeportista = new TablaPersonalizada("deportistasParticipacion");
+					JScrollPane scrollPaneDeportista = new JScrollPane();
+					scrollPaneDeportista.setBounds(213, 444, 319, 175);
+					contentPane.add(scrollPaneDeportista);
+					tableDeportistas = new JTable(tableModelDeportista);
+					scrollPaneDeportista.setViewportView(tableDeportistas);
+					
+					TablaPersonalizada tableModelEventos  = new TablaPersonalizada("eventosParticipacion");
+					
+					JScrollPane scrollPaneEventos = new JScrollPane();
+					scrollPaneEventos.setBounds(213, 666, 361, 205);
+					contentPane.add(scrollPaneEventos);
+					tableEventos = new JTable(tableModelEventos);
+					scrollPaneEventos.setViewportView(tableEventos);
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		    	
+				 idDeportista = (int)tableParticipaciones.getValueAt(tableParticipaciones.getSelectedRow(), 0);
+		         nombreDeportista = tableParticipaciones.getValueAt(tableParticipaciones.getSelectedRow(), 1).toString();
+				 idEquipo = (int)tableParticipaciones.getValueAt(tableParticipaciones.getSelectedRow(), 2);
+		         nombreEquipo =  tableParticipaciones.getValueAt(tableParticipaciones.getSelectedRow(), 3).toString();
+				 idEvento = (int)tableParticipaciones.getValueAt(tableParticipaciones.getSelectedRow(), 4);
+		         nombreEvento = tableParticipaciones.getValueAt(tableParticipaciones.getSelectedRow(), 5).toString();
+		         medalla = tableParticipaciones.getValueAt(tableParticipaciones.getSelectedRow(), 6).toString();
+		         edad =  tableParticipaciones.getValueAt(tableParticipaciones.getSelectedRow(), 7).toString();
 				
-		        txtEquipo.setEditable(true);
-		        txtEquipo.setEnabled(true);
-		        txtEquipo.setText(nombreEquipo);
-
-				
-				txtEvento.setEditable(true);
-				txtEvento.setEnabled(true);
-				txtEvento.setText(nombreEvento);
-				
+		         for (int i = 0; i < tableDeportistas.getRowCount(); i++) {
+					 if (idDeportista == (int)tableDeportistas.getValueAt(tableParticipaciones.getSelectedRow(), 0)) {
+						 tableDeportistas.setRowSelectionInterval(i,i);
+						 txtIdDeportista.setText(tableDeportistas.getValueAt(i, 0).toString());
+				 	}
+				}
+		         
+		         for (int i = 0; i < tableDeportistas.getRowCount(); i++) {
+					 if (idDeportista == (int)tableEventos.getValueAt(tableParticipaciones.getSelectedRow(), 2)) {
+						 tableEventos.setRowSelectionInterval(i,i);
+						 txtIdEvento.setText(tableEventos.getValueAt(i, 0).toString());
+				 	}
+				}		         
+		         
 				txtEdad.setEditable(true);
 				txtEdad.setEnabled(true);
 				txtEdad.setText(edad.toString());
@@ -235,6 +262,18 @@ public class frmVentanaParticipacion extends JFrame {
 		        
 		    }
 		});
+				
+		tableDeportistas.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				txtIdDeportista.setText(tableDeportistas.getValueAt(tableDeportistas.getSelectedRow(), 0).toString());
+			}
+		});
+		
+		tableEventos.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				txtIdEvento.setText(tableEventos.getValueAt(tableEventos.getSelectedRow(), 0).toString());
+			}
+		});
 		
 		cbMedalla.addActionListener (new ActionListener () {
 		    public void actionPerformed(ActionEvent e) {
@@ -243,5 +282,6 @@ public class frmVentanaParticipacion extends JFrame {
 		    }
 		});
 		
-	}	
+	}
+
 }

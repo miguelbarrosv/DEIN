@@ -105,7 +105,6 @@ public class frmVentanaEquipos extends JFrame {
 		contentPane.add(btnModificar);
 		
 		listaEquipos.addListSelectionListener(new ListSelectionListener() {
-
             @Override
             public void valueChanged(ListSelectionEvent arg0) {
                 if (!arg0.getValueIsAdjusting()) {
