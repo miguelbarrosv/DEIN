@@ -114,6 +114,11 @@ public class Controlador {
 		// TODO Auto-generated method stub
 		deportistaBD.modificarDeportista(idDeportista,nombre,sexo,altura,peso);
 	}
+	
+	public void eliminarDeportista(int idDeportista) throws SQLException {
+		// TODO Auto-generated method stub
+		deportistaBD.eliminarDeportista(idDeportista);
+	}
 
 
 	public void modificarOlimpiada(int idOlimpiada, String nombre, String anio, String ciudad, String temporada) throws SQLException {
@@ -126,10 +131,15 @@ public class Controlador {
 		olimpiadaBD.eliminarOlimpiada(idOlimpiada);
 	}
 
-
-	public void eliminarDeportista(int idDeportista) throws SQLException {
+	public void modificarParticipacion(String nombreEvento, String nombreDeportista, String nombreEquipo, String medalla, String edad) {
 		// TODO Auto-generated method stub
-		deportistaBD.eliminarDeportista(idDeportista);
+		
+	}
+
+
+	public void eliminarParticipacion(String nombreEvento, String nombreDeportista) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
