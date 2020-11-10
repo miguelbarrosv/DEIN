@@ -143,4 +143,14 @@ public class Controlador {
 		equipoBD.eliminarEquipo(idEquipo);
 	}
 
+
+	public void modificarEvento(int idEvento, String nombreEvento, int idOlimpiada, int idDeporte) throws SQLException {
+		// TODO Auto-generated method stub
+		eventoBD.modificarEvento( idEvento,  nombreEvento,  idOlimpiada,  idDeporte);
+	}
+
+	public void eliminarEvento(int idEvento) throws SQLException {
+		eventoBD.eliminarEvento(idEvento);
+	}
+
 }

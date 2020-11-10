@@ -101,8 +101,10 @@ public class TablaPersonalizada extends AbstractTableModel{
     		
     		columnNames = new String[] {
 				"Id_evento", 
-	            "Nombre",	 
+	            "Nombre",
+	            "Id_olimpiada",
 	            "Olimpiada", 
+	            "Id_deporte",
 	            "Deporte"
 	            };
     		
@@ -115,7 +117,7 @@ public class TablaPersonalizada extends AbstractTableModel{
     				for (Olimpiada o : olimpiadas) {
     					
     					if (e.getId_olimpiada() == o.getId_olimpiada() && e.getId_deporte() == d.getId_deporte()) {
-        	    			datos [cont]= new Object[]{e.getId_evento(),e.getNombre(),o.getNombre(),d.getNombre()};
+        	    			datos [cont]= new Object[]{e.getId_evento(),e.getNombre(),o.getId_olimpiada(),o.getNombre(),d.getId_deporte(),d.getNombre()};
         	    			cont++;
     					}
                 		

@@ -54,4 +54,25 @@ public class EventoBD {
         Bdr.cerrarCon();
 	}
 
+	public void modificarEvento(int idEvento, String nombreEvento, int idOlimpiada, int idDeporte) throws SQLException {
+		Bdr.Conectar();
+        plantilla = "UPDATE Evento SET nombre = ? ,id_olimpiada = ?,id_deporte = ? WHERE id_evento = ?";
+        ps = Bdr.getCon().prepareStatement(plantilla);
+        ps.setString(1, nombreEvento);
+        ps.setInt(2, idOlimpiada);
+        ps.setInt(3, idDeporte);
+        ps.setInt(4, idEvento);
+        ps.executeUpdate();
+        Bdr.cerrarCon();
+	}
+
+	public void eliminarEvento(int idEvento) throws SQLException {
+		Bdr.Conectar();
+		plantilla = "DELETE FROM  Evento where id_evento = ?";
+		ps = Bdr.getCon().prepareStatement(plantilla);
+		ps.setInt(1, idEvento);
+		ps.executeUpdate();
+		Bdr.cerrarCon();
+	}
+
 }
