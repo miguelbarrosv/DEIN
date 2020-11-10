@@ -41,13 +41,32 @@ public class EquipoBD {
 	}
 
 	public void altaEquipo(String nombre, String iniciales) throws SQLException {
-		// TODO Auto-generated method stub
 		Bdr.Conectar();
         plantilla = "INSERT INTO Equipo(nombre,iniciales) VALUES(?,?)";
         ps = Bdr.getCon().prepareStatement(plantilla);
         ps.setString(1, nombre);
         ps.setString(2, iniciales);
         
+        ps.executeUpdate();
+        Bdr.cerrarCon();
+	}
+
+	public void eliminarEquipo(int idEquipo) throws SQLException {
+		Bdr.Conectar();
+		plantilla = "DELETE FROM  Equipo where id_equipo = ?";
+		ps = Bdr.getCon().prepareStatement(plantilla);
+		ps.setInt(1, idEquipo);
+		ps.executeUpdate();
+		Bdr.cerrarCon();
+	}
+
+	public void modificarEquipo(int idEquipo, String iniciales, String nombre) throws SQLException {
+		Bdr.Conectar();
+        plantilla = "UPDATE Equipo SET nombre = ? ,iniciales = ? WHERE id-equipo = ?";
+        ps = Bdr.getCon().prepareStatement(plantilla);
+        ps.setString(1, nombre);
+        ps.setString(2, iniciales);
+        ps.setInt(3, idEquipo);
         ps.executeUpdate();
         Bdr.cerrarCon();
 	}

@@ -56,7 +56,6 @@ public class DeportistaBD {
 	}
 
 	public void modificarDeportista(int idDeportista, String nombre, String sexo, int altura, int peso) throws SQLException {
-		// TODO Auto-generated method stub
 		Bdr.Conectar();
         plantilla = "UPDATE Deportista SET nombre = ? ,sexo = ?,altura = ?,peso = ? WHERE id_deportista = ?";
         ps = Bdr.getCon().prepareStatement(plantilla);
@@ -70,12 +69,12 @@ public class DeportistaBD {
 	}
 
 	public void eliminarDeportista(int idDeportista) throws SQLException {
-				Bdr.Conectar();
-		        plantilla = "DELETE FROM  Olimpiada where id_deportista = ?";
-		        ps = Bdr.getCon().prepareStatement(plantilla);
-		        ps.setInt(1, idDeportista);
-		        ps.executeUpdate();
-		        Bdr.cerrarCon();
+		Bdr.Conectar();
+		plantilla = "DELETE FROM  Deportista where id_deportista = ?";
+		ps = Bdr.getCon().prepareStatement(plantilla);
+		ps.setInt(1, idDeportista);
+		ps.executeUpdate();
+		Bdr.cerrarCon();
 	}
 
 }

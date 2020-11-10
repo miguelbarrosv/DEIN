@@ -71,4 +71,15 @@ public class ParticipacionBD {
         ps.executeUpdate();
         Bdr.cerrarCon();
 	}
+
+	public void eliminarParticipacion(int idEvento, int idDeportista) throws SQLException {
+		// TODO Auto-generated method stub
+		Bdr.Conectar();
+		plantilla = "DELETE FROM Participacion where id_deportista = ? AND id_evento = ?";
+		ps = Bdr.getCon().prepareStatement(plantilla);
+		ps.setInt(1, idDeportista);
+		ps.setInt(2, idEvento);
+		ps.executeUpdate();
+		Bdr.cerrarCon();
+	}
 }

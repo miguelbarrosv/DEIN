@@ -44,23 +44,6 @@ public class TablaPersonalizada extends AbstractTableModel{
     		}
     		fireTableDataChanged();
     		
-    	} else if(frame == "deportistasParticipacion") {
-    		deportistas = controlador.consultarDeportistas();
-    		
-    		int cont = 0;
-    		columnNames = new String[] {
-    				"Id Deportista", 
-    	            "Nombre"
-    	            };
-    		datos = new Object[deportistas.size()][];
-    		
-    		for (Deportista d : deportistas) {
-    			datos [cont]= new Object[]{d.getId_deportista(),d.getNombre()};
-        		
-        		cont++;
-    		}
-    		fireTableDataChanged();
-    		
     	} else if(frame == "participacion") {
     		participaciones = controlador.consultarTablaParticpaciones();
     		
@@ -144,25 +127,26 @@ public class TablaPersonalizada extends AbstractTableModel{
     		
     		fireTableDataChanged();
     		
-    	} else if(frame == "eventosParticipacion") {
-    		eventos = controlador.consultarEventos();
+    	} else if(frame == "equipos") {
+    		 equipos = controlador.consultarEquipos();
     		
     		int cont = 0;
-    		
     		columnNames = new String[] {
-				"Id_evento", 
+				"Id_Equipo", 
+	            "Iniciales",	 
 	            "Nombre"
 	            };
+	            
+    		datos = new Object[equipos.size()][];
     		
-    		datos = new Object[eventos.size()][];
-    		
-    		for (Evento e : eventos) {
-    			
-    			datos [cont]= new Object[]{e.getId_evento(),e.getNombre()};
-
-    			
+    		for (Equipo e : equipos) {
+    			datos [cont]= new Object[]{e.getId_equipo(),e.getIniciales(),e.getNombre()};
+        		
+        		cont++;
     		}
+    		
     		fireTableDataChanged();
+    		
     	}
     	
     	fireTableDataChanged();

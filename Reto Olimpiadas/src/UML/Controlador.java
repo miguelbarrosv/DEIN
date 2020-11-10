@@ -104,12 +104,6 @@ public class Controlador {
 		participacionBD.altaParticipacion();
 	}
 
-
-	public void modificarEquipo() {
-		
-	}
-
-
 	public void modificarDeportista(int idDeportista, String nombre, String sexo, int altura, int peso) throws SQLException {
 		// TODO Auto-generated method stub
 		deportistaBD.modificarDeportista(idDeportista,nombre,sexo,altura,peso);
@@ -131,15 +125,22 @@ public class Controlador {
 		olimpiadaBD.eliminarOlimpiada(idOlimpiada);
 	}
 
-	public void modificarParticipacion(String idEvento, String idDeportista, String idEquipo, String medalla, String edad) {
+	public void modificarParticipacion(int idEvento, int idDeportista, int idEquipo, String medalla, int edad) throws NumberFormatException, SQLException {
 		// TODO Auto-generated method stub
-		participacionBD.modificarParticipacion(Integer.parseInt(idEvento), Integer.parseInt(idDeportista), Integer.parseInt(idEquipo), medalla, Integer.parseInt(edad));
+		participacionBD.modificarParticipacion(idEvento, idDeportista,idEquipo, medalla, edad);
 	}
 
 
-	public void eliminarParticipacion(String nombreEvento, String nombreDeportista) {
-		// TODO Auto-generated method stub
-		
+	public void eliminarParticipacion(int idEvento, int idDeportista) throws SQLException {
+		participacionBD.eliminarParticipacion(idEvento,idDeportista);
+	}
+
+	public void modificarEquipo(int idEquipo, String iniciales, String nombre) throws SQLException {
+		equipoBD.modificarEquipo(idEquipo,iniciales,nombre);
+	}
+
+	public void eliminarEquipo(int idEquipo) throws SQLException {
+		equipoBD.eliminarEquipo(idEquipo);
 	}
 
 }
