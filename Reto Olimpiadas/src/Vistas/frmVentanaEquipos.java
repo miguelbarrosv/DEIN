@@ -61,7 +61,7 @@ public class frmVentanaEquipos extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblListaDeEquipos = new JLabel("Lista de equipos");
-		lblListaDeEquipos.setBounds(445, 22, 137, 15);
+		lblListaDeEquipos.setBounds(469, 22, 94, 15);
 		contentPane.add(lblListaDeEquipos);
 		
 		TablaPersonalizada tableModel  = new TablaPersonalizada("equipos");

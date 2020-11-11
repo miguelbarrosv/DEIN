@@ -64,6 +64,26 @@ public class DeporteBD {
         ps.executeUpdate();
         Bdr.cerrarCon();
 	}
+
+	public void modificarDeporte(int idDeporte, String nombre) throws SQLException {
+		// TODO Auto-generated method stub
+		Bdr.Conectar();
+        plantilla = "UPDATE Olimpiada SET nombre = ? WHERE id_deporte = ?";
+        ps = Bdr.getCon().prepareStatement(plantilla);
+        ps.setString(1, nombre);
+        ps.setInt(2, idDeporte);
+        ps.executeUpdate();
+        Bdr.cerrarCon();
+	}
+
+	public void eliminarDeporte(int idDeporte) throws SQLException {
+		Bdr.Conectar();
+        plantilla = "DELETE FROM  Deporte where id_deporte = ?";
+        ps = Bdr.getCon().prepareStatement(plantilla);
+        ps.setInt(1, idDeporte);
+        ps.executeUpdate();
+        Bdr.cerrarCon();		
+	}
 	
 	
 	

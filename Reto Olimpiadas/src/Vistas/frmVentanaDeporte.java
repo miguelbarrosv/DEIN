@@ -9,11 +9,13 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import ComponentesPersonalizados.MenuPersonalizado;
+import ComponentesPersonalizados.TablaPersonalizada;
 import UML.Controlador;
 import UML.Deporte;
 
@@ -35,8 +37,11 @@ public class frmVentanaDeporte extends JFrame {
 	private ArrayList<Deporte> deportes;
 	private Controlador controlador = new Controlador();
 	private ControladorVistas controladorVistas = new ControladorVistas();
-	private JList<String> listaDeportes;
 	private JTextField txtNombre;
+	private JTable tableDeporte;
+	int idDeporte;
+	String nombre;
+
 
 	/**
 	 * Create the frame.
@@ -45,17 +50,19 @@ public class frmVentanaDeporte extends JFrame {
 	public frmVentanaDeporte() throws SQLException {
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 866, 540);
+		setBounds(100, 100, 866, 557);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		DefaultListModel<String> model = new DefaultListModel<>();
-		listaDeportes = new JList<String>(model);
-		JScrollPane scrollPaneDeporte = new JScrollPane(listaDeportes);
-		scrollPaneDeporte.setBounds(241, 59, 569, 346);
-		contentPane.add(scrollPaneDeporte);
+		TablaPersonalizada tableModel  = new TablaPersonalizada("deporte");
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(241, 59, 569, 346);
+		contentPane.add(scrollPane);
+		tableDeporte = new JTable(tableModel);
+		scrollPane.setViewportView(tableDeporte);
 		
 		JLabel lblNewLabel = new JLabel("Lista de Deportes");
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -70,7 +77,7 @@ public class frmVentanaDeporte extends JFrame {
 				controladorVistas.abrirVentanaAltaDeporte();
 			}
 		});
-		btnNewButton.setBounds(702, 469, 108, 25);
+		btnNewButton.setBounds(702, 490, 108, 25);
 		contentPane.add(btnNewButton);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("deportes");
@@ -90,29 +97,53 @@ public class frmVentanaDeporte extends JFrame {
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 		
-		JButton btnModificar = new JButton("Modificar");
+		final JButton btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					controlador.modificarDeporte(idDeporte, nombre);
+					controladorVistas.cerrarVentanaDeportes();
+					controladorVistas.abrirVentanaPrincipal();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnModificar.setEnabled(false);
-		btnModificar.setBounds(566, 467, 117, 25);
+		btnModificar.setBounds(575, 490, 117, 25);
 		contentPane.add(btnModificar);
 		
-		deportes = controlador.consultarDeportes();
-		
-		for(int i=0; i < deportes.size(); i++) {
-		    //A�adir cada elemento del ArrayList en el modelo de la lista
-			model.addElement(deportes.get(i).getNombre());
-		}
-		
-		listaDeportes.addListSelectionListener(new ListSelectionListener() {
+		final JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.setEnabled(false);
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					controlador.eliminarDeporte(idDeporte);
+					controladorVistas.cerrarVentanaDeportes();
+					controladorVistas.abrirVentanaPrincipal();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 
-            @Override
-            public void valueChanged(ListSelectionEvent arg0) {
-                if (!arg0.getValueIsAdjusting()) {
-                	
-                	txtNombre.setText(listaDeportes.getSelectedValue().toString());
-                	txtNombre.setEnabled(true);
-                	System.out.print(listaDeportes.getSelectedValue().toString());
-                }
-            }
-        });
+			}
+		});
+		
+		btnEliminar.setBounds(476, 490, 89, 23);
+		contentPane.add(btnEliminar);
+		
+		tableDeporte.addMouseListener(new java.awt.event.MouseAdapter() {
+		    @Override
+		    public void mouseClicked(java.awt.event.MouseEvent evt) {
+		         idDeporte = (int) tableDeporte.getValueAt(tableDeporte.getSelectedRow(), 0);
+		         nombre = tableDeporte.getValueAt(tableDeporte.getSelectedRow(), 1).toString();
+		         
+		         txtNombre.setEnabled(true);
+		         btnModificar.setEnabled(true);
+		         btnEliminar.setEnabled(true);
+		    }
+		});
 	}
 }

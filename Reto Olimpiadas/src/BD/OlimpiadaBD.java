@@ -55,7 +55,6 @@ public class OlimpiadaBD {
 	}
 
 	public void modificarOlimpiada(int idOlimpiada, String nombre, String anio, String ciudad, String temporada) throws SQLException {
-		// TODO Auto-generated method stub
 		Bdr.Conectar();
         plantilla = "UPDATE Olimpiada SET nombre = ? ,año = ?,ciudad = ?,temporada = ? WHERE id_olimpiada = ?";
         ps = Bdr.getCon().prepareStatement(plantilla);
@@ -69,7 +68,6 @@ public class OlimpiadaBD {
 	}
 
 	public void eliminarOlimpiada(int idOlimpiada) throws SQLException {
-		// TODO Auto-generated method stub
 		Bdr.Conectar();
         plantilla = "DELETE FROM  Olimpiada where id_olimpiada = ?";
         ps = Bdr.getCon().prepareStatement(plantilla);

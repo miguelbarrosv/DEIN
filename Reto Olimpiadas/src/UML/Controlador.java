@@ -153,4 +153,16 @@ public class Controlador {
 		eventoBD.eliminarEvento(idEvento);
 	}
 
+
+	public void modificarDeporte(int idDeporte, String nombre) throws SQLException {
+		// TODO Auto-generated method stub
+		deporteBD.modificarDeporte(idDeporte,nombre);
+	}
+
+
+	public void eliminarDeporte(int idDeporte) throws SQLException {
+		// TODO Auto-generated method stub
+		deporteBD.eliminarDeporte(idDeporte);
+	}
+
 }

@@ -149,7 +149,26 @@ public class TablaPersonalizada extends AbstractTableModel{
     		
     		fireTableDataChanged();
     		
-    	}
+    	} else if(frame == "deporte") {
+    		deportes = controlador.consultarDeportes();
+ 		
+   		int cont = 0;
+   		columnNames = new String[] {
+				"Id_Deporte", 
+	            "Nombre"
+	            };
+	            
+   		datos = new Object[deportes.size()][];
+   		
+   		for (Deporte d : deportes) {
+   			datos [cont]= new Object[]{d.getId_deporte(),d.getNombre()};
+       		
+       		cont++;
+   		}
+   		
+   		fireTableDataChanged();
+   		
+   	}
     	
     	fireTableDataChanged();
     }
