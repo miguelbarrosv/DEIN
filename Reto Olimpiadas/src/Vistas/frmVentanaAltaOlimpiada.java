@@ -83,6 +83,8 @@ public class frmVentanaAltaOlimpiada extends JFrame {
 				try {
 					controlador.altaOlimpiada(anio,temporada,nombre,ciudad);
 					controladorVistas.cerrarVentanaAltaOlimpiada();
+					controladorVistas.cerrarVentanaOlimpiada();
+					controladorVistas.abrirVentanaPrincipal();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

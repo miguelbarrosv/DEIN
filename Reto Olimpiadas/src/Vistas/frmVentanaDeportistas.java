@@ -209,13 +209,14 @@ public class frmVentanaDeportistas extends JFrame {
 				rbMujer.setEnabled(true);
 				rbHombre.setEnabled(true);
 				
-				if (sexo == "F") {
+				if (sexo.equals("F")) {
 					rbMujer.setSelected(true);
-				} else if(sexo == "M") {
+				} else if(sexo.equals("M")) {
 					rbHombre.setSelected(true);
 				}
 				
 				btnModificar.setEnabled(true);
+		        btnEliminar.setEnabled(true);
 		        
 			    System.out.print(idDeportista + " " + nombre + " " + sexo + " " + peso + " " + altura);
 		    }

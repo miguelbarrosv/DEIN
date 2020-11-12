@@ -233,14 +233,13 @@ public class frmVentanaParticipacion extends JFrame {
 				cbMedalla.setEnabled(true);
 				cbMedalla.setEditable(true);
 				
-				if (medalla == "NA") {
+				if (medalla.equals("NA")) {
 					cbMedalla.setSelectedIndex(0);
-				} else if(medalla == "Bronze") {
+				} else if(medalla.equals("Bronze")) {
 					cbMedalla.setSelectedIndex(1);
-				} else if(medalla == "Silver") {
-				    System.out.print("Que entres ostia");
+				} else if(medalla.equals("Silver")) {
 					cbMedalla.setSelectedIndex(2);
-				} else if(medalla == "Gold") {
+				} else if(medalla.equals("Gold")) {
 					cbMedalla.setSelectedIndex(3);
 				}
 				
@@ -260,8 +259,6 @@ public class frmVentanaParticipacion extends JFrame {
 		    	idEquipo = (int)tableEquipos.getValueAt(tableEquipos.getSelectedRow(), 0);		    	
 		    }
 		});
-		
-				
 		
 		cbMedalla.addActionListener (new ActionListener () {
 		    public void actionPerformed(ActionEvent e) {

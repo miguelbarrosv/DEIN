@@ -60,7 +60,7 @@ public class Controlador {
 	}
 
 
-	public void altaDeportista(String nombre, String sexo, int altura, int peso) throws SQLException {
+	public void altaDeportista(String nombre, String sexo, float altura, float peso) throws SQLException {
 		deportistaBD.altaDeportista(nombre,sexo,altura,peso);
 	}
 

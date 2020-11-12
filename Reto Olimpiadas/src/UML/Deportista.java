@@ -5,10 +5,10 @@ public class Deportista {
 	private int id_deportista;
 	private String nombre;
 	private String sexo;
-	private int peso;
-	private int altura;
+	private float peso;
+	private float altura;
 	
-	public Deportista(int id_deportista, String nombre, String sexo, int peso, int altura) {
+	public Deportista(int id_deportista, String nombre, String sexo, float peso, float altura) {
 		
 		this.id_deportista = id_deportista;
 		this.nombre = nombre;
@@ -43,19 +43,19 @@ public class Deportista {
 		return sexo;
 	}
 	
-	public void setPeso(int peso) {
+	public void setPeso(float peso) {
 		this.peso = peso;
 	}
 	
-	public int getPeso() {
+	public float getPeso() {
 		return peso;
 	}
 	
-	public void setAltura(int f) {
-		this.altura = f;
+	public void setAltura(float altura) {
+		this.altura = altura;
 	}
 	
-	public int getAltura() {
+	public float getAltura() {
 		return altura;
 	}
 }

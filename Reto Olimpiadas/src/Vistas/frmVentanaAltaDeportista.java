@@ -20,6 +20,9 @@ import UML.Controlador;
 
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
 public class frmVentanaAltaDeportista extends JFrame {
@@ -29,6 +32,10 @@ public class frmVentanaAltaDeportista extends JFrame {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JRadioButton rbHombre;
 	private String sexo;
+	
+	JFormattedTextField frmtdtxtPeso; 
+	JFormattedTextField frmtdtxtAltura;
+	
 	private ControladorVistas controladorVistas = new ControladorVistas();
 	private Controlador controlador = new Controlador();
 
@@ -65,11 +72,14 @@ public class frmVentanaAltaDeportista extends JFrame {
 		label_4.setBounds(30, 285, 68, 21);
 		contentPane.add(label_4);
 		
-		JFormattedTextField frmtdtxtPeso = new JFormattedTextField(java.text.NumberFormat.getCurrencyInstance());
+//		frmtdtxtPeso = new JFormattedTextField(java.text.NumberFormat.getCurrencyInstance());
+		frmtdtxtPeso = new JFormattedTextField(java.text.NumberFormat.getNumberInstance());
+		
 		frmtdtxtPeso.setBounds(124, 285, 103, 19);
 		contentPane.add(frmtdtxtPeso);
 		
-		JFormattedTextField frmtdtxtAltura = new JFormattedTextField(java.text.NumberFormat.getCurrencyInstance());
+		//frmtdtxtAltura = new JFormattedTextField(java.text.NumberFormat.getCurrencyInstance());
+		frmtdtxtAltura = new JFormattedTextField(java.text.NumberFormat.getNumberInstance());
 		frmtdtxtAltura.setBounds(124, 233, 103, 19);
 		contentPane.add(frmtdtxtAltura);
 		
@@ -84,8 +94,19 @@ public class frmVentanaAltaDeportista extends JFrame {
 					sexo = "M";
 				}
 				
-				int altura = Integer.parseInt(frmtdtxtAltura.getText());
-				int peso = Integer.parseInt(frmtdtxtPeso.getText());
+//				float altura = Float.parseFloat(frmtdtxtAltura.getText());
+				float altura=0.0f;
+				 
+				try {
+					Double d =(Double) NumberFormat.getNumberInstance().parse(frmtdtxtAltura.getText());
+					altura = d.floatValue();
+					System.out.println(altura);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				float peso = Float.parseFloat(frmtdtxtPeso.getText());
 
 				try {
 					controlador.altaDeportista(nombre,sexo,altura,peso);

@@ -21,8 +21,8 @@ public class DeportistaBD {
         d.setId_deportista(resultado.getInt("id_deportista"));
         d.setNombre(resultado.getString("nombre"));
         d.setSexo(resultado.getString("sexo"));
-        d.setPeso(resultado.getInt("peso"));
-        d.setAltura(resultado.getInt("altura"));
+        d.setPeso(resultado.getFloat("peso"));
+        d.setAltura(resultado.getFloat("altura"));
         
         return d;
     }
@@ -43,14 +43,14 @@ public class DeportistaBD {
         return listaDeportistas;
 	}
 
-	public void altaDeportista(String nombre, String sexo, int altura, int peso) throws SQLException {
+	public void altaDeportista(String nombre, String sexo, float altura, float peso) throws SQLException {
 		Bdr.Conectar();
         plantilla = "INSERT INTO Deportista(nombre,sexo,altura,peso) VALUES(?,?,?,?)";
         ps = Bdr.getCon().prepareStatement(plantilla);
         ps.setString(1, nombre);
         ps.setString(2, sexo);
-        ps.setInt(3, altura);
-        ps.setInt(4, peso);
+        ps.setFloat(3, altura);
+        ps.setFloat(4, peso);
         ps.executeUpdate();
         Bdr.cerrarCon();
 	}
