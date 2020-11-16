@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 
+import javax.help.HelpSetException;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -31,6 +32,11 @@ public class MenuPersonalizado extends JPanel{
 		controlador = new Controlador();
 	}
 	
+	/**
+	 * Metodo que crea el menu personalizado y añade los eventos a los menus
+	 * 
+	 * @param frame
+	 */
 	public MenuPersonalizado(String frame) 
 	{
 		
@@ -104,6 +110,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaEvento();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -116,6 +125,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaPrincipal();
 						controladorVistas.abrirVentanaDeportista();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -130,6 +142,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaParticipacion();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -143,6 +158,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaEquipos();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -155,6 +173,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaPrincipal();
 						controladorVistas.abrirVentanaDeporte();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -166,7 +187,12 @@ public class MenuPersonalizado extends JPanel{
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
 	            	controladorVistas.cerrarVentanaOlimpiada();
-					controladorVistas.abrirVentanaPrincipal();
+					try {
+						controladorVistas.abrirVentanaPrincipal();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 	            }
 	        });
 			
@@ -191,6 +217,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaEvento();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -203,6 +232,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaOlimpiada();
 						controladorVistas.abrirVentanaDeportista();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -217,6 +249,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaParticipacion();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -230,6 +265,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaEquipos();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -242,6 +280,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaOlimpiada();
 						controladorVistas.abrirVentanaDeporte();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -253,7 +294,12 @@ public class MenuPersonalizado extends JPanel{
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
             		controladorVistas.cerrarVentanaEquipos();
-					controladorVistas.abrirVentanaPrincipal();
+					try {
+						controladorVistas.abrirVentanaPrincipal();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 	            }
 	        });
 			
@@ -278,6 +324,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaEvento();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -290,6 +339,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaEquipos();
 						controladorVistas.abrirVentanaDeportista();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -304,6 +356,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaParticipacion();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -317,6 +372,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaEquipos();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -329,6 +387,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaEquipos();
 						controladorVistas.abrirVentanaDeporte();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -340,7 +401,12 @@ public class MenuPersonalizado extends JPanel{
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
             		controladorVistas.cerrarVentanaDeportes();
-					controladorVistas.abrirVentanaPrincipal();
+					try {
+						controladorVistas.abrirVentanaPrincipal();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 	            }
 	        });
 			
@@ -365,6 +431,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaEvento();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -377,6 +446,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaDeportes();
 						controladorVistas.abrirVentanaDeportista();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -391,6 +463,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaParticipacion();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -404,6 +479,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaEquipos();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -416,6 +494,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaDeportes();
 						controladorVistas.abrirVentanaDeporte();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -427,7 +508,12 @@ public class MenuPersonalizado extends JPanel{
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
             		controladorVistas.cerrarVentanaParticipacion();
-					controladorVistas.abrirVentanaPrincipal();
+					try {
+						controladorVistas.abrirVentanaPrincipal();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 	            }
 	        });
 			
@@ -452,6 +538,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaEvento();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -464,6 +553,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaParticipacion();
 						controladorVistas.abrirVentanaDeportista();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -478,6 +570,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaParticipacion();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -491,6 +586,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaEquipos();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -503,6 +601,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaParticipacion();
 						controladorVistas.abrirVentanaDeporte();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -514,7 +615,12 @@ public class MenuPersonalizado extends JPanel{
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
             		controladorVistas.cerrarVentanaDeportista();
-					controladorVistas.abrirVentanaPrincipal();
+					try {
+						controladorVistas.abrirVentanaPrincipal();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 	            }
 	        });
 			
@@ -539,6 +645,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaEvento();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -551,6 +660,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaDeportista();
 						controladorVistas.abrirVentanaDeportista();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -565,6 +677,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaParticipacion();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -578,6 +693,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaEquipos();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -590,6 +708,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaDeportista();
 						controladorVistas.abrirVentanaDeporte();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -601,7 +722,12 @@ public class MenuPersonalizado extends JPanel{
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
             		controladorVistas.cerrarVentanaEvento();
-					controladorVistas.abrirVentanaPrincipal();
+					try {
+						controladorVistas.abrirVentanaPrincipal();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 	            }
 	        });
 			
@@ -626,6 +752,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaEvento();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -638,6 +767,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaEvento();
 						controladorVistas.abrirVentanaDeportista();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -652,6 +784,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaParticipacion();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -665,6 +800,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaEquipos();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -677,6 +815,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaEvento();
 						controladorVistas.abrirVentanaDeporte();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }

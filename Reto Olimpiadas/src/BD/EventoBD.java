@@ -15,6 +15,12 @@ public class EventoBD {
     private String plantilla;
     private ArrayList<Evento> listaEventos;
 	
+    /**
+     * Metodo para recoger los datos y crear el objeto evento.
+     * 
+     * @return
+     * @throws SQLException
+     */
 	public Evento crearObjeto() throws SQLException 
     {
 		Evento e = new Evento();
@@ -26,6 +32,12 @@ public class EventoBD {
         return e;
     }
 
+	/**
+     * Metodo para hacer la consulta de los eventos para añadirlos a un array de eventos y devolverlo.
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
 	public ArrayList<Evento> consultarTodosEventos() throws SQLException {
 		listaEventos = new ArrayList();
         Bdr.Conectar();
@@ -42,18 +54,34 @@ public class EventoBD {
         return listaEventos;
 	}
 
-	public void altaEvento(int id_evento, String nombre, int id_olimpiada, int id_deporte) throws SQLException {
+	/**
+	 * Metodo para insertar un nuevo.
+	 * 
+	 * @param nombre
+	 * @param id_olimpiada
+	 * @param id_deporte
+	 * @throws SQLException
+	 */
+	public void altaEvento(String nombre, int id_olimpiada, int id_deporte) throws SQLException {
 		Bdr.Conectar();
-        plantilla = "INSERT INTO Evento(id_evento,nombre,id_olimpiada,id_deporte) VALUES(?,?,?,?)";
+        plantilla = "INSERT INTO Evento(nombre,id_olimpiada,id_deporte) VALUES(?,?,?)";
         ps = Bdr.getCon().prepareStatement(plantilla);
-        ps.setInt(1, id_evento);
-        ps.setString(2, nombre);
-        ps.setInt(3, id_olimpiada);
-        ps.setInt(4, id_deporte);
+        ps.setString(1, nombre);
+        ps.setInt(2, id_olimpiada);
+        ps.setInt(3, id_deporte);
         ps.executeUpdate();
         Bdr.cerrarCon();
 	}
 
+	/**
+	 * Metodo para modificar un evento ya existente.
+	 * 
+	 * @param idEvento
+	 * @param nombreEvento
+	 * @param idOlimpiada
+	 * @param idDeporte
+	 * @throws SQLException
+	 */
 	public void modificarEvento(int idEvento, String nombreEvento, int idOlimpiada, int idDeporte) throws SQLException {
 		Bdr.Conectar();
         plantilla = "UPDATE Evento SET nombre = ? ,id_olimpiada = ?,id_deporte = ? WHERE id_evento = ?";
@@ -66,6 +94,12 @@ public class EventoBD {
         Bdr.cerrarCon();
 	}
 
+	/**
+	 * Metodo para ekiminar un evento ya existente.
+	 * 
+	 * @param idEvento
+	 * @throws SQLException
+	 */
 	public void eliminarEvento(int idEvento) throws SQLException {
 		Bdr.Conectar();
 		plantilla = "DELETE FROM  Evento where id_evento = ?";

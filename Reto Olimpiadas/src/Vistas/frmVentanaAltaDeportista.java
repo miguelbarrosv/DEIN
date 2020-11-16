@@ -24,6 +24,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
+import javax.swing.SpringLayout;
 
 public class frmVentanaAltaDeportista extends JFrame {
 
@@ -32,6 +33,8 @@ public class frmVentanaAltaDeportista extends JFrame {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JRadioButton rbHombre;
 	private String sexo;
+	private float altura;
+
 	
 	JFormattedTextField frmtdtxtPeso; 
 	JFormattedTextField frmtdtxtAltura;
@@ -39,51 +42,73 @@ public class frmVentanaAltaDeportista extends JFrame {
 	private ControladorVistas controladorVistas = new ControladorVistas();
 	private Controlador controlador = new Controlador();
 
-
 	/**
 	 * Create the frame.
 	 */
 	public frmVentanaAltaDeportista() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 361);
+		setBounds(100, 100, 450, 381);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		SpringLayout sl_contentPane = new SpringLayout();
+		contentPane.setLayout(sl_contentPane);
 		
-		Label label = new Label("Añadir Deportista");
-		label.setBounds(157, 10, 128, 21);
+		Label label = new Label("Alta Deportista");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, label, 10, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, label, 183, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, label, 31, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, label, -113, SpringLayout.EAST, contentPane);
 		contentPane.add(label);
 		
 		Label label_1 = new Label("Nombre: ");
-		label_1.setBounds(30, 66, 68, 21);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, label_1, 66, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, label_1, 54, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, label_1, 87, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, label_1, 122, SpringLayout.WEST, contentPane);
 		contentPane.add(label_1);
 		
 		txtNombre = new JTextField();
-		txtNombre.setBounds(124, 68, 103, 19);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtNombre, 68, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtNombre, 128, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, txtNombre, 87, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtNombre, 240, SpringLayout.WEST, contentPane);
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		Label label_3 = new Label("Altura:");
-		label_3.setBounds(30, 231, 68, 21);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, label_3, 231, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, label_3, 54, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, label_3, 252, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, label_3, 122, SpringLayout.WEST, contentPane);
 		contentPane.add(label_3);
 		
-		Label label_4 = new Label("Peso");
-		label_4.setBounds(30, 285, 68, 21);
+		Label label_4 = new Label("Peso:");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, label_4, 285, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, label_4, 54, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, label_4, 306, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, label_4, 122, SpringLayout.WEST, contentPane);
 		contentPane.add(label_4);
 		
-//		frmtdtxtPeso = new JFormattedTextField(java.text.NumberFormat.getCurrencyInstance());
 		frmtdtxtPeso = new JFormattedTextField(java.text.NumberFormat.getNumberInstance());
-		
-		frmtdtxtPeso.setBounds(124, 285, 103, 19);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, frmtdtxtPeso, 285, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, frmtdtxtPeso, 128, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, frmtdtxtPeso, 304, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, frmtdtxtPeso, 240, SpringLayout.WEST, contentPane);
 		contentPane.add(frmtdtxtPeso);
 		
-		//frmtdtxtAltura = new JFormattedTextField(java.text.NumberFormat.getCurrencyInstance());
 		frmtdtxtAltura = new JFormattedTextField(java.text.NumberFormat.getNumberInstance());
-		frmtdtxtAltura.setBounds(124, 233, 103, 19);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, frmtdtxtAltura, 231, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, frmtdtxtAltura, 128, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, frmtdtxtAltura, 250, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, frmtdtxtAltura, 240, SpringLayout.WEST, contentPane);
 		contentPane.add(frmtdtxtAltura);
 		
 		JButton btnAadir = new JButton("Añadir");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnAadir, 306, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnAadir, 319, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnAadir, 331, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnAadir, 399, SpringLayout.WEST, contentPane);
 		btnAadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String nombre = txtNombre.getText();
@@ -93,16 +118,12 @@ public class frmVentanaAltaDeportista extends JFrame {
 				} else {
 					sexo = "M";
 				}
-				
-//				float altura = Float.parseFloat(frmtdtxtAltura.getText());
-				float altura=0.0f;
-				 
+								 
 				try {
 					Double d =(Double) NumberFormat.getNumberInstance().parse(frmtdtxtAltura.getText());
 					altura = d.floatValue();
 					System.out.println(altura);
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
@@ -112,29 +133,29 @@ public class frmVentanaAltaDeportista extends JFrame {
 					controlador.altaDeportista(nombre,sexo,altura,peso);
 					controladorVistas.cerrarVentanaAltaDeportista();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		});
-		
-		btnAadir.setBounds(308, 299, 80, 25);
 		contentPane.add(btnAadir);
 		
 		JPanel panel_1 = new JPanel();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, panel_1, 116, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, panel_1, 54, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, panel_1, 201, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, panel_1, 244, SpringLayout.WEST, contentPane);
 		panel_1.setToolTipText("");
 		panel_1.setBorder(new TitledBorder(null, "Sexo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(32, 109, 195, 98);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
 		rbHombre = new JRadioButton("Hombre");
-		rbHombre.setBounds(51, 27, 80, 23);
+		rbHombre.setBounds(76, 7, 98, 23);
 		panel_1.add(rbHombre);
 		buttonGroup.add(rbHombre);
 		
 		JRadioButton rbMujer = new JRadioButton("Mujer");
-		rbMujer.setBounds(51, 67, 65, 23);
+		rbMujer.setBounds(76, 52, 83, 23);
 		panel_1.add(rbMujer);
 		buttonGroup.add(rbMujer);
 	}

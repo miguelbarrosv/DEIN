@@ -15,7 +15,7 @@ public class Bdr {
 	public static final String PASS = "pass";
 	
 	/**
-     * Funci�n para conectarse a la base de datos.
+     * Funcion para conectarse a la base de datos.
      *
      */
 	public static void Conectar()

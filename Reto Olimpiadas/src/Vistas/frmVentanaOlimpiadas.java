@@ -19,10 +19,17 @@ import javax.swing.JTable;
 import javax.swing.JScrollBar;
 import java.awt.Choice;
 import java.awt.Button;
+
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import javax.help.HelpSetException;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -69,13 +76,13 @@ public class frmVentanaOlimpiadas extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblOlimpiadas = new JLabel("Olimpiadas");
-		lblOlimpiadas.setBounds(461, 41, 79, 15);
+		JLabel lblOlimpiadas = new JLabel("Lista de Olimpiadas");
+		lblOlimpiadas.setBounds(460, 41, 112, 15);
 		contentPane.add(lblOlimpiadas);
 		
 		TablaPersonalizada tableModel  = new TablaPersonalizada("olimpiadas");
 		
-		JButton btnAadirOlimpiada = new JButton("Añadir Olimpiada");
+		JButton btnAadirOlimpiada = new JButton("Alta Olimpiada");
 		btnAadirOlimpiada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -88,11 +95,11 @@ public class frmVentanaOlimpiadas extends JFrame {
 		});
 		
 		btnAadirOlimpiada.setFont(new Font("Dialog", Font.BOLD, 10));
-		btnAadirOlimpiada.setBounds(632, 533, 131, 25);
+		btnAadirOlimpiada.setBounds(687, 533, 131, 25);
 		contentPane.add(btnAadirOlimpiada);
 				
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(238, 81, 548, 302);
+		scrollPane.setBounds(197, 81, 621, 302);
 		contentPane.add(scrollPane);
 		tableOlimpiadas = new JTable(tableModel);
 		scrollPane.setViewportView(tableOlimpiadas);
@@ -111,40 +118,40 @@ public class frmVentanaOlimpiadas extends JFrame {
 		txtNombre = new JTextField();
 		txtNombre.setEnabled(false);
 		txtNombre.setEditable(false);
-		txtNombre.setBounds(337, 409, 131, 20);
+		txtNombre.setBounds(306, 409, 131, 20);
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JLabel lblAo = new JLabel("A\u00F1o:");
-		lblAo.setBounds(250, 474, 58, 14);
+		lblAo.setBounds(238, 474, 58, 14);
 		contentPane.add(lblAo);
 		
 		txtAnio = new JTextField();
 		txtAnio.setEditable(false);
 		txtAnio.setEnabled(false);
-		txtAnio.setBounds(337, 471, 131, 20);
+		txtAnio.setBounds(306, 471, 131, 20);
 		contentPane.add(txtAnio);
 		txtAnio.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Temporada:");
-		lblNewLabel.setBounds(512, 412, 96, 14);
+		lblNewLabel.setBounds(496, 412, 64, 14);
 		contentPane.add(lblNewLabel);
 		
 		txtTemporada = new JTextField();
 		txtTemporada.setEditable(false);
 		txtTemporada.setEnabled(false);
-		txtTemporada.setBounds(632, 409, 131, 20);
+		txtTemporada.setBounds(580, 409, 131, 20);
 		contentPane.add(txtTemporada);
 		txtTemporada.setColumns(10);
 		
 		JLabel lblCiudad = new JLabel("Ciudad:");
-		lblCiudad.setBounds(512, 474, 64, 14);
+		lblCiudad.setBounds(496, 474, 37, 14);
 		contentPane.add(lblCiudad);
 		
 		txtCiudad = new JTextField();
 		txtCiudad.setEditable(false);
 		txtCiudad.setEnabled(false);
-		txtCiudad.setBounds(632, 471, 131, 20);
+		txtCiudad.setBounds(580, 471, 131, 20);
 		contentPane.add(txtCiudad);
 		txtCiudad.setColumns(10);
 		
@@ -156,14 +163,15 @@ public class frmVentanaOlimpiadas extends JFrame {
 					controladorVistas.cerrarVentanaOlimpiada();
 					ControladorVistas.abrirVentanaPrincipal();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (HelpSetException e1) {
 					e1.printStackTrace();
 				}
 			}
 		});
 		
 		btnModificar.setEnabled(false);
-		btnModificar.setBounds(496, 534, 107, 23);
+		btnModificar.setBounds(570, 534, 107, 23);
 		contentPane.add(btnModificar);
 		
 		final JButton btnEliminar = new JButton("Eliminar");
@@ -179,13 +187,16 @@ public class frmVentanaOlimpiadas extends JFrame {
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 				}
 			}
 		});
 		
 		btnEliminar.setEnabled(false);
-		btnEliminar.setBounds(379, 534, 89, 23);
+		btnEliminar.setBounds(471, 534, 89, 23);
 		contentPane.add(btnEliminar);
 		
 		tableOlimpiadas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -221,5 +232,27 @@ public class frmVentanaOlimpiadas extends JFrame {
 			    System.out.print(idOlimpiada + " " + nombre + " " + temporada + " " + anio + " " + ciudad);
 		    }
 		});
+	}
+	
+	/**
+	 * 	Ponemos la ayuda a esta pantalla pulsando en F1
+	 * 
+	 * @throws HelpSetException
+	 */
+	private void ponerAyuda() throws HelpSetException {
+		try 
+		{
+			File fichero = new File("Help"+File.separator+"help_set.hs");
+			URL hsURL = fichero.toURI().toURL();
+			
+			HelpSet helpset = new HelpSet(getClass().getClassLoader(),hsURL);
+			HelpBroker hb = helpset.createHelpBroker();
+			
+			//hb.enableHelpOnButton(btnAiuda, "clsVentanaOlimpiada", helpset);
+			hb.enableHelpKey(getRootPane(),"clsVentanaOlimpiada", helpset);
+			
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 	}
 }

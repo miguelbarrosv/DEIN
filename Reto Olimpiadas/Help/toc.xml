@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<toc version="1.0"> <!--  categoryclosedimage="FolderClosed" categoryopenimage="FolderOpened"  topicimage="ItemIco"-->
+        <tocitem text="Reto Olimpiadas"    				target="clsVentanaPrincipal">
+            <tocitem text="Ventana Olimpiadas" 			target="clsVentanaOlimpiada"/>
+			<tocitem text="Ventana Deportistas"			target="clsVentanaDeportista"/>
+		    <tocitem text="Ventana Deportes"			target="clsVentanaDeporte"/>
+		    <tocitem text="Ventana Participaciones"		target="clsVentanaParticipacion"/>
+		    <tocitem text="Ventana Equipos"				target="clsVentanaEquipo"/>
+		    <tocitem text="Ventana Eventos"				target="clsVentanaEvento" />
+        </tocitem>
+</toc>

@@ -22,6 +22,12 @@ public class TablaPersonalizada extends AbstractTableModel{
 	private String[] columnNames;
 	private Object [][]datos;
 
+	/**
+	 * Metodo que comprueba la tabla que tiene que pintar a traves del parametro que pasamos
+	 * 
+	 * @param frame
+	 * @throws SQLException
+	 */
 	public TablaPersonalizada(String frame) throws SQLException
     {
     	if(frame == "deportistas") {
@@ -173,18 +179,30 @@ public class TablaPersonalizada extends AbstractTableModel{
     	fireTableDataChanged();
     }
 	
+	/**
+	 * Metodo que devuelve el numero de columnas de una tabla
+	 */
 	public int getColumnCount() {
         return columnNames.length;
     }
 
+	/**
+	 * Metodo que devuelve el numero de filas que tiene la tabla
+	 */
     public int getRowCount() {
         return datos.length;
     }
 
+    /**
+     * Metodo que devuelve el nombre de la columna
+     */
     public String getColumnName(int col) {
         return columnNames[col];
     }
 
+    /**
+     * Metodo que devuelve el valor de la fila y columna seleccionada
+     */
     public Object getValueAt(int row, int col) {
         return datos[row][col];
     }

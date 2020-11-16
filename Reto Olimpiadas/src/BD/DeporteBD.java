@@ -16,6 +16,12 @@ public class DeporteBD {
     private String plantilla;
     private ArrayList<Deporte> listaDeportes;
     
+    /**
+     * Metodo para recoger los datos y crear el objeto deporte
+     * 
+     * @return
+     * @throws SQLException
+     */
     public Deporte crearObjeto() throws SQLException 
     {
         Deporte d = new Deporte();
@@ -24,6 +30,12 @@ public class DeporteBD {
         return d;
     }
     
+    /**
+     * Metodo para hacer la consulta de los deportes para añadirlos a un array de deportes y devolverlo
+     * 
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Deporte> consultarTodosDeportes() throws SQLException 
     {
     	listaDeportes = new ArrayList();
@@ -38,11 +50,18 @@ public class DeporteBD {
         return listaDeportes;
     }
 
+    /**
+     * Metodo para consultar si el nombre que nos han pasado existe
+     * 
+     * @param nombre
+     * @return
+     * @throws SQLException
+     */
 	public ArrayList<Deporte> consultarNombreDeporte(String nombre) throws SQLException 
 	{
 		listaDeportes = new ArrayList();
         Bdr.Conectar();
-        plantilla = "SELECT * FROM Deporte WHERE nombre = ?";
+        plantilla = "SELECT * FROM Deporte WHERE nombre LIKE ?";
         ps = Bdr.getCon().prepareStatement(plantilla);
         ps.setString(1, nombre);
         resultado = ps.executeQuery();
@@ -55,6 +74,12 @@ public class DeporteBD {
         return listaDeportes;
 	}
 
+	/**
+	 * Metodo para insertar un nuevo deporte
+	 * 
+	 * @param nombre
+	 * @throws SQLException
+	 */
 	public void altaDeporte(String nombre) throws SQLException 
 	{
 		Bdr.Conectar();
@@ -65,6 +90,13 @@ public class DeporteBD {
         Bdr.cerrarCon();
 	}
 
+	/**
+	 * Metodo para modificar un deporte ya existente
+	 * 
+	 * @param idDeporte
+	 * @param nombre
+	 * @throws SQLException
+	 */
 	public void modificarDeporte(int idDeporte, String nombre) throws SQLException {
 		// TODO Auto-generated method stub
 		Bdr.Conectar();
@@ -76,6 +108,12 @@ public class DeporteBD {
         Bdr.cerrarCon();
 	}
 
+	/**
+	 * Metodo para eliminar un deporte ya existente
+	 * 
+	 * @param idDeporte
+	 * @throws SQLException
+	 */
 	public void eliminarDeporte(int idDeporte) throws SQLException {
 		Bdr.Conectar();
         plantilla = "DELETE FROM  Deporte where id_deporte = ?";

@@ -15,6 +15,12 @@ public class DeportistaBD {
     private String plantilla;
     private ArrayList<Deportista> listaDeportistas;
 	
+    /**
+     * Metodo para recoger los datos y crear el objeto deportista
+     * 
+     * @return
+     * @throws SQLException
+     */
 	public Deportista crearObjeto() throws SQLException 
     {
         Deportista d = new Deportista();
@@ -27,6 +33,12 @@ public class DeportistaBD {
         return d;
     }
 
+	/**
+     * Metodo para hacer la consulta de los deportistas para añadirlos a un array de deportistas y devolverlo
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
 	public ArrayList<Deportista> consultarTodosDeportistas() throws SQLException {
 		listaDeportistas = new ArrayList();
         Bdr.Conectar();
@@ -43,6 +55,15 @@ public class DeportistaBD {
         return listaDeportistas;
 	}
 
+	/**
+     * Metodo para insertar un nuevo deportista
+	 * 
+	 * @param nombre
+	 * @param sexo
+	 * @param altura
+	 * @param peso
+	 * @throws SQLException
+	 */
 	public void altaDeportista(String nombre, String sexo, float altura, float peso) throws SQLException {
 		Bdr.Conectar();
         plantilla = "INSERT INTO Deportista(nombre,sexo,altura,peso) VALUES(?,?,?,?)";
@@ -55,6 +76,16 @@ public class DeportistaBD {
         Bdr.cerrarCon();
 	}
 
+	/**
+     * Metodo para modificar un deportista que ya existe
+	 * 
+	 * @param idDeportista
+	 * @param nombre
+	 * @param sexo
+	 * @param altura
+	 * @param peso
+	 * @throws SQLException
+	 */
 	public void modificarDeportista(int idDeportista, String nombre, String sexo, int altura, int peso) throws SQLException {
 		Bdr.Conectar();
         plantilla = "UPDATE Deportista SET nombre = ? ,sexo = ?,altura = ?,peso = ? WHERE id_deportista = ?";
@@ -68,6 +99,13 @@ public class DeportistaBD {
         Bdr.cerrarCon();
 	}
 
+	/**
+	 * Metodo para eliminar un deportista que ya existe
+
+	 * 
+	 * @param idDeportista
+	 * @throws SQLException
+	 */
 	public void eliminarDeportista(int idDeportista) throws SQLException {
 		Bdr.Conectar();
 		plantilla = "DELETE FROM  Deportista where id_deportista = ?";

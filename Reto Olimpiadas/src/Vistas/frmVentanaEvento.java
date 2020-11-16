@@ -17,6 +17,9 @@ import UML.Controlador;
 import UML.Evento;
 
 import javax.swing.JLabel;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import javax.help.HelpSetException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.Color;
@@ -24,6 +27,11 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import javax.swing.SpringLayout;
 
 public class frmVentanaEvento extends JFrame {
 
@@ -44,22 +52,32 @@ public class frmVentanaEvento extends JFrame {
 	/**
 	 * Create the frame.
 	 * @throws SQLException 
+	 * @throws HelpSetException 
 	 */
-	public frmVentanaEvento() throws SQLException {
+	public frmVentanaEvento() throws SQLException, HelpSetException {
+		ponerAyuda();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1066, 771);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		SpringLayout sl_contentPane = new SpringLayout();
+		contentPane.setLayout(sl_contentPane);
 		
 		JLabel lblEvento = new JLabel("Lista de Eventos");
-		lblEvento.setBounds(550, 31, 98, 15);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblEvento, 22, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblEvento, 575, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblEvento, 37, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblEvento, 673, SpringLayout.WEST, contentPane);
 		contentPane.add(lblEvento);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("evento");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, panel, 718, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, panel, 187, SpringLayout.WEST, contentPane);
 		panel.setBackground(Color.BLACK);
-		panel.setBounds(0, 0, 187, 718);
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));;
 		
@@ -67,7 +85,10 @@ public class frmVentanaEvento extends JFrame {
 		TablaPersonalizada tableModel  = new TablaPersonalizada("eventos");
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(206, 57, 803, 329);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, scrollPane, 57, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, scrollPane, 206, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, scrollPane, 386, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, scrollPane, 1026, SpringLayout.WEST, contentPane);
 		contentPane.add(scrollPane);
 		tableEventos = new JTable(tableModel);
 		scrollPane.setViewportView(tableEventos);
@@ -99,8 +120,11 @@ public class frmVentanaEvento extends JFrame {
 		TablaPersonalizada tableModelOlimpiadas  = new TablaPersonalizada("olimpiadas");
 		
 		JScrollPane scrollPaneOlimpiadas = new JScrollPane();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, scrollPaneOlimpiadas, 446, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, scrollPaneOlimpiadas, 205, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, scrollPaneOlimpiadas, 653, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, scrollPaneOlimpiadas, 587, SpringLayout.WEST, contentPane);
 		scrollPaneOlimpiadas.setEnabled(false);
-		scrollPaneOlimpiadas.setBounds(205, 446, 382, 207);
 		contentPane.add(scrollPaneOlimpiadas);
 		tableOlimpiadas = new JTable(tableModelOlimpiadas);
 		tableOlimpiadas.setRowSelectionAllowed(false);
@@ -110,12 +134,19 @@ public class frmVentanaEvento extends JFrame {
 		TablaPersonalizada tableModelDeporte  = new TablaPersonalizada("deporte");
 		
 		JScrollPane scrollPaneDeporte = new JScrollPane();
-		scrollPaneDeporte.setBounds(610, 446, 416, 207);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, scrollPaneDeporte, 446, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, scrollPaneDeporte, 610, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, scrollPaneDeporte, 653, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, scrollPaneDeporte, 1026, SpringLayout.WEST, contentPane);
 		contentPane.add(scrollPaneDeporte);
 		tableDeporte = new JTable(tableModelDeporte);
 		scrollPaneDeporte.setViewportView(tableDeporte);
 		
-		JButton btnAadirEvento = new JButton("Añadir Evento");
+		JButton btnAadirEvento = new JButton("Alta Evento");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnAadirEvento, 692, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnAadirEvento, 912, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnAadirEvento, 717, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnAadirEvento, 1026, SpringLayout.WEST, contentPane);
 		
 		btnAadirEvento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -128,14 +159,19 @@ public class frmVentanaEvento extends JFrame {
 			}
 		});
 		btnAadirEvento.setFont(new Font("Dialog", Font.BOLD, 10));
-		btnAadirEvento.setBounds(806, 693, 114, 25);
 		contentPane.add(btnAadirEvento);
 		
 		JLabel lblOlimpiadas = new JLabel("Selecciona una olimpiadas para modificarla: ");
-		lblOlimpiadas.setBounds(206, 413, 209, 15);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblOlimpiadas, 413, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblOlimpiadas, 206, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblOlimpiadas, 428, SpringLayout.NORTH, contentPane);
 		contentPane.add(lblOlimpiadas);
 		
 		JButton btnEliminar = new JButton("Eliminar");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnEliminar, 692, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnEliminar, 658, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnEliminar, 717, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnEliminar, 775, SpringLayout.WEST, contentPane);
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -145,14 +181,20 @@ public class frmVentanaEvento extends JFrame {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (HelpSetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		});
 		btnEliminar.setEnabled(false);
-		btnEliminar.setBounds(526, 692, 117, 25);
 		contentPane.add(btnEliminar);
 		
 		JButton btnModificar = new JButton("Modificar");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnModificar, 692, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnModificar, 785, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnModificar, 717, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnModificar, 902, SpringLayout.WEST, contentPane);
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -162,15 +204,40 @@ public class frmVentanaEvento extends JFrame {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (HelpSetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		});
 		btnModificar.setEnabled(false);
-		btnModificar.setBounds(669, 693, 117, 25);
 		contentPane.add(btnModificar);
 		
 		JLabel lblDeportes = new JLabel("Selecciona un deporte para modificarlo:\r\n");
-		lblDeportes.setBounds(610, 413, 189, 14);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblDeportes, 413, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblDeportes, 610, SpringLayout.WEST, contentPane);
 		contentPane.add(lblDeportes);
+	}
+	
+	/**
+	 * 	Ponemos la ayuda a esta pantalla pulsando en F1
+	 * 
+	 * @throws HelpSetException
+	 */
+	private void ponerAyuda() throws HelpSetException {
+		try 
+		{
+			File fichero = new File("Help"+File.separator+"help_set.hs");
+			URL hsURL = fichero.toURI().toURL();
+			
+			HelpSet helpset = new HelpSet(getClass().getClassLoader(),hsURL);
+			HelpBroker hb = helpset.createHelpBroker();
+			
+			//hb.enableHelpOnButton(btnAiuda, "clsVentanaEvento", helpset);
+			hb.enableHelpKey(getRootPane(),"clsVentanaEvento", helpset);
+			
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 	}
 }

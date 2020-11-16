@@ -3,6 +3,7 @@ package Vistas;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.help.HelpSetException;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -31,9 +32,13 @@ public class frmVentanaAltaEvento extends JFrame {
 	private JPanel contentPane;
 	private JTable tableOlimpiadas;
 	private Controlador controlador = new Controlador();
+	private ControladorVistas controladorVistas = new ControladorVistas();
 	private ArrayList<Deporte> deportes;
-	private JList<String> listaDeportes;
 	private JTextField textField;
+	private JTable tableDeporte;
+	int idDeporte;
+	String nombre;
+	int idOlimpiada;
 
 	
 	/**
@@ -42,14 +47,14 @@ public class frmVentanaAltaEvento extends JFrame {
 	 */
 	public frmVentanaAltaEvento() throws SQLException {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 850, 585);
+		setBounds(100, 100, 850, 463);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblAltaEvento = new JLabel("Alta Evento");
-		lblAltaEvento.setBounds(406, 25, 80, 15);
+		lblAltaEvento.setBounds(364, 23, 80, 15);
 		contentPane.add(lblAltaEvento);
 		
 		JLabel lblEligeUnaOlimpiada = new JLabel("Elige una olimpiada:");
@@ -68,11 +73,13 @@ public class frmVentanaAltaEvento extends JFrame {
 		lblEligeUnDeporte.setBounds(442, 71, 85, 14);
 		contentPane.add(lblEligeUnDeporte);
 		
-		DefaultListModel<String> model = new DefaultListModel<>();
-		listaDeportes = new JList<String>(model);
-		JScrollPane scrollPaneDeporte = new JScrollPane(listaDeportes);
+		TablaPersonalizada tableModelDeportista  = new TablaPersonalizada("deporte");
+
+		JScrollPane scrollPaneDeporte = new JScrollPane();
 		scrollPaneDeporte.setBounds(442, 97, 338, 175);
 		contentPane.add(scrollPaneDeporte);
+		tableDeporte = new JTable(tableModelDeportista);
+		scrollPaneDeporte.setViewportView(tableDeporte);
 		
 		JLabel lblNombre = new JLabel("Nombre: ");
 		lblNombre.setBounds(47, 331, 46, 14);
@@ -84,15 +91,37 @@ public class frmVentanaAltaEvento extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnAadir = new JButton("A\u00F1adir");
-		btnAadir.setBounds(665, 468, 89, 23);
+		btnAadir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					controlador.altaEvento(nombre,idOlimpiada,idDeporte);
+					controladorVistas.cerrarVentanaAltaEvento();
+					controladorVistas.cerrarVentanaEvento();
+					controladorVistas.abrirVentanaPrincipal();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} catch (HelpSetException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		btnAadir.setBounds(691, 388, 89, 23);
 		contentPane.add(btnAadir);
 		
 		deportes = controlador.consultarDeportes();
 		
-		for(int i=0; i < deportes.size(); i++) {
-		    //A�adir cada elemento del ArrayList en el modelo de la lista
-			model.addElement(deportes.get(i).getNombre());
-		}
+		tableDeporte.addMouseListener(new java.awt.event.MouseAdapter() {
+		    @Override
+		    public void mouseClicked(java.awt.event.MouseEvent evt) {
+		         idDeporte = (int) tableDeporte.getValueAt(tableDeporte.getSelectedRow(), 0);
+		    }
+		});
 		
+		tableOlimpiadas.addMouseListener(new java.awt.event.MouseAdapter() {
+		    @Override
+		    public void mouseClicked(java.awt.event.MouseEvent evt) {
+		    	idOlimpiada = (int) tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 0);
+		    }
+		});
 	}
 }

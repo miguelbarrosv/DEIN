@@ -15,6 +15,12 @@ public class ParticipacionBD {
     private String plantilla;
     private ArrayList<ParticipacionTabla> listaParticipaciones;
     
+    /**
+     * Metodo para recoger los datos y crear el objeto Participacion.
+     * 
+     * @return
+     * @throws SQLException
+     */
     public ParticipacionTabla crearObjeto() throws SQLException 
     {
     	ParticipacionTabla p = new ParticipacionTabla();
@@ -29,6 +35,12 @@ public class ParticipacionBD {
         return p;
     }
     
+    /**
+     * Metodo para hacer la consulta de las participaciones para añadirlos a un array de participaciones y devolverlo.
+     * 
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<ParticipacionTabla> consultarTablaParticpaciones() throws SQLException {
     	listaParticipaciones = new ArrayList();
         Bdr.Conectar();
@@ -46,16 +58,41 @@ public class ParticipacionBD {
         Bdr.cerrarCon();
         return listaParticipaciones;
 	}
-
-	public void altaParticipacion() throws SQLException {
+    
+    /**
+     * Metodo para insertar una nueva Participacion
+     * 
+     * @param idEvento
+     * @param idDeportista
+     * @param idEquipo
+     * @param edad
+     * @param medalla
+     * @throws SQLException
+     */
+	public void altaParticipacion(int idEvento, int idDeportista, int idEquipo, int edad, String medalla) throws SQLException {
 		Bdr.Conectar();
-        plantilla = "INSERT INTO Participacion(anio,temporada,nombre,ciudad) VALUES(?,?,?,?)";
+        plantilla = "INSERT INTO Participacion(id_evento ,id_deportista ,id_equipo ,medalla ,edad) VALUES(?,?,?,?,?)";
         ps = Bdr.getCon().prepareStatement(plantilla);
+        ps.setInt(1,idEvento);
+        ps.setInt(2, idDeportista);
+        ps.setInt(3, idEquipo);
+        ps.setString(4, medalla);
+        ps.setInt(5, edad);
         ps.executeUpdate();
         Bdr.cerrarCon();
 		
 	}
 
+	/**
+	 * Metodo para modificar una participacion ya existente
+	 * 
+	 * @param id_evento
+	 * @param id_deportista
+	 * @param id_equipo
+	 * @param medalla
+	 * @param edad
+	 * @throws SQLException
+	 */
 	public void modificarParticipacion(int id_evento, int id_deportista, int id_equipo, String medalla,int edad) throws SQLException {
 		Bdr.Conectar();
         plantilla = "UPDATE Participacion SET id_evento = ? ,id_deportista = ?,id_equipo = ?,medalla = ?,edad = ? WHERE id_evento = ? AND id_deportista = ?";
@@ -72,6 +109,13 @@ public class ParticipacionBD {
         Bdr.cerrarCon();
 	}
 
+	/**
+	 * Metodo para eliminar una participacion ya existente
+	 * 
+	 * @param idEvento
+	 * @param idDeportista
+	 * @throws SQLException
+	 */
 	public void eliminarParticipacion(int idEvento, int idDeportista) throws SQLException {
 		// TODO Auto-generated method stub
 		Bdr.Conectar();

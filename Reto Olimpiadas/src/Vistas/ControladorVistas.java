@@ -2,6 +2,8 @@ package Vistas;
 
 import java.sql.SQLException;
 
+import javax.help.HelpSetException;
+
 public class ControladorVistas {
 	public static frmVentanaDeporte vDeporte;
 	public static frmVentanaAltaDeporte vAltaDeporte;
@@ -17,153 +19,253 @@ public class ControladorVistas {
 	public static frmVentanaAltaParticipacion vAltaParticipacion;
 	public static frmVentanaAltaEvento vAltaEvento;
 
-
-	public void abrirVentanaDeporte() throws SQLException
+	/**
+	 * Creamos una ventana Deporte y la hacemos visible.
+	 * 
+	 * @throws SQLException
+	 * @throws HelpSetException
+	 */
+	public void abrirVentanaDeporte() throws SQLException, HelpSetException
 	{
 		vDeporte = new frmVentanaDeporte();
 		vDeporte.setVisible(true);
 	}
 
+	/**
+	 * Creamos una ventana AltaDeporte y la hacemos visible.
+	 */
 	public void abrirVentanaAltaDeporte() 
 	{
 		vAltaDeporte = new frmVentanaAltaDeporte();
 		vAltaDeporte.setVisible(true);
 	}
 
+	/**
+	 * Cerramos la ventana AltaDeporte.
+	 */
 	public void cerrarVentanaAltaDeporte() 
 	{
 		vAltaDeporte.dispose();
 	} 
 	
-
-	public void abrirVentanaDeportista() throws SQLException 
+	/**
+	 * Creamos una ventana Deportista y la hacemos visible.
+	 * 
+	 * @throws SQLException
+	 * @throws HelpSetException
+	 */
+	public void abrirVentanaDeportista() throws SQLException, HelpSetException 
 	{
 		vDeportista = new frmVentanaDeportistas();
 		vDeportista.setVisible(true);
 	}
 
+	/**
+	 * Creamos una ventana AltaDeportista y la hacemos visible.
+	 */
 	public void abrirVentanaAltaDeportista() 
 	{
 		vAltaDeportista = new frmVentanaAltaDeportista();
 		vAltaDeportista.setVisible(true);
 	}
 
-	public void abrirVentanaEquipos() throws SQLException 
+	/**
+	 * Creamos una ventana Equipos y la hacemos visible.
+	 * 
+	 * @throws SQLException
+	 * @throws HelpSetException
+	 */
+	public void abrirVentanaEquipos() throws SQLException, HelpSetException 
 	{
 		vEquipos = new frmVentanaEquipos();
 		vEquipos.setVisible(true);
 	}
 
+	/**
+	 * Creamos una ventana Olimpiada y la hacemos visible.
+	 * 
+	 * @throws SQLException
+	 */
 	public void abrirVentanaOlimpiada() throws SQLException 
 	{
 		vOlimpiada = new frmVentanaOlimpiadas();
 		vOlimpiada.setVisible(true);
 	}
 
+	/**
+	 * Creamos una ventana AltaOlimpiada y la hacemos visible.
+	 * 
+	 * @throws SQLException
+	 */
 	public void abrirVentanaOlimpiadaAlta() throws SQLException 
 	{
 		vAltaOlimpiada = new frmVentanaAltaOlimpiada();
 		vAltaOlimpiada.setVisible(true);
 	}
 	
-	public void abrirVentanaParticipacion() throws SQLException 
+	/**
+	 * Creamos una ventana Participacion y la hacemos visible.
+	 * 
+	 * @throws SQLException
+	 * @throws HelpSetException
+	 */
+	public void abrirVentanaParticipacion() throws SQLException, HelpSetException 
 	{
 		vParticipacion = new frmVentanaParticipacion();
 		vParticipacion.setVisible(true);
 	}
 
+	/**
+	 * Creamos una ventana AltaParticipacion y la hacemos visible.
+	 * 
+	 * @throws SQLException
+	 */
 	public void abrirVentanaAltaParticipacion() throws SQLException 
 	{
 		vAltaParticipacion = new frmVentanaAltaParticipacion();
 		vAltaParticipacion.setVisible(true);
 	}
 
-	public void abrirVentanaEvento() throws SQLException 
+	/**
+	 * Creamos una ventana Evento y la hacemos visible.
+	 * 
+	 * @throws SQLException
+	 * @throws HelpSetException
+	 */
+	public void abrirVentanaEvento() throws SQLException, HelpSetException 
 	{
 		vEvento = new frmVentanaEvento();
 		vEvento.setVisible(true);
 	}
 
+	/**
+	 * Cerramos la ventana Olimpiada.
+	 */
 	public void cerrarVentanaOlimpiada() 
 	{
 		vOlimpiada.dispose();
 	}
 
-	public static void abrirVentanaPrincipal() 
+	/**
+	 * Creamos una ventana Principal y la hacemos visible.
+	 * 
+	 * @throws HelpSetException
+	 */
+	public static void abrirVentanaPrincipal() throws HelpSetException 
 	{
 		vPrincipal = new frmVentanaPrincipal();
 		vPrincipal.setVisible(true);
 	}
 	
+	/**
+	 * Cerramos la ventana Principal.
+	 */
 	public static void cerrarVentanaPrincipal() 
 	{
 		vPrincipal.dispose();
 	}
 
+	/**
+	 * Cerramos la ventana Equipos.
+	 */
 	public void cerrarVentanaEquipos() 
 	{
 		// TODO Auto-generated method stub
 		vEquipos.dispose();
 	}
 
+	/**
+	 * Cerramos la ventana Deportes.
+	 */
 	public void cerrarVentanaDeportes() 
 	{
-		// TODO Auto-generated method stub
 		vDeporte.dispose();
 	}
 
+	/**
+	 * Cerramos la ventana Participacion.
+	 */
 	public void cerrarVentanaParticipacion() 
 	{
-		// TODO Auto-generated method stub
 		vParticipacion.dispose();
 	}
 
+	/**
+	 * Cerramos la ventana Deportista.
+	 */
 	public void cerrarVentanaDeportista() 
 	{
-		// TODO Auto-generated method stub
 		vDeportista.dispose();
 	}
 
+	/**
+	 * Cerramos la ventana Evento.
+	 */
 	public void cerrarVentanaEvento() 
 	{
-		// TODO Auto-generated method stub
 		vEvento.dispose();
 	}
 
+	/**
+	 * Cerramos la ventana AltaDeportista.
+	 */
 	public void cerrarVentanaAltaDeportista() 
 	{
-		// TODO Auto-generated method stub
 		vAltaDeportista.dispose();
 	}
-
+	
+	/**
+	 * Cerramos la ventana AltaOlimpiada.
+	 */
 	public void cerrarVentanaAltaOlimpiada() 
 	{
-		// TODO Auto-generated method stub
 		vAltaOlimpiada.dispose();
 	}
 
+	/**
+	 * Cerramos la ventana AltaEquipos.
+	 */
 	public void cerrarVentanaAltaEquipos() 
 	{
-		// TODO Auto-generated method stub
 		vAltaEquipo.dispose();
 	}
 	
+	/**
+	 * Creamos una ventana AltaEquipos y la hacemos visible.
+	 * 
+	 */
 	public void abrirVentanaAltaEquipos() 
 	{
-		// TODO Auto-generated method stub
 		vAltaEquipo= new frmVentanaAltaEquipo();
 		vAltaEquipo.setVisible(true);
 	}
 
+	/**
+	 * Cerramos la ventana AltaParticipacion.
+	 */
 	public void cerrarVentanaAltaParticipacion() {
-		// TODO Auto-generated method stub
 		vAltaParticipacion.dispose();
 	}
 
+	/**
+	 * Creamos una ventana AltaEventos y la hacemos visible.
+	 * 
+	 * @throws SQLException
+	 */
 	public void abrirVentanaAltaEventos() throws SQLException {
-		// TODO Auto-generated method stub
 		vAltaEvento = new frmVentanaAltaEvento();
 		vAltaEvento.setVisible(true);
 	}
+	
+	/**
+	 * Cerramos la ventana AltaEventos.
+	 * 
+	 * @throws SQLException
+	 */
+	public void cerrarVentanaAltaEvento() throws SQLException {
+		vAltaEvento.dispose();
+	}
+	
+	
 	
 }

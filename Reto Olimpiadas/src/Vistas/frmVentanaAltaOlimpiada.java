@@ -12,11 +12,13 @@ import UML.Controlador;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.SpringLayout;
 
 public class frmVentanaAltaOlimpiada extends JFrame {
 
@@ -35,45 +37,70 @@ public class frmVentanaAltaOlimpiada extends JFrame {
 	 * Create the frame.
 	 */
 	public frmVentanaAltaOlimpiada() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		SpringLayout sl_contentPane = new SpringLayout();
+		contentPane.setLayout(sl_contentPane);
 		
-		JLabel lblAadirOlimpiada = new JLabel("Añadir Olimpiada");
-		lblAadirOlimpiada.setBounds(168, 12, 133, 15);
+		JLabel lblAadirOlimpiada = new JLabel("Alta Olimpiada");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblAadirOlimpiada, 10, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblAadirOlimpiada, 187, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblAadirOlimpiada, 25, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblAadirOlimpiada, -167, SpringLayout.EAST, contentPane);
 		contentPane.add(lblAadirOlimpiada);
 		
 		JLabel lblNombre = new JLabel("Año:");
-		lblNombre.setBounds(35, 65, 70, 15);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblNombre, 65, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblNombre, 35, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblNombre, 80, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblNombre, 105, SpringLayout.WEST, contentPane);
 		contentPane.add(lblNombre);
 		
-		txtAnio = new JTextField();
-		txtAnio.setBounds(91, 63, 114, 19);
+		txtAnio = new JFormattedTextField(java.text.NumberFormat.getNumberInstance());
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtAnio, 62, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtAnio, 109, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, txtAnio, 81, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtAnio, 223, SpringLayout.WEST, contentPane);
 		contentPane.add(txtAnio);
-		txtAnio.setColumns(10);
 		
 		JLabel lblTemporada = new JLabel("Temporada:");
-		lblTemporada.setBounds(35, 123, 102, 15);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblTemporada, 123, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblTemporada, 35, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblTemporada, 138, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblTemporada, 137, SpringLayout.WEST, contentPane);
 		contentPane.add(lblTemporada);
 		
 		final JComboBox cbTemporada = new JComboBox();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, cbTemporada, 118, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, cbTemporada, 109, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, cbTemporada, 142, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, cbTemporada, 223, SpringLayout.WEST, contentPane);
 		cbTemporada.setModel(new DefaultComboBoxModel(new String[] {"Summer", "Winter"}));
-		cbTemporada.setBounds(148, 118, 102, 24);
 		contentPane.add(cbTemporada);
 		
 		JLabel lblCiudad = new JLabel("Ciudad:");
-		lblCiudad.setBounds(35, 185, 70, 15);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblCiudad, 185, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblCiudad, 35, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblCiudad, 200, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblCiudad, 105, SpringLayout.WEST, contentPane);
 		contentPane.add(lblCiudad);
 		
 		txtCiudad = new JTextField();
-		txtCiudad.setBounds(109, 183, 114, 19);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtCiudad, 183, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtCiudad, 109, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, txtCiudad, 202, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtCiudad, 223, SpringLayout.WEST, contentPane);
 		contentPane.add(txtCiudad);
 		txtCiudad.setColumns(10);
 		
 		JButton btnAadir = new JButton("Añadir");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnAadir, 226, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnAadir, 316, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnAadir, 251, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnAadir, 409, SpringLayout.WEST, contentPane);
 		btnAadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				anio = Integer.parseInt(txtAnio.getText());
@@ -81,16 +108,44 @@ public class frmVentanaAltaOlimpiada extends JFrame {
 				nombre = txtAnio.getText()  + " " + temporada;
 				ciudad = txtCiudad.getText();
 				try {
-					controlador.altaOlimpiada(anio,temporada,nombre,ciudad);
-					controladorVistas.cerrarVentanaAltaOlimpiada();
-					controladorVistas.cerrarVentanaOlimpiada();
-					controladorVistas.abrirVentanaPrincipal();
-				} catch (SQLException e) {
+					if (nombre.isEmpty()) {
+						throw new Exception("El nombre del deporte es obligatorio");
+					}
+					
+					if (comprobarNombreOlimpiada()) {
+						try {
+							controlador.altaOlimpiada(anio,temporada,nombre,ciudad);
+							controladorVistas.cerrarVentanaAltaOlimpiada();
+							controladorVistas.cerrarVentanaOlimpiada();
+							controladorVistas.abrirVentanaPrincipal();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					} else
+						throw new Exception("El nombre del deporte introducido ya existe");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
 			}
 		});
-		btnAadir.setBounds(316, 226, 93, 25);
 		contentPane.add(btnAadir);
 	}
+	
+	/**
+	 * Comprobamos que el nombre de olimpiada que nos introducen no se repite, si se repite devolveremos False, si no se repite devolveremos true.
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean comprobarNombreOlimpiada() throws SQLException {
+		Boolean comprobacion = false;
+		if(controlador.comprobarOlimpiada(nombre)) {
+			comprobacion = true;
+		} else 
+			comprobacion = false;		
+		
+		return comprobacion;
+		}
 }

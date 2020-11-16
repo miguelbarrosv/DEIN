@@ -14,6 +14,9 @@ import javax.swing.table.DefaultTableModel;
 import ComponentesPersonalizados.MenuPersonalizado;
 import ComponentesPersonalizados.TablaPersonalizada;
 
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import javax.help.HelpSetException;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
@@ -27,10 +30,14 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
+import javax.swing.SpringLayout;
 
 public class frmVentanaDeportistas extends JFrame {
 
@@ -54,34 +61,57 @@ public class frmVentanaDeportistas extends JFrame {
 	/**
 	 * Create the frame.
 	 * @throws SQLException 
+	 * @throws HelpSetException 
 	 */
-	public frmVentanaDeportistas() throws SQLException {
+	public frmVentanaDeportistas() throws SQLException, HelpSetException {
+		ponerAyuda();
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 805, 660);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
 		TablaPersonalizada tableModel  = new TablaPersonalizada("deportistas");
+		SpringLayout sl_contentPane = new SpringLayout();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, rbMujer, 521, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, rbMujer, 304, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, rbMujer, 413, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, rbHombre, 482, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, rbHombre, 304, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, rbHombre, 413, SpringLayout.WEST, contentPane);
+		contentPane.setLayout(sl_contentPane);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(213, 65, 554, 329);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, scrollPane, 65, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, scrollPane, 213, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, scrollPane, 394, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, scrollPane, 767, SpringLayout.WEST, contentPane);
 		contentPane.add(scrollPane);
 		tableDeportistas = new JTable(tableModel);
 		scrollPane.setViewportView(tableDeportistas);
 		
 		JLabel lblListaDeDeportistas = new JLabel("Lista de deportistas");
-		lblListaDeDeportistas.setBounds(433, 26, 149, 15);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblListaDeDeportistas, 26, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblListaDeDeportistas, 433, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblListaDeDeportistas, 41, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblListaDeDeportistas, 582, SpringLayout.WEST, contentPane);
 		contentPane.add(lblListaDeDeportistas);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("deportista");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, panel, 620, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, panel, 187, SpringLayout.WEST, contentPane);
 		panel.setBackground(Color.BLACK);
-		panel.setBounds(0, 0, 187, 620);
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));;
 		
-		JButton btnAaidrDeportista = new JButton("A�adir Deportista");
+		JButton btnAaidrDeportista = new JButton("Alta Deportista");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnAaidrDeportista, 584, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnAaidrDeportista, 632, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnAaidrDeportista, 609, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnAaidrDeportista, 767, SpringLayout.WEST, contentPane);
 		btnAaidrDeportista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controladorVistas.abrirVentanaAltaDeportista();
@@ -89,31 +119,35 @@ public class frmVentanaDeportistas extends JFrame {
 		});
 		
 		btnAaidrDeportista.setFont(new Font("Dialog", Font.BOLD, 10));
-		btnAaidrDeportista.setBounds(632, 584, 135, 25);
 		contentPane.add(btnAaidrDeportista);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(213, 438, 74, 15);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblNombre, 438, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblNombre, 213, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblNombre, 453, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblNombre, 287, SpringLayout.WEST, contentPane);
 		contentPane.add(lblNombre);
 		
 		txtNombre = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtNombre, 436, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtNombre, 304, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtNombre, 451, SpringLayout.WEST, contentPane);
 		txtNombre.setEnabled(false);
 		txtNombre.setEditable(false);
-		txtNombre.setBounds(304, 436, 147, 20);
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JLabel lblSexo = new JLabel("Sexo:");
-		lblSexo.setBounds(213, 505, 46, 14);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblSexo, 505, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblSexo, 213, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblSexo, 259, SpringLayout.WEST, contentPane);
 		contentPane.add(lblSexo);
 		
 		
 		rbHombre.setEnabled(false);
-		rbHombre.setBounds(304, 482, 109, 23);
 		contentPane.add(rbHombre);
 		
 		rbMujer.setEnabled(false);
-		rbMujer.setBounds(304, 521, 109, 23);
 		contentPane.add(rbMujer);
 		
 		ButtonGroup bgroup = new ButtonGroup();
@@ -121,28 +155,39 @@ public class frmVentanaDeportistas extends JFrame {
         bgroup.add(rbHombre);
 		
 		JLabel lblPeso = new JLabel("Peso:");
-		lblPeso.setBounds(522, 438, 46, 14);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblPeso, 438, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblPeso, 522, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblPeso, 568, SpringLayout.WEST, contentPane);
 		contentPane.add(lblPeso);
 		
 		txtPeso = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtPeso, 435, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtPeso, 620, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtPeso, 767, SpringLayout.WEST, contentPane);
 		txtPeso.setEditable(false);
 		txtPeso.setEnabled(false);
-		txtPeso.setBounds(620, 435, 147, 20);
 		contentPane.add(txtPeso);
 		txtPeso.setColumns(10);
 		
 		JLabel lblAltura = new JLabel("Altura:");
-		lblAltura.setBounds(522, 505, 61, 14);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblAltura, 505, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblAltura, 522, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblAltura, 583, SpringLayout.WEST, contentPane);
 		contentPane.add(lblAltura);
 		
 		txtAltura = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtAltura, 502, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtAltura, 620, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtAltura, 767, SpringLayout.WEST, contentPane);
 		txtAltura.setEditable(false);
 		txtAltura.setEnabled(false);
-		txtAltura.setBounds(620, 502, 147, 20);
 		contentPane.add(txtAltura);
 		txtAltura.setColumns(10);
 		
 		final JButton btnModificar = new JButton("Modificar");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnModificar, 584, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnModificar, 500, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnModificar, 602, SpringLayout.WEST, contentPane);
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -154,15 +199,21 @@ public class frmVentanaDeportistas extends JFrame {
 					e1.printStackTrace();
 				} catch (SQLException e1) {
 					e1.printStackTrace();
+				} catch (HelpSetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
 		
 		btnModificar.setEnabled(false);
-		btnModificar.setBounds(500, 584, 102, 23);
 		contentPane.add(btnModificar);
 		
 		final JButton btnEliminar = new JButton("Eliminar");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnEliminar, 583, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnEliminar, 361, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnEliminar, 608, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnEliminar, 463, SpringLayout.WEST, contentPane);
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int respuesta = JOptionPane.showConfirmDialog(null, "Estas seguro de que quieres eliminar a este deportista?");
@@ -175,12 +226,14 @@ public class frmVentanaDeportistas extends JFrame {
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 				}
 			}
 		});
 		btnEliminar.setEnabled(false);
-		btnEliminar.setBounds(361, 583, 102, 25);
 		contentPane.add(btnEliminar);
 		
 		tableDeportistas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -222,8 +275,35 @@ public class frmVentanaDeportistas extends JFrame {
 		    }
 		});
 	}
+	
+	/**
+	 * 	Ponemos la ayuda a esta pantalla pulsando en F1
+	 * 
+	 * @throws HelpSetException
+	 */
+	private void ponerAyuda() throws HelpSetException {
+		try 
+		{
+			File fichero = new File("Help"+File.separator+"help_set.hs");
+			URL hsURL = fichero.toURI().toURL();
+			
+			HelpSet helpset = new HelpSet(getClass().getClassLoader(),hsURL);
+			HelpBroker hb = helpset.createHelpBroker();
+			
+			//hb.enableHelpOnButton(btnAiuda, "clsVentanaDeportista", helpset);
+			hb.enableHelpKey(getRootPane(),"clsVentanaDeportista", helpset);
+			
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+	}
 
-
+	/**
+	 *	Comprobamos los datos que vamos a modificar, si son correctos devolveremos true, si no son correctos se devolvera false. 
+	 * 
+	 * @return
+	 */
+	
 	private boolean comprobarDatos() {
 		if (txtNombre.getText().length() > 0 && txtPeso.getText().length() > 0 && txtAltura.getText().length() > 0 ) {
 			if (rbMujer.isSelected() == true || rbHombre.isSelected() == true) {

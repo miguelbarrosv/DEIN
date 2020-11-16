@@ -14,6 +14,12 @@ public class OlimpiadaBD {
     private String plantilla;
     private ArrayList<Olimpiada> listaOlimpiadas;
     
+    /**
+     * Metodo para recoger los datos y crear el objeto Olimpiada.
+     * 
+     * @return
+     * @throws SQLException
+     */
     public Olimpiada crearObjeto() throws SQLException 
     {
         Olimpiada o = new Olimpiada();
@@ -25,6 +31,12 @@ public class OlimpiadaBD {
         return o;
     }
     
+    /**
+     * Metodo para hacer la consulta de los olimpiadas para añadirlos a un array de olimpiadas y devolverlo.
+     * 
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Olimpiada> consultarTodasOlimpiadas() throws SQLException {
     	listaOlimpiadas = new ArrayList();
         Bdr.Conectar();
@@ -40,6 +52,15 @@ public class OlimpiadaBD {
         return listaOlimpiadas;
 	}
 
+    /**
+     * Metodo para insertar una nueva olimpiada
+     * 
+     * @param anio
+     * @param temporada
+     * @param nombre
+     * @param ciudad
+     * @throws SQLException
+     */
 	public void altaOlimpiada(int anio, String temporada, String nombre, String ciudad) throws SQLException {
 		Bdr.Conectar();
         plantilla = "INSERT INTO Olimpiada(anio,temporada,nombre,ciudad) VALUES(?,?,?,?)";
@@ -54,6 +75,16 @@ public class OlimpiadaBD {
 		
 	}
 
+	/**
+	 * Metodo para modificar una olimpiada ya existente
+	 * 
+	 * @param idOlimpiada
+	 * @param nombre
+	 * @param anio
+	 * @param ciudad
+	 * @param temporada
+	 * @throws SQLException
+	 */
 	public void modificarOlimpiada(int idOlimpiada, String nombre, String anio, String ciudad, String temporada) throws SQLException {
 		Bdr.Conectar();
         plantilla = "UPDATE Olimpiada SET nombre = ? ,año = ?,ciudad = ?,temporada = ? WHERE id_olimpiada = ?";
@@ -66,7 +97,13 @@ public class OlimpiadaBD {
         ps.executeUpdate();
         Bdr.cerrarCon();
 	}
-
+	
+	/**
+	 * Metodo para eliminar una olimpiada ya existente
+	 * 
+	 * @param idOlimpiada
+	 * @throws SQLException
+	 */
 	public void eliminarOlimpiada(int idOlimpiada) throws SQLException {
 		Bdr.Conectar();
         plantilla = "DELETE FROM  Olimpiada where id_olimpiada = ?";
@@ -74,5 +111,27 @@ public class OlimpiadaBD {
         ps.setInt(1, idOlimpiada);
         ps.executeUpdate();
         Bdr.cerrarCon();
+	}
+
+	/**
+	 * Metodo para comprobar si existe el nombre de la olimpiada que pasamos por parametros
+	 * 
+	 * @param nombre
+	 * @return
+	 * @throws SQLException
+	 */
+	public ArrayList<Olimpiada> comprobarNombreOlimpiada(String nombre) throws SQLException {
+        Bdr.Conectar();
+        plantilla = "SELECT * FROM Olimpiada WHERE nombre LIKE ?";
+        ps = Bdr.getCon().prepareStatement(plantilla);
+        ps.setString(1, nombre);
+        resultado = ps.executeQuery();
+        
+        while (resultado.next()) {
+            listaOlimpiadas.add(crearObjeto());
+        }
+        
+        Bdr.cerrarCon();
+        return listaOlimpiadas;
 	}
 }

@@ -19,6 +19,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -33,8 +36,12 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import javax.help.HelpSetException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.SpringLayout;
 
 public class frmVentanaParticipacion extends JFrame {
 
@@ -63,22 +70,33 @@ public class frmVentanaParticipacion extends JFrame {
 	/**
 	 * Create the frame.
 	 * @throws SQLException 
+	 * @throws HelpSetException 
 	 */
-	public frmVentanaParticipacion() throws SQLException {
+	public frmVentanaParticipacion() throws SQLException, HelpSetException {
+		ponerAyuda();
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 1031, 770);
+		setBounds(100, 100, 1031, 778);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		SpringLayout sl_contentPane = new SpringLayout();
+		contentPane.setLayout(sl_contentPane);
 		
 		JLabel lblParticipaciones = new JLabel("Participaciones");
-		lblParticipaciones.setBounds(563, 26, 109, 15);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblParticipaciones, 26, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblParticipaciones, 563, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblParticipaciones, 41, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblParticipaciones, 672, SpringLayout.WEST, contentPane);
 		contentPane.add(lblParticipaciones);
 		
 		
 		
-		JButton btnNewButton = new JButton("Añadir Participacion");
+		JButton btnNewButton = new JButton("Alta Participacion");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnNewButton, 699, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnNewButton, 819, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnNewButton, 724, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnNewButton, 1001, SpringLayout.WEST, contentPane);
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -90,8 +108,6 @@ public class frmVentanaParticipacion extends JFrame {
 				}
 			}
 		});
-		
-		btnNewButton.setBounds(819, 699, 182, 25);
 		contentPane.add(btnNewButton);
 		
 		TablaPersonalizada tableModel  = new TablaPersonalizada("participacion");
@@ -99,13 +115,19 @@ public class frmVentanaParticipacion extends JFrame {
 		tableParticipaciones = new JTable(tableModel);
 		tableParticipaciones.setBounds(230, 81, 553, 306);
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(213, 65, 788, 303);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, scrollPane, 24, SpringLayout.SOUTH, lblParticipaciones);
+		sl_contentPane.putConstraint(SpringLayout.WEST, scrollPane, 207, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, scrollPane, 368, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, scrollPane, -10, SpringLayout.EAST, contentPane);
 		contentPane.add(scrollPane);
 		scrollPane.setViewportView(tableParticipaciones);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("participacion");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, panel, 733, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, panel, 187, SpringLayout.WEST, contentPane);
 		panel.setBackground(Color.BLACK);
-		panel.setBounds(0, 0, 187, 733);
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
@@ -116,33 +138,50 @@ public class frmVentanaParticipacion extends JFrame {
 		tableEquipos.setEnabled(false);
 		tableEquipos.setBounds(241, 59, 569, 346);
 		JScrollPane scrollPaneEquipo = new JScrollPane();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, scrollPaneEquipo, 414, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, scrollPaneEquipo, 0, SpringLayout.WEST, scrollPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, scrollPaneEquipo, 674, SpringLayout.WEST, contentPane);
 		scrollPaneEquipo.setEnabled(false);
-		scrollPaneEquipo.setBounds(213, 420, 467, 228);
 		contentPane.add(scrollPaneEquipo);
 		scrollPaneEquipo.setViewportView(tableEquipos);
 		
 		JLabel lblEquipo = new JLabel("Selecciona una fila para cambiar de equipo: ");
-		lblEquipo.setBounds(213, 393, 314, 15);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblEquipo, 392, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblEquipo, 0, SpringLayout.WEST, scrollPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblEquipo, -7, SpringLayout.NORTH, scrollPaneEquipo);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblEquipo, 521, SpringLayout.WEST, contentPane);
 		contentPane.add(lblEquipo);
 		
 		JLabel lblEdad = new JLabel("Edad: ");
-		lblEdad.setBounds(726, 421, 52, 15);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblEdad, 421, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblEdad, 726, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblEdad, 436, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblEdad, 778, SpringLayout.WEST, contentPane);
 		contentPane.add(lblEdad);
 		
 		txtEdad = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtEdad, 420, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtEdad, 819, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, txtEdad, 439, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtEdad, 955, SpringLayout.WEST, contentPane);
 		txtEdad.setEditable(false);
 		txtEdad.setEnabled(false);
-		txtEdad.setBounds(819, 420, 136, 19);
 		contentPane.add(txtEdad);
 		txtEdad.setColumns(10);
 		
 		JLabel lblMedalla = new JLabel("Medalla:");
-		lblMedalla.setBounds(726, 473, 70, 15);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblMedalla, 473, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblMedalla, 726, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblMedalla, 488, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblMedalla, 796, SpringLayout.WEST, contentPane);
 		contentPane.add(lblMedalla);
 		
 		final JComboBox cbMedalla = new JComboBox();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, cbMedalla, 470, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, cbMedalla, 819, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, cbMedalla, 955, SpringLayout.WEST, contentPane);
+		cbMedalla.setModel(new DefaultComboBoxModel(new String[] {"NA", "Bronze", "Silver", "Gold"}));
 		cbMedalla.setEnabled(false);
-		cbMedalla.setBounds(819, 470, 136, 20);
 		contentPane.add(cbMedalla);
 		cbMedalla.addItem("NA");
 		cbMedalla.addItem("Bronze");
@@ -151,25 +190,36 @@ public class frmVentanaParticipacion extends JFrame {
 		
 		
 		final JButton btnModificar = new JButton("Modificar");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnModificar, 699, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnModificar, 692, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnModificar, 724, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnModificar, 809, SpringLayout.WEST, contentPane);
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					controlador.modificarParticipacion( idEvento, idDeportista, idEquipo, medalla, Integer.parseInt(edad));
-					
+					controladorVistas.cerrarVentanaParticipacion();
+					ControladorVistas.abrirVentanaPrincipal();
 				} catch (NumberFormatException | SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (HelpSetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				controladorVistas.cerrarVentanaParticipacion();
-				ControladorVistas.abrirVentanaPrincipal();
+				
 			}
 		});
 		
 		btnModificar.setEnabled(false);
-		btnModificar.setBounds(692, 699, 117, 25);
 		contentPane.add(btnModificar);
 		
 		final JButton btnEliminar = new JButton("Eliminar");
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, scrollPaneEquipo, -57, SpringLayout.NORTH, btnEliminar);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnEliminar, 699, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnEliminar, 563, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnEliminar, 724, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnEliminar, 680, SpringLayout.WEST, contentPane);
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int respuesta = JOptionPane.showConfirmDialog(null, "Estas seguro de que quieres eliminar esta participacion?");
@@ -182,31 +232,37 @@ public class frmVentanaParticipacion extends JFrame {
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
+					} catch (HelpSetException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 					
 				}
 			}
 		});
 		btnEliminar.setEnabled(false);
-		btnEliminar.setBounds(563, 699, 117, 25);
 		contentPane.add(btnEliminar);
 		
 		txtIdDeportista = new JTextField();
-		txtIdDeportista.setBounds(213, 887, 86, 20);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtIdDeportista, 887, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtIdDeportista, 213, SpringLayout.WEST, contentPane);
 		contentPane.add(txtIdDeportista);
 		txtIdDeportista.setColumns(10);
 		txtIdDeportista.setVisible(false);
 
 		
 		txtIdEvento = new JTextField();
-		txtIdEvento.setBounds(309, 884, 86, 20);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtIdEvento, 884, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtIdEvento, 309, SpringLayout.WEST, contentPane);
 		contentPane.add(txtIdEvento);
 		txtIdEvento.setColumns(10);
 		txtIdEvento.setVisible(false);
 
 		
 		txtIdEquipo = new JTextField();
-		txtIdEquipo.setBounds(409, 884, 52, 20);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtIdEquipo, 884, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtIdEquipo, 409, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtIdEquipo, 461, SpringLayout.WEST, contentPane);
 		contentPane.add(txtIdEquipo);
 		txtIdEquipo.setColumns(10);
 		txtIdEquipo.setVisible(false);
@@ -267,6 +323,28 @@ public class frmVentanaParticipacion extends JFrame {
 		    }
 		});
 		
+	}
+	
+	/**
+	 * 	Ponemos la ayuda a esta pantalla pulsando en F1
+	 * 
+	 * @throws HelpSetException
+	 */
+	private void ponerAyuda() throws HelpSetException {
+		try 
+		{
+			File fichero = new File("Help"+File.separator+"help_set.hs");
+			URL hsURL = fichero.toURI().toURL();
+			
+			HelpSet helpset = new HelpSet(getClass().getClassLoader(),hsURL);
+			HelpBroker hb = helpset.createHelpBroker();
+			
+			//hb.enableHelpOnButton(btnAiuda, "clsVentanaParticipacion", helpset);
+			hb.enableHelpKey(getRootPane(),"clsVentanaParticipacion", helpset);
+			
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
