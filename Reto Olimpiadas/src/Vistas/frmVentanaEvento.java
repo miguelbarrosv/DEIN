@@ -69,7 +69,7 @@ public class frmVentanaEvento extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.NORTH, lblEvento, 22, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblEvento, 575, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblEvento, 37, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, lblEvento, 673, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblEvento, 712, SpringLayout.WEST, contentPane);
 		contentPane.add(lblEvento);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("evento");

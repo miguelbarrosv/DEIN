@@ -40,7 +40,6 @@ public class frmVentanaPrincipal extends JFrame {
 	 * @throws HelpSetException 
 	 */
 	public frmVentanaPrincipal() throws HelpSetException {
-		ponerAyuda();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 826, 533);
 		contentPane = new JPanel();
@@ -50,19 +49,21 @@ public class frmVentanaPrincipal extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel label = new JLabel("");
-		label.setBounds(192, 16, 640, 405);
+		label.setBounds(192, 5, 640, 416);
 		label.setIcon(new ImageIcon(frmVentanaPrincipal.class.getResource("/IMG/olimpiadas.jpg")));
 		contentPane.add(label);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("principal");
-		panel.setBounds(5, 5, 187, 494);
+		panel.setBounds(12, 5, 180, 503);
 		panel.setBackground(Color.BLACK);
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		btnAiuda = new JButton("AIUDA");
+		btnAiuda = new JButton("Ayuda");
 		btnAiuda.setBounds(409, 460, 89, 23);
 		contentPane.add(btnAiuda);
+
+		ponerAyuda();
 
 	}
 	
@@ -74,14 +75,13 @@ public class frmVentanaPrincipal extends JFrame {
 	private void ponerAyuda() throws HelpSetException {
 		try 
 		{
-			System.out.println("ey");
 			File fichero = new File("Help"+File.separator+"help_set.hs");
 			URL hsURL = fichero.toURI().toURL();
 			
 			HelpSet helpset = new HelpSet(getClass().getClassLoader(),hsURL);
 			HelpBroker hb = helpset.createHelpBroker();
 			
-			//hb.enableHelpOnButton(btnAiuda, "clsVentanaPrincipal", helpset);
+			hb.enableHelpOnButton(btnAiuda, "clsVentanaPrincipal", helpset);
 			hb.enableHelpKey(getRootPane(),"clsVentanaPrincipal", helpset);
 			
 		} catch (MalformedURLException e) {
