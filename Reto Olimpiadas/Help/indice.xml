@@ -3,11 +3,11 @@
   PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Index Version 1.0//EN"
          "http://java.sun.com/products/javahelp/index_1_0.dtd">
 <index version="1.0">
-        <indexitem text="Ventana Prinicipal"    				target="clsVentanaPrincipal"/>
-        <indexitem text="Ventana Olimpiadas" 					target="clsVentanaOlimpiada"/>
-		<indexitem text="Ventana Deportistas"					target="clsVentanaDeportista"/>
-	    <indexitem text="Ventana Deportes"					target="clsVentanaDeporte"/>
-	    <indexitem text="Ventana Participaciones"					target="clsVentanaParticipacion"/>
-	    <indexitem text="Ventana Equipos"					target="clsVentanaEquipo"/>
-	    <indexitem text="Ventana Eventos"					target="clsVentanaEvento" />
+        <indexitem text="Ventana Prinicipal"    			target="principal"/>
+        <indexitem text="Ventana Olimpiadas" 				target="olimpiada"/>
+		<indexitem text="Ventana Deportistas"				target="deportista"/>
+	    <indexitem text="Ventana Deportes"					target="deportes"/>
+	    <indexitem text="Ventana Participaciones"			target="participacion"/>
+	    <indexitem text="Ventana Equipos"					target="equipos"/>
+	    <indexitem text="Ventana Eventos"					target="evento" />
 </index>

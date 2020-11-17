@@ -32,7 +32,7 @@ public class OlimpiadaBD {
     }
     
     /**
-     * Metodo para hacer la consulta de los olimpiadas para añadirlos a un array de olimpiadas y devolverlo.
+     * Metodo para hacer la consulta de los olimpiadas para aÃ±adirlos a un array de olimpiadas y devolverlo.
      * 
      * @return
      * @throws SQLException
@@ -87,7 +87,7 @@ public class OlimpiadaBD {
 	 */
 	public void modificarOlimpiada(int idOlimpiada, String nombre, String anio, String ciudad, String temporada) throws SQLException {
 		Bdr.Conectar();
-        plantilla = "UPDATE Olimpiada SET nombre = ? ,año = ?,ciudad = ?,temporada = ? WHERE id_olimpiada = ?";
+        plantilla = "UPDATE Olimpiada SET nombre = ? ,anio = ?,ciudad = ?,temporada = ? WHERE id_olimpiada = ?";
         ps = Bdr.getCon().prepareStatement(plantilla);
         ps.setString(1, nombre);
         ps.setString(2, anio);

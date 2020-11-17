@@ -36,7 +36,7 @@ public class ParticipacionBD {
     }
     
     /**
-     * Metodo para hacer la consulta de las participaciones para añadirlos a un array de participaciones y devolverlo.
+     * Metodo para hacer la consulta de las participaciones para aÃ±adirlos a un array de participaciones y devolverlo.
      * 
      * @return
      * @throws SQLException

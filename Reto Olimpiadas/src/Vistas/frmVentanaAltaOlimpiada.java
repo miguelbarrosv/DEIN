@@ -47,9 +47,9 @@ public class frmVentanaAltaOlimpiada extends JFrame {
 		
 		JLabel lblAadirOlimpiada = new JLabel("Alta Olimpiada");
 		sl_contentPane.putConstraint(SpringLayout.NORTH, lblAadirOlimpiada, 10, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblAadirOlimpiada, 187, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblAadirOlimpiada, 169, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblAadirOlimpiada, 25, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, lblAadirOlimpiada, -167, SpringLayout.EAST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblAadirOlimpiada, -157, SpringLayout.EAST, contentPane);
 		contentPane.add(lblAadirOlimpiada);
 		
 		JLabel lblNombre = new JLabel("Año:");
@@ -60,10 +60,8 @@ public class frmVentanaAltaOlimpiada extends JFrame {
 		contentPane.add(lblNombre);
 		
 		txtAnio = new JFormattedTextField(java.text.NumberFormat.getNumberInstance());
-		sl_contentPane.putConstraint(SpringLayout.NORTH, txtAnio, 62, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, txtAnio, 109, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, txtAnio, 81, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, txtAnio, 223, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtAnio, -1, SpringLayout.NORTH, lblNombre);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtAnio, 148, SpringLayout.WEST, contentPane);
 		contentPane.add(txtAnio);
 		
 		JLabel lblTemporada = new JLabel("Temporada:");
@@ -74,10 +72,9 @@ public class frmVentanaAltaOlimpiada extends JFrame {
 		contentPane.add(lblTemporada);
 		
 		final JComboBox cbTemporada = new JComboBox();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, cbTemporada, 118, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, cbTemporada, 109, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, cbTemporada, 142, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, cbTemporada, 223, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, cbTemporada, -5, SpringLayout.NORTH, lblTemporada);
+		sl_contentPane.putConstraint(SpringLayout.WEST, cbTemporada, 148, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, cbTemporada, 0, SpringLayout.EAST, lblAadirOlimpiada);
 		cbTemporada.setModel(new DefaultComboBoxModel(new String[] {"Summer", "Winter"}));
 		contentPane.add(cbTemporada);
 		
@@ -89,10 +86,10 @@ public class frmVentanaAltaOlimpiada extends JFrame {
 		contentPane.add(lblCiudad);
 		
 		txtCiudad = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, txtCiudad, 183, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, txtCiudad, 109, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, txtCiudad, 202, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, txtCiudad, 223, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtCiudad, 43, SpringLayout.EAST, lblCiudad);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtCiudad, -136, SpringLayout.EAST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtAnio, 0, SpringLayout.EAST, txtCiudad);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtCiudad, -2, SpringLayout.NORTH, lblCiudad);
 		contentPane.add(txtCiudad);
 		txtCiudad.setColumns(10);
 		

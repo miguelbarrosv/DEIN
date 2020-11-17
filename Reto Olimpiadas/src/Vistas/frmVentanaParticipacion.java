@@ -83,11 +83,12 @@ public class frmVentanaParticipacion extends JFrame {
 		SpringLayout sl_contentPane = new SpringLayout();
 		contentPane.setLayout(sl_contentPane);
 		
-		JLabel lblParticipaciones = new JLabel("Participaciones");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblParticipaciones, 26, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblParticipaciones, 563, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblParticipaciones, 41, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, lblParticipaciones, 672, SpringLayout.WEST, contentPane);
+		JLabel lblParticipaciones = new JLabel("Lista de Participaciones");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblParticipaciones, 10, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblParticipaciones, 533, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblParticipaciones, 25, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblParticipaciones, -261, SpringLayout.EAST, contentPane);
+		lblParticipaciones.setFont(new Font("Dialog", Font.BOLD, 16));
 		contentPane.add(lblParticipaciones);
 		
 		
@@ -115,17 +116,16 @@ public class frmVentanaParticipacion extends JFrame {
 		tableParticipaciones = new JTable(tableModel);
 		tableParticipaciones.setBounds(230, 81, 553, 306);
 		JScrollPane scrollPane = new JScrollPane();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, scrollPane, 24, SpringLayout.SOUTH, lblParticipaciones);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, scrollPane, 20, SpringLayout.SOUTH, lblParticipaciones);
 		sl_contentPane.putConstraint(SpringLayout.WEST, scrollPane, 207, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, scrollPane, 368, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, scrollPane, -10, SpringLayout.EAST, contentPane);
 		contentPane.add(scrollPane);
 		scrollPane.setViewportView(tableParticipaciones);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("participacion");
 		sl_contentPane.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, panel, 733, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, panel, -5, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, panel, 738, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, panel, 187, SpringLayout.WEST, contentPane);
 		panel.setBackground(Color.BLACK);
 		contentPane.add(panel);
@@ -146,6 +146,7 @@ public class frmVentanaParticipacion extends JFrame {
 		scrollPaneEquipo.setViewportView(tableEquipos);
 		
 		JLabel lblEquipo = new JLabel("Selecciona una fila para cambiar de equipo: ");
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, scrollPane, -24, SpringLayout.NORTH, lblEquipo);
 		sl_contentPane.putConstraint(SpringLayout.NORTH, lblEquipo, 392, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblEquipo, 0, SpringLayout.WEST, scrollPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblEquipo, -7, SpringLayout.NORTH, scrollPaneEquipo);
@@ -183,10 +184,6 @@ public class frmVentanaParticipacion extends JFrame {
 		cbMedalla.setModel(new DefaultComboBoxModel(new String[] {"NA", "Bronze", "Silver", "Gold"}));
 		cbMedalla.setEnabled(false);
 		contentPane.add(cbMedalla);
-		cbMedalla.addItem("NA");
-		cbMedalla.addItem("Bronze");
-		cbMedalla.addItem("Silver");
-		cbMedalla.addItem("Gold");
 		
 		
 		final JButton btnModificar = new JButton("Modificar");
@@ -339,8 +336,7 @@ public class frmVentanaParticipacion extends JFrame {
 			HelpSet helpset = new HelpSet(getClass().getClassLoader(),hsURL);
 			HelpBroker hb = helpset.createHelpBroker();
 			
-			//hb.enableHelpOnButton(btnAiuda, "clsVentanaParticipacion", helpset);
-			hb.enableHelpKey(getRootPane(),"clsVentanaParticipacion", helpset);
+			hb.enableHelpKey(getRootPane(),"participacion", helpset);
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

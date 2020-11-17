@@ -33,7 +33,7 @@ public class EventoBD {
     }
 
 	/**
-     * Metodo para hacer la consulta de los eventos para añadirlos a un array de eventos y devolverlo.
+     * Metodo para hacer la consulta de los eventos para aÃ±adirlos a un array de eventos y devolverlo.
 	 * 
 	 * @return
 	 * @throws SQLException

@@ -31,7 +31,7 @@ public class DeporteBD {
     }
     
     /**
-     * Metodo para hacer la consulta de los deportes para añadirlos a un array de deportes y devolverlo
+     * Metodo para hacer la consulta de los deportes para aÃ±adirlos a un array de deportes y devolverlo
      * 
      * @return
      * @throws SQLException
@@ -100,7 +100,7 @@ public class DeporteBD {
 	public void modificarDeporte(int idDeporte, String nombre) throws SQLException {
 		// TODO Auto-generated method stub
 		Bdr.Conectar();
-        plantilla = "UPDATE Olimpiada SET nombre = ? WHERE id_deporte = ?";
+        plantilla = "UPDATE Deporte SET nombre = ? WHERE id_deporte = ?";
         ps = Bdr.getCon().prepareStatement(plantilla);
         ps.setString(1, nombre);
         ps.setInt(2, idDeporte);

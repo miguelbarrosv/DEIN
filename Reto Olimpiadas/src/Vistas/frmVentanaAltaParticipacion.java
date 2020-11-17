@@ -54,7 +54,7 @@ public class frmVentanaAltaParticipacion extends JFrame {
 		setContentPane(contentPane);
 		
 		JButton btnAadirParticipacion = new JButton("Añadir\n");
-		btnAadirParticipacion.setBounds(633, 596, 73, 23);
+		btnAadirParticipacion.setBounds(615, 596, 91, 23);
 		btnAadirParticipacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -70,11 +70,11 @@ public class frmVentanaAltaParticipacion extends JFrame {
 		contentPane.add(btnAadirParticipacion);
 		
 		JLabel lblAltaParticipacion = new JLabel("Alta Participacion");
-		lblAltaParticipacion.setBounds(326, 27, 82, 14);
+		lblAltaParticipacion.setBounds(326, 27, 124, 14);
 		contentPane.add(lblAltaParticipacion);
 		
 		JLabel lblEligeUnDeportista = new JLabel("Elige un deportista:");
-		lblEligeUnDeportista.setBounds(25, 75, 93, 14);
+		lblEligeUnDeportista.setBounds(25, 75, 162, 14);
 		contentPane.add(lblEligeUnDeportista);
 		
 		TablaPersonalizada tableModel  = new TablaPersonalizada("deportistas");
@@ -86,7 +86,7 @@ public class frmVentanaAltaParticipacion extends JFrame {
 		scrollPaneDeportistas.setViewportView(tableDeportistas);
 		
 		JLabel lblEligeUnEvento = new JLabel("Elige un evento");
-		lblEligeUnEvento.setBounds(394, 75, 74, 14);
+		lblEligeUnEvento.setBounds(394, 75, 131, 14);
 		contentPane.add(lblEligeUnEvento);
 		
 		TablaPersonalizada tableModelEvento  = new TablaPersonalizada("eventos");
@@ -98,11 +98,11 @@ public class frmVentanaAltaParticipacion extends JFrame {
 		scrollPane.setViewportView(tableEventos);
 		
 		JLabel lblNewLabel = new JLabel("Elige un equipo");
-		lblNewLabel.setBounds(25, 325, 82, 23);
+		lblNewLabel.setBounds(25, 325, 118, 23);
 		contentPane.add(lblNewLabel);
 		
 		txtEdad = new JTextField();
-		txtEdad.setBounds(475, 389, 131, 20);
+		txtEdad.setBounds(502, 390, 131, 20);
 		contentPane.add(txtEdad);
 		txtEdad.setColumns(10);
 		
@@ -111,12 +111,11 @@ public class frmVentanaAltaParticipacion extends JFrame {
 		contentPane.add(lblEdad);
 		
 		JLabel lblMedalla = new JLabel("Medalla:");
-		lblMedalla.setBounds(394, 442, 46, 14);
+		lblMedalla.setBounds(394, 442, 73, 14);
 		contentPane.add(lblMedalla);
 		
 		final JComboBox cbMedalla = new JComboBox();
-		cbMedalla.setModel(new DefaultComboBoxModel(new String[] {"NA", "Bronze", "Silver", "Gold"}));
-		cbMedalla.setBounds(475, 438, 131, 23);
+		cbMedalla.setBounds(502, 438, 131, 23);
 		contentPane.add(cbMedalla);
 		
 		TablaPersonalizada tableModelEquipo  = new TablaPersonalizada("equipos");

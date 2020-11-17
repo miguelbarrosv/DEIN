@@ -70,7 +70,7 @@ public class frmVentanaAltaEvento extends JFrame {
 		scrollPane.setViewportView(tableOlimpiadas);
 		
 		JLabel lblEligeUnDeporte = new JLabel("Elige un deporte");
-		lblEligeUnDeporte.setBounds(442, 71, 85, 14);
+		lblEligeUnDeporte.setBounds(442, 71, 134, 15);
 		contentPane.add(lblEligeUnDeporte);
 		
 		TablaPersonalizada tableModelDeportista  = new TablaPersonalizada("deporte");
@@ -82,11 +82,11 @@ public class frmVentanaAltaEvento extends JFrame {
 		scrollPaneDeporte.setViewportView(tableDeporte);
 		
 		JLabel lblNombre = new JLabel("Nombre: ");
-		lblNombre.setBounds(47, 331, 46, 14);
+		lblNombre.setBounds(47, 331, 70, 14);
 		contentPane.add(lblNombre);
 		
 		textField = new JTextField();
-		textField.setBounds(122, 328, 244, 20);
+		textField.setBounds(135, 329, 231, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		

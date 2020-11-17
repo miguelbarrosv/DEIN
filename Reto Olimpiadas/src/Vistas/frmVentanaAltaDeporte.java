@@ -31,7 +31,7 @@ public class frmVentanaAltaDeporte extends JFrame {
 	 */
 	public frmVentanaAltaDeporte() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 218);
+		setBounds(100, 100, 450, 192);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -39,10 +39,10 @@ public class frmVentanaAltaDeporte extends JFrame {
 		contentPane.setLayout(sl_contentPane);
 		
 		JLabel lblAadeUnDeporte = new JLabel("Alta Deporte");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblAadeUnDeporte, 11, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblAadeUnDeporte, 188, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblAadeUnDeporte, 26, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, lblAadeUnDeporte, 258, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblAadeUnDeporte, 10, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblAadeUnDeporte, 173, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblAadeUnDeporte, 25, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblAadeUnDeporte, -158, SpringLayout.EAST, contentPane);
 		contentPane.add(lblAadeUnDeporte);
 		
 		JLabel lblNombre = new JLabel("Nombre :");
@@ -61,10 +61,10 @@ public class frmVentanaAltaDeporte extends JFrame {
 		txtNombreDeporte.setColumns(10);
 		
 		JButton btnAadirdeporte = new JButton("Añadir ");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnAadirdeporte, 124, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, btnAadirdeporte, 306, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnAadirdeporte, -15, SpringLayout.SOUTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnAadirdeporte, -10, SpringLayout.EAST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnAadirdeporte, 116, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnAadirdeporte, 313, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnAadirdeporte, -10, SpringLayout.SOUTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnAadirdeporte, -33, SpringLayout.EAST, contentPane);
 		btnAadirdeporte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{ 

@@ -184,8 +184,8 @@ public class Controlador {
 	 * @param peso
 	 * @throws SQLException
 	 */
-	public void modificarDeportista(int idDeportista, String nombre, String sexo, int altura, int peso) throws SQLException {
-		deportistaBD.modificarDeportista(idDeportista,nombre,sexo,altura,peso);
+	public void modificarDeportista(int idDeportista, String nombre, String sexo, String altura, String peso) throws SQLException {
+		deportistaBD.modificarDeportista(idDeportista,nombre,sexo,Float.parseFloat(altura),Float.parseFloat(peso));
 	}
 	
 	/**

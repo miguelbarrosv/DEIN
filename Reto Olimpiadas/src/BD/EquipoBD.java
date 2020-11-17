@@ -31,7 +31,7 @@ public class EquipoBD {
     }
     
     /**
-     * Metodo para hacer la consulta de los equipos para añadirlos a un array de equipos y devolverlo
+     * Metodo para hacer la consulta de los equipos para aÃ±adirlos a un array de equipos y devolverlo
      * 
      * @return
      * @throws SQLException
@@ -95,7 +95,7 @@ public class EquipoBD {
 	 */
 	public void modificarEquipo(int idEquipo, String iniciales, String nombre) throws SQLException {
 		Bdr.Conectar();
-        plantilla = "UPDATE Equipo SET nombre = ? ,iniciales = ? WHERE id-equipo = ?";
+        plantilla = "UPDATE Equipo SET nombre = ? ,iniciales = ? WHERE id_equipo = ?";
         ps = Bdr.getCon().prepareStatement(plantilla);
         ps.setString(1, nombre);
         ps.setString(2, iniciales);

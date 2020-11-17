@@ -58,7 +58,7 @@ public class frmVentanaEvento extends JFrame {
 		ponerAyuda();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1066, 771);
+		setBounds(100, 100, 1060, 757);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -66,16 +66,16 @@ public class frmVentanaEvento extends JFrame {
 		contentPane.setLayout(sl_contentPane);
 		
 		JLabel lblEvento = new JLabel("Lista de Eventos");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblEvento, 22, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblEvento, 575, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblEvento, 37, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, lblEvento, 712, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblEvento, 10, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblEvento, -380, SpringLayout.EAST, contentPane);
+		lblEvento.setFont(new Font("Dialog", Font.BOLD, 16));
 		contentPane.add(lblEvento);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("evento");
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblEvento, 287, SpringLayout.EAST, panel);
+		sl_contentPane.putConstraint(SpringLayout.WEST, panel, -5, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, panel, 731, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, panel, 718, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, panel, 187, SpringLayout.WEST, contentPane);
 		panel.setBackground(Color.BLACK);
 		contentPane.add(panel);
@@ -85,6 +85,7 @@ public class frmVentanaEvento extends JFrame {
 		TablaPersonalizada tableModel  = new TablaPersonalizada("eventos");
 		
 		JScrollPane scrollPane = new JScrollPane();
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblEvento, -32, SpringLayout.NORTH, scrollPane);
 		sl_contentPane.putConstraint(SpringLayout.NORTH, scrollPane, 57, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, scrollPane, 206, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, scrollPane, 386, SpringLayout.NORTH, contentPane);
@@ -92,30 +93,6 @@ public class frmVentanaEvento extends JFrame {
 		contentPane.add(scrollPane);
 		tableEventos = new JTable(tableModel);
 		scrollPane.setViewportView(tableEventos);
-		
-		tableEventos.addMouseListener(new java.awt.event.MouseAdapter() {
-		    @Override
-		    public void mouseClicked(java.awt.event.MouseEvent evt) {
-		         idEvento = (int) tableEventos.getValueAt(tableEventos.getSelectedRow(), 0);
-		         nombreEvento = tableEventos.getValueAt(tableEventos.getSelectedRow(), 1).toString();
-		         idOlimpiada = (int) tableEventos.getValueAt(tableEventos.getSelectedRow(), 2);
-		         idDeporte = (int) tableEventos.getValueAt(tableEventos.getSelectedRow(), 4);
-		    }
-		});
-		
-		tableDeporte.addMouseListener(new java.awt.event.MouseAdapter() {
-		    @Override
-		    public void mouseClicked(java.awt.event.MouseEvent evt) {
-		         idDeporte = (int) tableDeporte.getValueAt(tableDeporte.getSelectedRow(), 0);
-		    }
-		});
-		
-		tableOlimpiadas.addMouseListener(new java.awt.event.MouseAdapter() {
-		    @Override
-		    public void mouseClicked(java.awt.event.MouseEvent evt) {
-		         idOlimpiada = (int) tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 0);
-		    }
-		});
 		
 		TablaPersonalizada tableModelOlimpiadas  = new TablaPersonalizada("olimpiadas");
 		
@@ -158,7 +135,7 @@ public class frmVentanaEvento extends JFrame {
 				}
 			}
 		});
-		btnAadirEvento.setFont(new Font("Dialog", Font.BOLD, 10));
+		btnAadirEvento.setFont(new Font("Dialog", Font.BOLD, 12));
 		contentPane.add(btnAadirEvento);
 		
 		JLabel lblOlimpiadas = new JLabel("Selecciona una olimpiadas para modificarla: ");
@@ -167,7 +144,7 @@ public class frmVentanaEvento extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblOlimpiadas, 428, SpringLayout.NORTH, contentPane);
 		contentPane.add(lblOlimpiadas);
 		
-		JButton btnEliminar = new JButton("Eliminar");
+		final JButton btnEliminar = new JButton("Eliminar");
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnEliminar, 692, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnEliminar, 658, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnEliminar, 717, SpringLayout.NORTH, contentPane);
@@ -190,7 +167,11 @@ public class frmVentanaEvento extends JFrame {
 		btnEliminar.setEnabled(false);
 		contentPane.add(btnEliminar);
 		
-		JButton btnModificar = new JButton("Modificar");
+		
+		
+		
+		
+		final JButton btnModificar = new JButton("Modificar");
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnModificar, 692, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnModificar, 785, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnModificar, 717, SpringLayout.NORTH, contentPane);
@@ -213,6 +194,33 @@ public class frmVentanaEvento extends JFrame {
 		btnModificar.setEnabled(false);
 		contentPane.add(btnModificar);
 		
+		tableEventos.addMouseListener(new java.awt.event.MouseAdapter() {
+		    @Override
+		    public void mouseClicked(java.awt.event.MouseEvent evt) {
+		         idEvento = (int) tableEventos.getValueAt(tableEventos.getSelectedRow(), 0);
+		         nombreEvento = tableEventos.getValueAt(tableEventos.getSelectedRow(), 1).toString();
+		         idOlimpiada = (int) tableEventos.getValueAt(tableEventos.getSelectedRow(), 2);
+		         idDeporte = (int) tableEventos.getValueAt(tableEventos.getSelectedRow(), 4);
+		         
+		         btnEliminar.setEnabled(true);
+		         btnModificar.setEnabled(true);
+		    }
+		});
+		
+		tableOlimpiadas.addMouseListener(new java.awt.event.MouseAdapter() {
+		    @Override
+		    public void mouseClicked(java.awt.event.MouseEvent evt) {
+		         idOlimpiada = (int)tableOlimpiadas.getValueAt(tableOlimpiadas.getSelectedRow(), 0);
+		    }
+		});
+		
+		tableDeporte.addMouseListener(new java.awt.event.MouseAdapter() {
+		    @Override
+		    public void mouseClicked(java.awt.event.MouseEvent evt) {
+		         idDeporte = (int)tableDeporte.getValueAt(tableDeporte.getSelectedRow(), 0);
+		    }
+		});
+		
 		JLabel lblDeportes = new JLabel("Selecciona un deporte para modificarlo:\r\n");
 		sl_contentPane.putConstraint(SpringLayout.NORTH, lblDeportes, 413, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblDeportes, 610, SpringLayout.WEST, contentPane);
@@ -234,7 +242,7 @@ public class frmVentanaEvento extends JFrame {
 			HelpBroker hb = helpset.createHelpBroker();
 			
 			//hb.enableHelpOnButton(btnAiuda, "clsVentanaEvento", helpset);
-			hb.enableHelpKey(getRootPane(),"clsVentanaEvento", helpset);
+			hb.enableHelpKey(getRootPane(),"evento", helpset);
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

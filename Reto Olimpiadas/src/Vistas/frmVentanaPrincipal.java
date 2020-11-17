@@ -33,7 +33,6 @@ public class frmVentanaPrincipal extends JFrame {
 	private JLabel lblEvento;
 	private JLabel lblOlimpiadas;
 	private JLabel lblInicio;
-	private JButton btnAiuda;
 	
 	/**
 	 * Create the frame.
@@ -54,14 +53,10 @@ public class frmVentanaPrincipal extends JFrame {
 		contentPane.add(label);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("principal");
-		panel.setBounds(12, 5, 180, 503);
+		panel.setBounds(0, 5, 192, 503);
 		panel.setBackground(Color.BLACK);
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		btnAiuda = new JButton("Ayuda");
-		btnAiuda.setBounds(409, 460, 89, 23);
-		contentPane.add(btnAiuda);
 
 		ponerAyuda();
 
@@ -80,9 +75,7 @@ public class frmVentanaPrincipal extends JFrame {
 			
 			HelpSet helpset = new HelpSet(getClass().getClassLoader(),hsURL);
 			HelpBroker hb = helpset.createHelpBroker();
-			
-			hb.enableHelpOnButton(btnAiuda, "clsVentanaPrincipal", helpset);
-			hb.enableHelpKey(getRootPane(),"clsVentanaPrincipal", helpset);
+			hb.enableHelpKey(getRootPane(),"principal", helpset);
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

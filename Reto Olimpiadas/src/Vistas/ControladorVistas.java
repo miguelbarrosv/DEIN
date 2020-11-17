@@ -29,6 +29,7 @@ public class ControladorVistas {
 	{
 		vDeporte = new frmVentanaDeporte();
 		vDeporte.setVisible(true);
+		vDeporte.setLocationRelativeTo(null);
 	}
 
 	/**
@@ -38,6 +39,7 @@ public class ControladorVistas {
 	{
 		vAltaDeporte = new frmVentanaAltaDeporte();
 		vAltaDeporte.setVisible(true);
+		vAltaDeporte.setLocationRelativeTo(null);
 	}
 
 	/**
@@ -58,6 +60,7 @@ public class ControladorVistas {
 	{
 		vDeportista = new frmVentanaDeportistas();
 		vDeportista.setVisible(true);
+		vDeportista.setLocationRelativeTo(null);
 	}
 
 	/**
@@ -67,6 +70,7 @@ public class ControladorVistas {
 	{
 		vAltaDeportista = new frmVentanaAltaDeportista();
 		vAltaDeportista.setVisible(true);
+		vAltaDeportista.setLocationRelativeTo(null);
 	}
 
 	/**
@@ -79,17 +83,20 @@ public class ControladorVistas {
 	{
 		vEquipos = new frmVentanaEquipos();
 		vEquipos.setVisible(true);
+		vEquipos.setLocationRelativeTo(null);
 	}
 
 	/**
 	 * Creamos una ventana Olimpiada y la hacemos visible.
 	 * 
 	 * @throws SQLException
+	 * @throws HelpSetException 
 	 */
-	public void abrirVentanaOlimpiada() throws SQLException 
+	public void abrirVentanaOlimpiada() throws SQLException, HelpSetException 
 	{
 		vOlimpiada = new frmVentanaOlimpiadas();
 		vOlimpiada.setVisible(true);
+		vOlimpiada.setLocationRelativeTo(null);
 	}
 
 	/**
@@ -101,6 +108,7 @@ public class ControladorVistas {
 	{
 		vAltaOlimpiada = new frmVentanaAltaOlimpiada();
 		vAltaOlimpiada.setVisible(true);
+		vAltaOlimpiada.setLocationRelativeTo(null);
 	}
 	
 	/**
@@ -113,6 +121,7 @@ public class ControladorVistas {
 	{
 		vParticipacion = new frmVentanaParticipacion();
 		vParticipacion.setVisible(true);
+		vParticipacion.setLocationRelativeTo(null);
 	}
 
 	/**
@@ -124,6 +133,7 @@ public class ControladorVistas {
 	{
 		vAltaParticipacion = new frmVentanaAltaParticipacion();
 		vAltaParticipacion.setVisible(true);
+		vAltaParticipacion.setLocationRelativeTo(null);
 	}
 
 	/**
@@ -136,6 +146,7 @@ public class ControladorVistas {
 	{
 		vEvento = new frmVentanaEvento();
 		vEvento.setVisible(true);
+		vEvento.setLocationRelativeTo(null);
 	}
 
 	/**
@@ -155,6 +166,7 @@ public class ControladorVistas {
 	{
 		vPrincipal = new frmVentanaPrincipal();
 		vPrincipal.setVisible(true);
+		vPrincipal.setLocationRelativeTo(null);
 	}
 	
 	/**
@@ -170,7 +182,6 @@ public class ControladorVistas {
 	 */
 	public void cerrarVentanaEquipos() 
 	{
-		// TODO Auto-generated method stub
 		vEquipos.dispose();
 	}
 
@@ -238,6 +249,7 @@ public class ControladorVistas {
 	{
 		vAltaEquipo= new frmVentanaAltaEquipo();
 		vAltaEquipo.setVisible(true);
+		vAltaEquipo.setLocationRelativeTo(null);
 	}
 
 	/**
@@ -255,6 +267,7 @@ public class ControladorVistas {
 	public void abrirVentanaAltaEventos() throws SQLException {
 		vAltaEvento = new frmVentanaAltaEvento();
 		vAltaEvento.setVisible(true);
+		vAltaEvento.setLocationRelativeTo(null);
 	}
 	
 	/**

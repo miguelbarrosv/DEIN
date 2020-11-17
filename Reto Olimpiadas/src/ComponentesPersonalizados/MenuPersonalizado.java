@@ -4,11 +4,18 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.SQLException;
 
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.help.HelpSetException;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import UML.Controlador;
@@ -25,7 +32,7 @@ public class MenuPersonalizado extends JPanel{
 	private JLabel lblEvento;
 	private JLabel lblOlimpiadas;
 	private JLabel lblInicio;
-	
+	private JButton btnAyuda;
 	public MenuPersonalizado() 
 	{
 		controladorVistas = new ControladorVistas ();
@@ -33,12 +40,14 @@ public class MenuPersonalizado extends JPanel{
 	}
 	
 	/**
-	 * Metodo que crea el menu personalizado y añade los eventos a los menus
+	 * Metodo que crea el menu personalizado y aÃ±ade los eventos a los menus
 	 * 
 	 * @param frame
+	 * @throws HelpSetException 
 	 */
-	public MenuPersonalizado(String frame) 
+	public MenuPersonalizado(String frame) throws HelpSetException 
 	{
+		
 		
 		this();
 		
@@ -78,6 +87,14 @@ public class MenuPersonalizado extends JPanel{
 		lblEquipos.setFont(new Font("Dialog", Font.BOLD, 16));
 		this.add(lblEquipos);
 		
+		btnAyuda = new JButton("Ayuda");
+		btnAyuda.setForeground(Color.WHITE);
+		btnAyuda.setBackground(Color.BLACK);
+		btnAyuda.setFont(new Font("Dialog", Font.BOLD, 16));
+		this.add(btnAyuda);
+		btnAyuda.setBorderPainted(false);
+		btnAyuda.setHorizontalAlignment(SwingConstants.LEFT);
+		
 		lblDeporte.setBorder(new EmptyBorder(0,10,0,0));
 		lblEquipos.setBorder(new EmptyBorder(0,10,0,0));
 		lblOlimpiadas.setBorder(new EmptyBorder(0,10,0,0));
@@ -85,7 +102,8 @@ public class MenuPersonalizado extends JPanel{
 		lblParticipacion.setBorder(new EmptyBorder(0,10,0,0));
 		lblInicio.setBorder(new EmptyBorder(0,10,0,0));
 		lblDeportista.setBorder(new EmptyBorder(0,10,0,0));
-		
+		btnAyuda.setBorder(new EmptyBorder(0,10,0,0));
+
 		
 		
 		if (frame == "principal") {
@@ -96,6 +114,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaPrincipal();
 						controladorVistas.abrirVentanaOlimpiada();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -204,6 +225,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaOlimpiada();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -310,6 +334,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaEquipos();
 						controladorVistas.abrirVentanaOlimpiada();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -418,6 +445,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaOlimpiada();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -524,6 +554,9 @@ public class MenuPersonalizado extends JPanel{
 	            		controladorVistas.cerrarVentanaParticipacion();
 						controladorVistas.abrirVentanaOlimpiada();
 					} catch (SQLException e1) {
+						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 	            }
@@ -632,6 +665,9 @@ public class MenuPersonalizado extends JPanel{
 						controladorVistas.abrirVentanaOlimpiada();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
+					} catch (HelpSetException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 	            }
 
@@ -737,7 +773,7 @@ public class MenuPersonalizado extends JPanel{
 	            	try {
 	            		controladorVistas.cerrarVentanaEvento();
 						controladorVistas.abrirVentanaOlimpiada();
-					} catch (SQLException e1) {
+					} catch (SQLException | HelpSetException e1) {
 						e1.printStackTrace();
 					}
 	            }
@@ -823,7 +859,29 @@ public class MenuPersonalizado extends JPanel{
 	            }
 
 	        });
+		}
+		ponerAyuda(frame);
+	}
+	
+	/**
+	 * 	Ponemos la ayuda a esta pantalla pulsando en F1
+	 * @param frame 
+	 * 
+	 * @throws HelpSetException
+	 */
+	private void ponerAyuda(String frame) throws HelpSetException {
+		try 
+		{
+			File fichero = new File("Help"+File.separator+"help_set.hs");
+			URL hsURL = fichero.toURI().toURL();
 			
+			HelpSet helpset = new HelpSet(getClass().getClassLoader(),hsURL);
+			HelpBroker hb = helpset.createHelpBroker();
+			
+			hb.enableHelpOnButton(btnAyuda,frame, helpset);
+			
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
 		}
 	}
 }

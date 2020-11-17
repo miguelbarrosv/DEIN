@@ -62,9 +62,8 @@ public class frmVentanaEquipos extends JFrame {
 	 */
 	public frmVentanaEquipos() throws SQLException, HelpSetException {
 		ponerAyuda();
-		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 893, 619);
+		setBounds(100, 100, 893, 612);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -75,7 +74,7 @@ public class frmVentanaEquipos extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.NORTH, lblListaDeEquipos, 22, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblListaDeEquipos, 469, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblListaDeEquipos, 37, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, lblListaDeEquipos, 563, SpringLayout.WEST, contentPane);
+		lblListaDeEquipos.setFont(new Font("Dialog", Font.BOLD, 16));
 		contentPane.add(lblListaDeEquipos);
 		
 		TablaPersonalizada tableModel  = new TablaPersonalizada("equipos");
@@ -83,15 +82,15 @@ public class frmVentanaEquipos extends JFrame {
 		tableEquipos = new JTable(tableModel);
 		tableEquipos.setBounds(241, 59, 569, 346);
 		JScrollPane scrollPane = new JScrollPane();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, scrollPane, 27, SpringLayout.SOUTH, lblListaDeEquipos);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, scrollPane, 393, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, scrollPane, 17, SpringLayout.SOUTH, lblListaDeEquipos);
+		sl_contentPane.putConstraint(SpringLayout.EAST, scrollPane, -27, SpringLayout.EAST, contentPane);
 		contentPane.add(scrollPane);
 		scrollPane.setViewportView(tableEquipos);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("equipos");
-		sl_contentPane.putConstraint(SpringLayout.WEST, scrollPane, 26, SpringLayout.EAST, panel);
+		sl_contentPane.putConstraint(SpringLayout.WEST, scrollPane, 28, SpringLayout.EAST, panel);
+		sl_contentPane.putConstraint(SpringLayout.WEST, panel, -5, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, panel, 581, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, panel, 187, SpringLayout.WEST, contentPane);
 		panel.setBackground(Color.BLACK);
@@ -100,7 +99,6 @@ public class frmVentanaEquipos extends JFrame {
 		
 		
 		JButton btnAadirEquipo = new JButton("Alta Equipo");
-		sl_contentPane.putConstraint(SpringLayout.EAST, scrollPane, 0, SpringLayout.EAST, btnAadirEquipo);
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnAadirEquipo, 546, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnAadirEquipo, 742, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnAadirEquipo, 571, SpringLayout.NORTH, contentPane);
@@ -111,7 +109,8 @@ public class frmVentanaEquipos extends JFrame {
 				controladorVistas.abrirVentanaAltaEquipos();
 			}
 		});
-		btnAadirEquipo.setFont(new Font("Dialog", Font.BOLD, 10));
+		
+		btnAadirEquipo.setFont(new Font("Dialog", Font.BOLD, 12));
 		contentPane.add(btnAadirEquipo);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
@@ -121,6 +120,7 @@ public class frmVentanaEquipos extends JFrame {
 		contentPane.add(lblNombre);
 		
 		txtNombre = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, scrollPane, -28, SpringLayout.NORTH, txtNombre);
 		sl_contentPane.putConstraint(SpringLayout.NORTH, txtNombre, 442, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, txtNombre, 338, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, txtNombre, 486, SpringLayout.WEST, contentPane);
@@ -137,7 +137,7 @@ public class frmVentanaEquipos extends JFrame {
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					controlador.modificarEquipo(idEquipo, iniciales, nombre);
+					controlador.modificarEquipo(idEquipo, txtIniciales.getText(), txtNombre.getText());
 					controladorVistas.cerrarVentanaEquipos();
 					controladorVistas.abrirVentanaPrincipal();
 				} catch (SQLException e) {
@@ -170,6 +170,7 @@ public class frmVentanaEquipos extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		final JButton btnEliminar = new JButton("Eliminar");
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblListaDeEquipos, 20, SpringLayout.EAST, btnEliminar);
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnEliminar, 545, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnEliminar, 504, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnEliminar, 570, SpringLayout.NORTH, contentPane);
@@ -234,7 +235,7 @@ public class frmVentanaEquipos extends JFrame {
 			HelpBroker hb = helpset.createHelpBroker();
 			
 			//hb.enableHelpOnButton(btnAiuda, "clsVentanaEquipo", helpset);
-			hb.enableHelpKey(getRootPane(),"clsVentanaEquipo", helpset);
+			hb.enableHelpKey(getRootPane(),"equipos", helpset);
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

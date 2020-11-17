@@ -34,7 +34,7 @@ public class DeportistaBD {
     }
 
 	/**
-     * Metodo para hacer la consulta de los deportistas para añadirlos a un array de deportistas y devolverlo
+     * Metodo para hacer la consulta de los deportistas para aÃ±adirlos a un array de deportistas y devolverlo
 	 * 
 	 * @return
 	 * @throws SQLException
@@ -82,18 +82,18 @@ public class DeportistaBD {
 	 * @param idDeportista
 	 * @param nombre
 	 * @param sexo
-	 * @param altura
-	 * @param peso
+	 * @param f
+	 * @param g
 	 * @throws SQLException
 	 */
-	public void modificarDeportista(int idDeportista, String nombre, String sexo, int altura, int peso) throws SQLException {
+	public void modificarDeportista(int idDeportista, String nombre, String sexo, float altura, float peso) throws SQLException {
 		Bdr.Conectar();
         plantilla = "UPDATE Deportista SET nombre = ? ,sexo = ?,altura = ?,peso = ? WHERE id_deportista = ?";
         ps = Bdr.getCon().prepareStatement(plantilla);
         ps.setString(1, nombre);
         ps.setString(2, sexo);
-        ps.setInt(3, altura);
-        ps.setInt(4, peso);
+        ps.setFloat(3, altura);
+        ps.setFloat(4, peso);
         ps.setInt(5, idDeportista);
         ps.executeUpdate();
         Bdr.cerrarCon();
