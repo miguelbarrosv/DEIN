@@ -123,11 +123,11 @@ public class frmVentanaParticipacion extends JFrame {
 		scrollPane.setViewportView(tableParticipaciones);
 		
 		MenuPersonalizado panel = new MenuPersonalizado("participacion");
+		panel.setBackground(new Color(255,153,0));
 		sl_contentPane.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, panel, -5, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, panel, 738, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, panel, 187, SpringLayout.WEST, contentPane);
-		panel.setBackground(Color.BLACK);
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		

@@ -54,46 +54,62 @@ public class MenuPersonalizado extends JPanel{
 		lblInicio = new JLabel("Inicio");
 		lblInicio.setForeground(Color.WHITE);
 		lblInicio.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblInicio.setBackground(new Color(255,153,0));
+    	lblInicio.setOpaque(true);
 		this.add(lblInicio);
 		
 		lblParticipacion = new JLabel("Participacion");
 		lblParticipacion.setForeground(Color.WHITE);
 		lblParticipacion.setFont(new Font("Dialog", Font.BOLD, 16));
+    	lblParticipacion.setBackground(new Color(255,153,0));
+    	lblParticipacion.setOpaque(true);
 		this.add(lblParticipacion);
 		
 		lblDeportista = new JLabel("Deportista");
 		lblDeportista.setForeground(Color.WHITE);
 		lblDeportista.setFont(new Font("Dialog", Font.BOLD, 16));
+    	lblDeportista.setBackground(new Color(255,153,0));
+    	lblDeportista.setOpaque(true);
+
 		this.add(lblDeportista);
 		
 		lblEvento = new JLabel("Evento");
 		lblEvento.setForeground(Color.WHITE);
 		lblEvento.setFont(new Font("Dialog", Font.BOLD, 16));
+    	lblEvento.setBackground(new Color(255,153,0));
+    	lblEvento.setOpaque(true);
 		this.add(lblEvento);
 		
 		lblDeporte = new JLabel("Deporte");
 		lblDeporte.setForeground(Color.WHITE);
 		lblDeporte.setFont(new Font("Dialog", Font.BOLD, 16));
+    	lblDeporte.setBackground(new Color(255,153,0));
+    	lblDeporte.setOpaque(true);
 		this.add(lblDeporte);
 		
 		
 		lblOlimpiadas = new JLabel("Olimpiadas");
 		lblOlimpiadas.setForeground(Color.WHITE);
 		lblOlimpiadas.setFont(new Font("Dialog", Font.BOLD, 16));
+    	lblOlimpiadas.setBackground(new Color(255,153,0));
+    	lblOlimpiadas.setOpaque(true);
 		this.add(lblOlimpiadas);
 		
 		lblEquipos = new JLabel("Equipos");
 		lblEquipos.setForeground(Color.WHITE);
 		lblEquipos.setFont(new Font("Dialog", Font.BOLD, 16));
+    	lblEquipos.setBackground(new Color(255,153,0));
+    	lblEquipos.setOpaque(true);
 		this.add(lblEquipos);
 		
 		btnAyuda = new JButton("Ayuda");
 		btnAyuda.setForeground(Color.WHITE);
-		btnAyuda.setBackground(Color.BLACK);
+    	btnAyuda.setBackground(new Color(255,153,0));
 		btnAyuda.setFont(new Font("Dialog", Font.BOLD, 16));
 		this.add(btnAyuda);
 		btnAyuda.setBorderPainted(false);
 		btnAyuda.setHorizontalAlignment(SwingConstants.LEFT);
+		
 		
 		lblDeporte.setBorder(new EmptyBorder(0,10,0,0));
 		lblEquipos.setBorder(new EmptyBorder(0,10,0,0));
@@ -104,7 +120,101 @@ public class MenuPersonalizado extends JPanel{
 		lblDeportista.setBorder(new EmptyBorder(0,10,0,0));
 		btnAyuda.setBorder(new EmptyBorder(0,10,0,0));
 
+		lblDeporte.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+            	lblDeporte.setBackground(new Color(255,105,0));
+            }
+        });
+
+		lblDeporte.addMouseListener(new MouseAdapter() {
+            public void mouseExited(MouseEvent evt) {
+            	lblDeporte.setBackground(new Color(255,153,0));
+            }
+        });
 		
+		lblEquipos.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+            	lblEquipos.setBackground(new Color(255,105,0));
+            }
+        });
+
+		lblEquipos.addMouseListener(new MouseAdapter() {
+            public void mouseExited(MouseEvent evt) {
+            	lblEquipos.setBackground(new Color(255,153,0));
+            }
+        });
+		
+		lblOlimpiadas.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+            	lblOlimpiadas.setBackground(new Color(255,105,0));
+            }
+        });
+
+		lblOlimpiadas.addMouseListener(new MouseAdapter() {
+            public void mouseExited(MouseEvent evt) {
+            	lblOlimpiadas.setBackground(new Color(255,153,0));
+            }
+        });
+		
+		lblEvento.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+            	lblEvento.setBackground(new Color(255,105,0));
+            }
+        });
+
+		lblEvento.addMouseListener(new MouseAdapter() {
+            public void mouseExited(MouseEvent evt) {
+            	lblEvento.setBackground(new Color(255,153,0));
+            }
+        });
+		
+		lblParticipacion.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+            	lblParticipacion.setBackground(new Color(255,105,0));
+            }
+        });
+
+		lblParticipacion.addMouseListener(new MouseAdapter() {
+            public void mouseExited(MouseEvent evt) {
+            	lblParticipacion.setBackground(new Color(255,153,0));
+            }
+        });
+		
+		lblInicio.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+            	lblInicio.setBackground(new Color(255,105,0));
+            }
+        });
+
+		lblInicio.addMouseListener(new MouseAdapter() {
+            public void mouseExited(MouseEvent evt) {
+            	lblInicio.setBackground(new Color(255,153,0));
+            }
+        });
+		
+		lblDeportista.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+            	lblDeportista.setBackground(new Color(255,105,0));
+            }
+        });
+
+		lblDeportista.addMouseListener(new MouseAdapter() {
+            public void mouseExited(MouseEvent evt) {
+            	lblDeportista.setBackground(new Color(255,153,0));
+            }
+        });
+		
+		btnAyuda.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+            	btnAyuda.setBackground(new Color(255,105,0));
+            }
+        });
+
+		btnAyuda.addMouseListener(new MouseAdapter() {
+            public void mouseExited(MouseEvent evt) {
+            	btnAyuda.setBackground(new Color(255,153,0));
+            }
+        });
 		
 		if (frame == "principal") {
 			lblOlimpiadas.addMouseListener(new MouseAdapter() {

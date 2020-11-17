@@ -54,7 +54,7 @@ public class frmVentanaPrincipal extends JFrame {
 		
 		MenuPersonalizado panel = new MenuPersonalizado("principal");
 		panel.setBounds(0, 5, 192, 503);
-		panel.setBackground(Color.BLACK);
+		panel.setBackground(new Color(255,153,0));
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 

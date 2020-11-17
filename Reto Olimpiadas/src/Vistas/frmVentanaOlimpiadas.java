@@ -121,7 +121,7 @@ public class frmVentanaOlimpiadas extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.WEST, panel, 5, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, panel, 589, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, panel, 192, SpringLayout.WEST, contentPane);
-		panel.setBackground(Color.BLACK);
+		panel.setBackground(new Color(255,153,0));
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
