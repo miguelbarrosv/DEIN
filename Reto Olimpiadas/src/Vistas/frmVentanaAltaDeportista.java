@@ -136,7 +136,7 @@ public class frmVentanaAltaDeportista extends JFrame {
 					controlador.altaDeportista(nombre,sexo,altura,peso);
 					controladorVistas.cerrarVentanaAltaDeportista();
 					controladorVistas.cerrarVentanaDeportista();
-					controladorVistas.abrirVentanaPrincipal();
+					controladorVistas.abrirVentanaDeportista();
 
 				} catch (SQLException e) {
 					e.printStackTrace();

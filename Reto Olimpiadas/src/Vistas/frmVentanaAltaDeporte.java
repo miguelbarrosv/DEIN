@@ -74,7 +74,7 @@ public class frmVentanaAltaDeporte extends JFrame {
 					controlador.insertarDeporte(txtNombreDeporte.getText());
 					controladorVistas.cerrarVentanaAltaDeporte();
 					controladorVistas.cerrarVentanaDeportes();
-					controladorVistas.abrirVentanaPrincipal();
+					controladorVistas.abrirVentanaDeporte();
 				}catch(RepetidoException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				} catch (Exception e) {

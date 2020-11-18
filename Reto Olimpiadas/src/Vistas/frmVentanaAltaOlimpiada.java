@@ -89,7 +89,7 @@ public class frmVentanaAltaOlimpiada extends JFrame {
 					controlador.altaOlimpiada(anio,temporada,nombre,ciudad);
 					controladorVistas.cerrarVentanaAltaOlimpiada();
 					controladorVistas.cerrarVentanaOlimpiada();
-					controladorVistas.abrirVentanaPrincipal();
+					controladorVistas.abrirVentanaOlimpiada();
 						
 				} catch (RepetidoException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
@@ -106,20 +106,4 @@ public class frmVentanaAltaOlimpiada extends JFrame {
 		contentPane.add(txtAnio);
 		txtAnio.setColumns(10);
 	}
-	
-	/**
-	 * Comprobamos que el nombre de olimpiada que nos introducen no se repite, si se repite devolveremos False, si no se repite devolveremos true.
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public boolean comprobarNombreOlimpiada() throws SQLException {
-		Boolean comprobacion = false;
-		if(controlador.comprobarOlimpiada(nombre)) {
-			comprobacion = true;
-		} else 
-			comprobacion = false;		
-		
-		return comprobacion;
-		}
 }
