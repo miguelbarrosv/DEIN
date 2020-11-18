@@ -96,7 +96,7 @@ public class frmVentanaEvento extends JFrame {
 		
 		TablaPersonalizada tableModelOlimpiadas  = new TablaPersonalizada("olimpiadas");
 		
-		JScrollPane scrollPaneOlimpiadas = new JScrollPane();
+		final JScrollPane scrollPaneOlimpiadas = new JScrollPane();
 		sl_contentPane.putConstraint(SpringLayout.NORTH, scrollPaneOlimpiadas, 446, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, scrollPaneOlimpiadas, 205, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, scrollPaneOlimpiadas, 653, SpringLayout.NORTH, contentPane);
@@ -104,19 +104,20 @@ public class frmVentanaEvento extends JFrame {
 		scrollPaneOlimpiadas.setEnabled(false);
 		contentPane.add(scrollPaneOlimpiadas);
 		tableOlimpiadas = new JTable(tableModelOlimpiadas);
-		tableOlimpiadas.setRowSelectionAllowed(false);
 		tableOlimpiadas.setEnabled(false);
 		scrollPaneOlimpiadas.setViewportView(tableOlimpiadas);
 		
 		TablaPersonalizada tableModelDeporte  = new TablaPersonalizada("deporte");
 		
-		JScrollPane scrollPaneDeporte = new JScrollPane();
+		final JScrollPane scrollPaneDeporte = new JScrollPane();
+		scrollPaneDeporte.setEnabled(false);
 		sl_contentPane.putConstraint(SpringLayout.NORTH, scrollPaneDeporte, 446, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, scrollPaneDeporte, 610, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, scrollPaneDeporte, 653, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, scrollPaneDeporte, 1026, SpringLayout.WEST, contentPane);
 		contentPane.add(scrollPaneDeporte);
 		tableDeporte = new JTable(tableModelDeporte);
+		tableDeporte.setEnabled(false);
 		scrollPaneDeporte.setViewportView(tableDeporte);
 		
 		JButton btnAadirEvento = new JButton("Alta Evento");
@@ -204,6 +205,13 @@ public class frmVentanaEvento extends JFrame {
 		         
 		         btnEliminar.setEnabled(true);
 		         btnModificar.setEnabled(true);
+		         
+		         tableOlimpiadas.setEnabled(true);
+		         tableDeporte.setEnabled(true);
+		         
+		         scrollPaneDeporte.setEnabled(true);
+		         scrollPaneOlimpiadas.setEnabled(true);
+
 		    }
 		});
 		

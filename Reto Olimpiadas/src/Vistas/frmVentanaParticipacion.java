@@ -75,7 +75,7 @@ public class frmVentanaParticipacion extends JFrame {
 	public frmVentanaParticipacion() throws SQLException, HelpSetException {
 		ponerAyuda();
 		
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1031, 778);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

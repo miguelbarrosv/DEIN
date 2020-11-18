@@ -9,6 +9,7 @@ import BD.EquipoBD;
 import BD.EventoBD;
 import BD.OlimpiadaBD;
 import BD.ParticipacionBD;
+import Excepciones.RepetidoException;
 import Vistas.ControladorVistas;
 import Vistas.frmVentanaPrincipal;
 
@@ -63,9 +64,14 @@ public class Controlador {
 	 * 
 	 * @param nombre
 	 * @throws SQLException
+	 * @throws RepetidoException 
 	 */
-	public void insertarDeporte(String nombre) throws SQLException {
-		deporteBD.altaDeporte(nombre);
+	public void insertarDeporte(String nombre) throws SQLException, RepetidoException {
+		if(comprobarDeporte(nombre)) {
+			deporteBD.altaDeporte(nombre);
+		}else {
+			throw new RepetidoException("Deporte repetido: "+nombre);
+		}
 	}
 
 	/**
@@ -87,9 +93,15 @@ public class Controlador {
 	 * @param altura
 	 * @param peso
 	 * @throws SQLException
+	 * @throws RepetidoException 
 	 */
-	public void altaDeportista(String nombre, String sexo, float altura, float peso) throws SQLException {
-		deportistaBD.altaDeportista(nombre,sexo,altura,peso);
+	public void altaDeportista(String nombre, String sexo, float altura, float peso) throws SQLException, RepetidoException {
+		
+		if(comprobarDeportista(nombre)) {
+			deportistaBD.altaDeportista(nombre,sexo,altura,peso);
+		} else {
+			throw new RepetidoException("El deportista " + nombre + " ya existe");
+		}
 	}
 
 	/**
@@ -122,9 +134,14 @@ public class Controlador {
 	 * @param nombre
 	 * @param ciudad
 	 * @throws SQLException
+	 * @throws RepetidoException 
 	 */
-	public void altaOlimpiada(int anio, String temporada, String nombre, String ciudad) throws SQLException {
-		olimpiadaBD.altaOlimpiada(anio,temporada,nombre,ciudad);
+	public void altaOlimpiada(int anio, String temporada, String nombre, String ciudad) throws SQLException, RepetidoException {
+		if(comprobarOlimpiada(nombre)) {
+			olimpiadaBD.altaOlimpiada(anio,temporada,nombre,ciudad);
+		} else {
+			throw new RepetidoException("LA olimpiada " + nombre + " ya existe");
+		}
 	}
 
 	/**
@@ -155,9 +172,14 @@ public class Controlador {
 	 * @param nombre
 	 * @param iniciales
 	 * @throws SQLException
+	 * @throws RepetidoException 
 	 */
-	public void altaEquipo(String nombre, String iniciales) throws SQLException {
-		equipoBD.altaEquipo(nombre, iniciales);
+	public void altaEquipo(String nombre, String iniciales) throws SQLException, RepetidoException {
+		if (comprobarEquipo(nombre)) {
+			equipoBD.altaEquipo(nombre, iniciales);
+		} else {
+			throw new RepetidoException("El equipo " + nombre + " ya existe");
+		}
 	}
 
 	/**
@@ -323,7 +345,7 @@ public class Controlador {
 	 * @throws SQLException
 	 */
 	public void altaEvento(String nombre, int idOlimpiada, int idDeporte) throws SQLException {
-		eventoBD.altaEvento( nombre, idOlimpiada, idDeporte);
+		eventoBD.altaEvento(nombre, idOlimpiada, idDeporte);
 	}
 
 	/**
@@ -356,6 +378,17 @@ public class Controlador {
 		equipos = equipoBD.comprobarNombreEquipo(nombre);
 		
 		if(equipos == null || equipos.size() == 0) {
+			comprobacion = true;
+		}
+		
+		return comprobacion;
+	}
+	
+	public boolean comprobarDeportista(String nombre) throws SQLException {
+		Boolean comprobacion = false;
+		deportistas = deportistaBD.comprobarNombreDeportista(nombre);
+		
+		if(deportistas == null || deportistas.size() == 0) {
 			comprobacion = true;
 		}
 		

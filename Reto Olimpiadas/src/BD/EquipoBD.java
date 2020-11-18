@@ -112,6 +112,7 @@ public class EquipoBD {
 	 * @throws SQLException
 	 */
 	public ArrayList<Equipo> comprobarNombreEquipo(String nombre) throws SQLException {
+		listaEquipos = new ArrayList();
 		Bdr.Conectar();
         plantilla = "SELECT * FROM Equipo WHERE nombre LIKE ?";
         ps = Bdr.getCon().prepareStatement(plantilla);

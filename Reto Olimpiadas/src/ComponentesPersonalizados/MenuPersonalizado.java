@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
 import javax.help.HelpSetException;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -107,7 +108,7 @@ public class MenuPersonalizado extends JPanel{
     	btnAyuda.setBackground(new Color(255,153,0));
 		btnAyuda.setFont(new Font("Dialog", Font.BOLD, 16));
 		this.add(btnAyuda);
-		btnAyuda.setBorderPainted(false);
+		btnAyuda.setFocusable(false);
 		btnAyuda.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		

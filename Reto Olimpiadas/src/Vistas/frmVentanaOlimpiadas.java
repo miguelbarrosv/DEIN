@@ -71,7 +71,7 @@ public class frmVentanaOlimpiadas extends JFrame {
 	 * @throws HelpSetException 
 	 */
 	public frmVentanaOlimpiadas() throws SQLException, HelpSetException {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 844, 609);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -97,7 +97,6 @@ public class frmVentanaOlimpiadas extends JFrame {
 				try {
 					controladorVistas.abrirVentanaOlimpiadaAlta();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

@@ -122,6 +122,7 @@ public class OlimpiadaBD {
 	 */
 	public ArrayList<Olimpiada> comprobarNombreOlimpiada(String nombre) throws SQLException {
         Bdr.Conectar();
+        listaOlimpiadas = new ArrayList();
         plantilla = "SELECT * FROM Olimpiada WHERE nombre LIKE ?";
         ps = Bdr.getCon().prepareStatement(plantilla);
         ps.setString(1, nombre);

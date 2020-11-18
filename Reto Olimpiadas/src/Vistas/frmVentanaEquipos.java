@@ -62,7 +62,7 @@ public class frmVentanaEquipos extends JFrame {
 	 */
 	public frmVentanaEquipos() throws SQLException, HelpSetException {
 		ponerAyuda();
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 893, 612);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

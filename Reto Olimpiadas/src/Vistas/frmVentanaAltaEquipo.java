@@ -7,9 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Excepciones.RepetidoException;
 import UML.Controlador;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -42,46 +44,34 @@ public class frmVentanaAltaEquipo extends JFrame {
 		contentPane.setLayout(sl_contentPane);
 		
 		JLabel lblAltaEquipo = new JLabel("Alta Equipo");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblAltaEquipo, 11, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblAltaEquipo, 183, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblAltaEquipo, 26, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, lblAltaEquipo, 297, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblAltaEquipo, 16, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblAltaEquipo, 188, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblAltaEquipo, 302, SpringLayout.WEST, contentPane);
 		contentPane.add(lblAltaEquipo);
 		
 		JLabel lblNombre = new JLabel("Nombre: ");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblNombre, 67, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblNombre, 90, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, lblNombre, 160, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblNombre, 72, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblNombre, 95, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblNombre, 82, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblNombre, 165, SpringLayout.WEST, contentPane);
 		contentPane.add(lblNombre);
 		
 		txtNombre = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, txtNombre, -2, SpringLayout.NORTH, lblNombre);
-		sl_contentPane.putConstraint(SpringLayout.WEST, txtNombre, 183, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, txtNombre, 84, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, txtNombre, 0, SpringLayout.EAST, lblAltaEquipo);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtNombre, 70, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtNombre, 188, SpringLayout.WEST, contentPane);
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 		
-		JLabel lblIniciales = new JLabel("Iniciales:");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblIniciales, 126, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblIniciales, -104, SpringLayout.SOUTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblNombre, -44, SpringLayout.NORTH, lblIniciales);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblIniciales, 0, SpringLayout.WEST, lblNombre);
-		sl_contentPane.putConstraint(SpringLayout.EAST, lblIniciales, 160, SpringLayout.WEST, contentPane);
-		contentPane.add(lblIniciales);
-		
 		txtIniciales = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, txtIniciales, -2, SpringLayout.NORTH, lblIniciales);
-		sl_contentPane.putConstraint(SpringLayout.WEST, txtIniciales, 0, SpringLayout.WEST, lblAltaEquipo);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, txtIniciales, 143, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, txtIniciales, 0, SpringLayout.EAST, lblAltaEquipo);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtIniciales, 129, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtIniciales, 188, SpringLayout.WEST, contentPane);
 		contentPane.add(txtIniciales);
 		txtIniciales.setColumns(10);
 		
 		
 		
 		JButton btnAadirEquipo = new JButton("Añadir ");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnAadirEquipo, 181, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnAadirEquipo, 186, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnAadirEquipo, 331, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnAadirEquipo, -10, SpringLayout.SOUTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, btnAadirEquipo, -10, SpringLayout.EAST, contentPane);
@@ -90,11 +80,12 @@ public class frmVentanaAltaEquipo extends JFrame {
 				nombre = txtNombre.getText();
 				iniciales = txtIniciales.getText();
 				try {
-					if(controlador.comprobarEquipo(nombre)) {
-						controlador.altaEquipo(nombre, iniciales);
-						controladorVistas.cerrarVentanaAltaEquipos();
-					} else
-						throw new Exception("Ya existe un equipo con este nombre");
+					controlador.altaEquipo(nombre, iniciales);
+					controladorVistas.cerrarVentanaAltaEquipos();
+					controladorVistas.cerrarVentanaEquipos();
+					controladorVistas.abrirVentanaPrincipal();
+				} catch (RepetidoException e) {
+					JOptionPane.showMessageDialog(null, e.getMessage());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -103,5 +94,11 @@ public class frmVentanaAltaEquipo extends JFrame {
 		});
 		btnAadirEquipo.setFont(new Font("Dialog", Font.BOLD, 12));
 		contentPane.add(btnAadirEquipo);
+		
+		JLabel lblIniciales = new JLabel("Iniciales: ");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblIniciales, 131, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblIniciales, 95, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblIniciales, 165, SpringLayout.WEST, contentPane);
+		contentPane.add(lblIniciales);
 	}
 }

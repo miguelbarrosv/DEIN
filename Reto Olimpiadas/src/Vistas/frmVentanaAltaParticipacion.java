@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import javax.help.HelpSetException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.TableModel;
 
@@ -59,10 +60,17 @@ public class frmVentanaAltaParticipacion extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					controlador.altaParticipacion(idEvento,idDeportista,idEquipo,Integer.parseInt(txtEdad.getText()),medalla);
+					controladorVistas.cerrarVentanaAltaParticipacion();
+					controladorVistas.cerrarVentanaParticipacion();
+					controladorVistas.abrirVentanaPrincipal();
 				} catch (SQLException e) {
 					e.printStackTrace();
+				} catch (HelpSetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				controladorVistas.cerrarVentanaAltaParticipacion();
+				
+
 			}
 		});
 		contentPane.setLayout(null);
@@ -116,6 +124,7 @@ public class frmVentanaAltaParticipacion extends JFrame {
 		
 		final JComboBox cbMedalla = new JComboBox();
 		cbMedalla.setBounds(502, 438, 131, 23);
+		cbMedalla.setModel(new DefaultComboBoxModel(new String[] {"NA", "Bronze", "Silver", "Gold"}));
 		contentPane.add(cbMedalla);
 		
 		TablaPersonalizada tableModelEquipo  = new TablaPersonalizada("equipos");

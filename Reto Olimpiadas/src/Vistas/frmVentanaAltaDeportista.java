@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Label;
@@ -12,10 +13,12 @@ import javax.swing.JRadioButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JProgressBar;
 import javax.swing.JButton;
+import javax.help.HelpSetException;
 import javax.swing.ButtonGroup;
 import java.awt.Panel;
 import javax.swing.border.TitledBorder;
 
+import Excepciones.RepetidoException;
 import UML.Controlador;
 
 import java.awt.event.ActionListener;
@@ -132,8 +135,15 @@ public class frmVentanaAltaDeportista extends JFrame {
 				try {
 					controlador.altaDeportista(nombre,sexo,altura,peso);
 					controladorVistas.cerrarVentanaAltaDeportista();
+					controladorVistas.cerrarVentanaDeportista();
+					controladorVistas.abrirVentanaPrincipal();
+
 				} catch (SQLException e) {
 					e.printStackTrace();
+				} catch (HelpSetException e) {
+					e.printStackTrace();
+				} catch (RepetidoException e) {
+					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
 			}
 		});

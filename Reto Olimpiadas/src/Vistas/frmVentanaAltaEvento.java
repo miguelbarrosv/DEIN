@@ -34,7 +34,7 @@ public class frmVentanaAltaEvento extends JFrame {
 	private Controlador controlador = new Controlador();
 	private ControladorVistas controladorVistas = new ControladorVistas();
 	private ArrayList<Deporte> deportes;
-	private JTextField textField;
+	private JTextField txtNombre;
 	private JTable tableDeporte;
 	int idDeporte;
 	String nombre;
@@ -85,16 +85,16 @@ public class frmVentanaAltaEvento extends JFrame {
 		lblNombre.setBounds(47, 331, 70, 14);
 		contentPane.add(lblNombre);
 		
-		textField = new JTextField();
-		textField.setBounds(135, 329, 231, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtNombre = new JTextField();
+		txtNombre.setBounds(135, 329, 231, 20);
+		contentPane.add(txtNombre);
+		txtNombre.setColumns(10);
 		
 		JButton btnAadir = new JButton("A\u00F1adir");
 		btnAadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					controlador.altaEvento(nombre,idOlimpiada,idDeporte);
+					controlador.altaEvento(txtNombre.getText(),idOlimpiada,idDeporte);
 					controladorVistas.cerrarVentanaAltaEvento();
 					controladorVistas.cerrarVentanaEvento();
 					controladorVistas.abrirVentanaPrincipal();

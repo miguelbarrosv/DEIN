@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import UML.Deporte;
 import UML.Deportista;
+import UML.Equipo;
 
 public class DeportistaBD {
 	
@@ -82,8 +83,8 @@ public class DeportistaBD {
 	 * @param idDeportista
 	 * @param nombre
 	 * @param sexo
-	 * @param f
-	 * @param g
+	 * @param altura
+	 * @param peso
 	 * @throws SQLException
 	 */
 	public void modificarDeportista(int idDeportista, String nombre, String sexo, float altura, float peso) throws SQLException {
@@ -113,6 +114,23 @@ public class DeportistaBD {
 		ps.setInt(1, idDeportista);
 		ps.executeUpdate();
 		Bdr.cerrarCon();
+	}
+
+	public ArrayList<Deportista> comprobarNombreDeportista(String nombre) throws SQLException {
+		listaDeportistas = new ArrayList();
+		Bdr.Conectar();
+        plantilla = "SELECT * FROM Deportista WHERE nombre LIKE ?";
+        ps = Bdr.getCon().prepareStatement(plantilla);
+        ps.setString(1, nombre);
+        resultado = ps.executeQuery();
+        
+        while (resultado.next()) {
+        	listaDeportistas.add(crearObjeto());
+        }
+        
+        Bdr.cerrarCon();
+        return listaDeportistas;
+		
 	}
 
 }

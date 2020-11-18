@@ -7,9 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Excepciones.RepetidoException;
 import UML.Controlador;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -69,43 +71,17 @@ public class frmVentanaAltaDeporte extends JFrame {
 			public void actionPerformed(ActionEvent arg0) 
 			{ 
 				try {
-					if (comprobarDatos()) {
-						controlador.insertarDeporte(txtNombreDeporte.getText());
-					}
+					controlador.insertarDeporte(txtNombreDeporte.getText());
+					controladorVistas.cerrarVentanaAltaDeporte();
+					controladorVistas.cerrarVentanaDeportes();
+					controladorVistas.abrirVentanaPrincipal();
+				}catch(RepetidoException e) {
+					JOptionPane.showMessageDialog(null, e.getMessage());
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				}  
 			}
 		});
 		contentPane.add(btnAadirdeporte);
-	}
-	
-	/**
-	 * Comprobamos que los datos que nos introducen son correctos, si son correctos devolveremos true, si no son correctos se devolvera false.
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public boolean comprobarDatos() throws Exception {
-		try {
-			String nombre = txtNombreDeporte.getText();
-			
-			if (nombre.isEmpty()) {
-				throw new Exception("El nombre del deporte es obligatorio");
-			} 
-			
-			if (controlador.comprobarDeporte(nombre)) {
-				throw new Exception("El nombre del deporte introducido ya existe");
-			} 
-			
-			return true;
-		} catch (Exception e) {
-			
-			return false;
-		}
-		
-		
-		
-		
 	}
 }
