@@ -83,7 +83,7 @@ public class frmVentanaAltaEquipo extends JFrame {
 					controlador.altaEquipo(nombre, iniciales);
 					controladorVistas.cerrarVentanaAltaEquipos();
 					controladorVistas.cerrarVentanaEquipos();
-					controladorVistas.abrirVentanaPrincipal();
+					controladorVistas.abrirVentanaEquipos();
 				} catch (RepetidoException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				} catch (Exception e) {

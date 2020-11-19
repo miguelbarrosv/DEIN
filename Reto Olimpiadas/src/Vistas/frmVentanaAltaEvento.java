@@ -97,7 +97,7 @@ public class frmVentanaAltaEvento extends JFrame {
 					controlador.altaEvento(txtNombre.getText(),idOlimpiada,idDeporte);
 					controladorVistas.cerrarVentanaAltaEvento();
 					controladorVistas.cerrarVentanaEvento();
-					controladorVistas.abrirVentanaPrincipal();
+					controladorVistas.abrirVentanaEvento();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				} catch (HelpSetException e) {

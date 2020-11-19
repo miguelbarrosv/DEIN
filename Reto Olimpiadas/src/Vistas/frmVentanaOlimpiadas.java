@@ -23,7 +23,10 @@ import java.awt.Button;
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
 import javax.help.HelpSetException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -163,14 +166,15 @@ public class frmVentanaOlimpiadas extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblNewLabel, 431, SpringLayout.NORTH, contentPane);
 		contentPane.add(lblNewLabel);
 		
-		txtTemporada = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, txtTemporada, 415, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, txtTemporada, 652, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, txtTemporada, 788, SpringLayout.WEST, contentPane);
-		txtTemporada.setEditable(false);
-		txtTemporada.setEnabled(false);
-		contentPane.add(txtTemporada);
-		txtTemporada.setColumns(10);
+		
+		final JComboBox cbTemporada = new JComboBox();
+		cbTemporada.setModel(new DefaultComboBoxModel(new String[] {"Summer", "Winter"}));
+		contentPane.add(cbTemporada);
+		cbTemporada.setEditable(false);
+		cbTemporada.setEnabled(false);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, cbTemporada, 415, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, cbTemporada, 652, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, cbTemporada, 788, SpringLayout.WEST, contentPane);
 		
 		JLabel lblCiudad = new JLabel("Ciudad:");
 		sl_contentPane.putConstraint(SpringLayout.NORTH, lblCiudad, 479, SpringLayout.NORTH, contentPane);
@@ -194,7 +198,7 @@ public class frmVentanaOlimpiadas extends JFrame {
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					controlador.modificarOlimpiada(idOlimpiada,txtNombre.getText(), txtAnio.getText(), txtCiudad.getText(),txtTemporada.getText());
+					controlador.modificarOlimpiada(idOlimpiada,txtNombre.getText(), txtAnio.getText(), txtCiudad.getText(),cbTemporada.getSelectedItem().toString());
 					controladorVistas.cerrarVentanaOlimpiada();
 					ControladorVistas.abrirVentanaPrincipal();
 				} catch (SQLException e1) {
@@ -223,10 +227,8 @@ public class frmVentanaOlimpiadas extends JFrame {
 						controladorVistas.cerrarVentanaOlimpiada();
 						ControladorVistas.abrirVentanaPrincipal();
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (HelpSetException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -250,10 +252,14 @@ public class frmVentanaOlimpiadas extends JFrame {
 				txtCiudad.setText(ciudad);
 
 				
-				txtTemporada.setEditable(true);
-				txtTemporada.setEnabled(true);
-				txtTemporada.setText(temporada);
-
+				cbTemporada.setEditable(true);
+				cbTemporada.setEnabled(true);
+				
+				if (temporada == "Summer") {
+					cbTemporada.setSelectedIndex(1);
+				} else {
+					cbTemporada.setSelectedIndex(2);
+				}
 				
 				txtNombre.setEditable(true);
 				txtNombre.setEnabled(true);

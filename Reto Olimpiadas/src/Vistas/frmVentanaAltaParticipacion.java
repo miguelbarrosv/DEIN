@@ -62,7 +62,7 @@ public class frmVentanaAltaParticipacion extends JFrame {
 					controlador.altaParticipacion(idEvento,idDeportista,idEquipo,Integer.parseInt(txtEdad.getText()),medalla);
 					controladorVistas.cerrarVentanaAltaParticipacion();
 					controladorVistas.cerrarVentanaParticipacion();
-					controladorVistas.abrirVentanaPrincipal();
+					controladorVistas.abrirVentanaParticipacion();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				} catch (HelpSetException e) {
