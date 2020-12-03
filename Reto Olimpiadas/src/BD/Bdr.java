@@ -4,15 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.mysql.cj.jdbc.DatabaseMetaData;
+
 public class Bdr {
 	
 	private static Connection con ;
-	public static final String URL="jdbc:mysql://localhost:3306/";
-	public static final String SCHEMA = "olimpiadas";
-	public static final String PARAMS="?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
-	public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	public static final String USER = "root";
-	public static final String PASS = "pass";
 	
 	/**
      * Funcion para conectarse a la base de datos.
@@ -20,19 +16,23 @@ public class Bdr {
      */
 	public static void Conectar()
 	 {
-		try 
-		 {
-			//Se carga el driver de acceso a datos
-		   Class.forName("com.mysql.cj.jdbc.Driver");
-		   con = DriverManager.getConnection(URL+SCHEMA+PARAMS,USER,PASS);
-		   System.out.println("Connected to the database");
-		 }
-		 catch (ClassNotFoundException e) 
-		 {
-		     System.out.println("Error al cargar el controlador ");
-		 } catch (SQLException e) {
-		     System.out.println("Error en la conexion ");
-		 }
+		try {
+            Class.forName("org.sqlite.JDBC");
+            String dbURL = "jdbc:sqlite:olimpiadas.db";
+            con = DriverManager.getConnection(dbURL);
+            if (con != null) {
+                System.out.println("Connected to the database");
+                DatabaseMetaData dm = (DatabaseMetaData) con.getMetaData();
+                System.out.println("Driver name: " + dm.getDriverName());
+                System.out.println("Driver version: " + dm.getDriverVersion());
+                System.out.println("Product name: " + dm.getDatabaseProductName());
+                System.out.println("Product version: " + dm.getDatabaseProductVersion());
+            }
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
 	 }
 	
 	/**
